@@ -1,6 +1,6 @@
-Dưới đây là bản **Tài liệu Yêu cầu Sản phẩm (Product Requirements Document - PRD)** được thiết kế chuẩn mực, rành mạch để bạn có thể sử dụng làm kim chỉ nam và bắt tay vào code ngay lập tức.
+Dưới đây là bản **Tài liệu Yêu cầu Sản phẩm (Product Requirements Document - PRD)** chi tiết, được tối ưu riêng cho định hướng: **Tận dụng tối đa sức mạnh thông minh của AI và Free Tier của Cloud (Firebase), sẵn sàng nâng cấp (Scale-up) khi có lượng người dùng lớn.**
 
-Tài liệu này tập trung vào việc xây dựng "Base System" (Hệ thống lõi) trước, làm nền tảng để scale các mini-app sau này.
+Tài liệu này đóng vai trò như bản thiết kế "Blueprint" để Developer có thể code Base System (Hệ thống lõi) ngay lập tức.
 
 ---
 
@@ -8,91 +8,88 @@ Tài liệu này tập trung vào việc xây dựng "Base System" (Hệ thống
 
 ## 1. Tổng quan dự án (Project Overview)
 
-* **Tên dự án (Dự kiến):** AI Hub / Trend-Catching Portal
-* **Mục tiêu:** Xây dựng một nền tảng web giải trí tổng hợp chứa các mini-app ứng dụng AI (như bói vui, châm biếm, đo lường tính cách). Hệ thống được thiết kế để bắt các trend TikTok một cách nhanh chóng.
-* **Định hướng người dùng:** Giới trẻ (Gen Z, Gen Alpha), sử dụng thiết bị di động là chủ yếu (Mobile-first 99%), thiếu kiên nhẫn, thích trải nghiệm tương tác nhanh và có nhu cầu chia sẻ kết quả lên mạng xã hội để thể hiện bản thân.
-* **Mục tiêu kỹ thuật:** Chi phí vận hành tiệm cận 0 VNĐ, cấu trúc linh hoạt để ra mắt một mini-app mới trong vòng 1-2 giờ.
+* **Tên dự án:** AI Hub / Trend-Catching Portal
+* **Mục tiêu:** Xây dựng nền tảng web chứa các mini-app ứng dụng AI (bói vui, chấm điểm, châm biếm). Bắt trend nhanh chóng, mang tính giải trí cao nhờ sự thông minh của AI.
+* **Định hướng người dùng:** Giới trẻ (Gen Z, Gen Alpha). Mobile-first 100%. Hành vi: Thiếu kiên nhẫn, thích trải nghiệm cá nhân hoá và có nhu cầu chia sẻ kết quả lên mạng xã hội.
+* **Mục tiêu kỹ thuật & Chi phí:** 
+  * Chi phí ban đầu **0 VNĐ** (Sử dụng Free Tier của Firebase & Google Gemini).
+  * Kiến trúc chuẩn mực, dùng Database để quản lý kết quả. Khi dự án lớn mạnh, chỉ cần trả tiền nâng cấp gói (Pay-as-you-go) mà không phải đập đi xây lại.
+  * Tích hợp cơ chế phòng vệ (Cache, Fallback) để ứng phó khi chạm giới hạn Free Tier.
 
 ---
 
 ## 2. Yêu cầu chức năng (Functional Requirements)
 
-Hệ thống được chia làm 4 module chính:
+Hệ thống được chia làm 4 Module cốt lõi:
 
-### Module 1: Trang chủ (The Hub / Portal)
+### Module 1: The Hub (Trang chủ & Portal)
+* **F1.1 - Lưới Mini-app:** Hiển thị danh sách các app (Grid). Mỗi Card có Icon, Tiêu đề giật gân, Mô tả và Badge (Hot/New).
+* **F1.2 - Điều hướng (Routing):** Khi click vào app, chuyển cảnh mượt mà sang giao diện chơi. App được thiết kế dưới dạng dynamic route (VD: `/app/roast-my-face`).
 
-* **F1.1 - Danh sách Mini-app:** Hiển thị các mini-app dưới dạng Grid Cards. Mỗi Card bao gồm: Icon, Tiêu đề, Mô tả ngắn, và Badge (ví dụ: "Hot", "New", "Trending").
-* **F1.2 - Điều hướng:** Khi người dùng click vào một Card, hệ thống điều hướng mượt mà sang giao diện của mini-app tương ứng thông qua dynamic routing.
+### Module 2: The Core Flow (Luồng chơi & Cơ chế Viral)
+Trái tim của hệ thống, áp dụng chung cho mọi mini-app.
 
-### Module 2: Base Mini-App (Core Flow cho mọi trò chơi)
+* **F2.1 - Form Nhập liệu (Input):** Form động (Text, Date, Image Upload). Tối ưu UX cho màn hình điện thoại (bàn phím số cho ngày tháng, auto-focus).
+* **F2.2 - Fake Loading (Hiệu ứng Tâm lý):** Trong lúc đợi AI xử lý dữ liệu, màn hình KHÔNG dùng spinner quay tròn nhàm chán. Phải hiển thị các câu thông báo nhấp nháy, thay đổi ngẫu nhiên để tăng sự tò mò (Ví dụ: *"Đang phân tích dữ liệu...", "Đang kết nối tín hiệu vũ trụ..."*). Thời gian fake loading tối thiểu 3 giây.
+* **F2.3 - Công cụ Chia sẻ (Vũ khí Viral):**
+  * **Cơ chế 1: Tải ảnh về máy (Lưu file):** Dùng `html2canvas` chụp màn hình UI kết quả (được thiết kế cực đẹp, có sẵn Watermark + QR Code của web) để người chơi đăng Tiktok/Story.
+  * **Cơ chế 2: Copy Link URL:** Link có dạng định danh duy nhất (VD: `aihub.com/share/abc123xyz`). Khi dán link lên Zalo/Facebook, Server sẽ sinh ra ảnh Thumbnail (OpenGraph) bằng thư viện `nuxt-og-image` dựa trên dữ liệu của người chơi để thu hút bạn bè click vào.
 
-* **F2.1 - Form nhập liệu động:** Giao diện cho phép người dùng nhập thông tin (ví dụ: Input Text cho tên, Date Picker cho ngày sinh, hoặc Upload Ảnh).
-* **F2.2 - Xử lý trạng thái (State Management):** Hiển thị màn hình chờ (Loading) với các thông báo hài hước được thay đổi liên tục trong lúc chờ API trả kết quả để tránh nhàm chán.
-* **F2.3 - Màn hình Kết quả (Result Page):** Hiển thị kết quả text/image từ AI.
-* **F2.4 - Công cụ Viral (Sharing):**
-* Chức năng tạo ảnh chụp màn hình (Screenshot) phần kết quả để lưu về máy.
-* Chức năng "Copy Link" để tạo ra một đường dẫn định danh duy nhất (Unique URL) dẫn trực tiếp đến kết quả của người chơi đó.
+### Module 3: AI Gateway & Quản trị Quota (Cực kỳ quan trọng)
+* **F3.1 - Endpoint API trung gian:** Mọi request AI phải đi qua server nội bộ (Vercel Edge/Nitro). TUYỆT ĐỐI không lộ API Key ở Frontend.
+* **F3.2 - Tận dụng sự thông minh của AI:** Sử dụng Google Gemini API làm lõi xử lý chính (sinh text, đánh giá). Nội suy Prompt linh hoạt dựa trên input của User.
+* **F3.3 - Hash Caching (Tiết kiệm Quota API):** 
+  * Lưu trữ kết quả (Cache): Nếu User B nhập y hệt User A, hệ thống lấy kết quả đã lưu trong Database trả về, **KHÔNG GỌI LẠI AI API**. Tính năng này giúp tiết kiệm 50-70% request thừa khi có Trend.
+* **F3.4 - Cơ chế Fallback (Phòng ngự Rate Limit):** 
+  * Nếu đạt giới hạn Free Tier (ví dụ quá 15 request/phút), API sẽ vấp lỗi 429. Lúc này, API phải tự động "Bẻ lái" (Fallback) sang bốc ngẫu nhiên kết quả từ file `mock_data.json` chuẩn bị sẵn để app không bị báo lỗi.
 
-
-
-### Module 3: Tích hợp AI (AI Gateway)
-
-* **F3.1 - End-point API nội bộ:** Một Server API duy nhất làm nhiệm vụ trung gian, nhận yêu cầu từ Front-end kèm theo `app_id`.
-* **F3.2 - Quản lý Prompt:** Hệ thống tự động map `app_id` với các Prompt Template tương ứng, tiến hành nội suy dữ liệu người dùng vào Prompt trước khi gửi.
-* **F3.3 - Gọi AI Model:** Kết nối với Google Gemini API, bắt buộc định dạng dữ liệu trả về là chuẩn JSON (JSON Schema) để Front-end dễ dàng bóc tách và hiển thị.
-* **F3.4 - Xử lý lỗi (Error Handling):** Xử lý các lỗi khi AI từ chối trả lời (do vi phạm chính sách) hoặc lỗi Rate Limit (quá tải), trả về thông báo thân thiện cho Front-end.
-
-### Module 4: Cơ sở dữ liệu (Database & Storage)
-
-* **F4.1 - Lưu trữ kết quả sinh:** Lưu trữ JSON kết quả trả về từ AI vào Database kèm theo một ID duy nhất (`doc_id`).
-* **F4.2 - Truy xuất kết quả (Read):** Hỗ trợ truy xuất lại dữ liệu dựa trên `doc_id` khi người dùng khác truy cập vào link chia sẻ.
+### Module 4: Database & Storage (Firebase)
+* **F4.1 - Lưu trữ kết quả sinh:** Mỗi lần AI sinh xong kết quả, lưu cục JSON đó vào Firebase Firestore với ID duy nhất (`doc_id`).
+* **F4.2 - Đọc dữ liệu (Read-only):** Cung cấp API để Frontend truy xuất kết quả thông qua `doc_id` (Phục vụ cho luồng truy cập từ Link chia sẻ của người khác).
+* **F4.3 - Firebase Security Rules:** Khóa chặt quyền ghi trực tiếp từ Client. Chỉ cho phép Server (Admin SDK) được ghi, hoặc Client chỉ được đọc doc.
 
 ---
 
-## 3. Yêu cầu phi chức năng (Non-Functional Requirements)
+## 3. Yêu cầu Giao diện & Trải nghiệm (UI/UX)
 
-* **Hiệu năng (Performance):** Thời gian tải trang ban đầu (First Contentful Paint) dưới 1.5 giây. Tối ưu bundle size.
-* **Giao diện (UI/UX):** Bắt buộc theo hướng Mobile-first. Thiết kế giới hạn khung hình hiển thị tốt trên cả màn hình nhỏ nhắn như iPhone SE đến màn hình lớn như iPhone Pro Max. Các thao tác vuốt, chạm phải mượt mà.
-* **Bảo mật (Security):** API Key của AI tuyệt đối không được lộ ở client-side. Mọi giao tiếp với AI phải thông qua Server API nội bộ.
-* **Khả năng mở rộng (Scalability):** Tách bạch rõ ràng giữa Core Component và Mini-app Logic để việc thêm mới tính năng không làm phình to mã nguồn cốt lõi.
-
----
-
-## 4. Stack Công nghệ (Technology Stack)
-
-Để đáp ứng được tính linh hoạt, tốc độ phát triển và tối ưu chi phí, hệ thống sử dụng các công nghệ sau:
-
-* **Framework chính:** Nuxt (phiên bản mới nhất). Xử lý cả SSR, CSR và hệ thống routing.
-* **Backend & Serverless:** Sử dụng Node.js (thông qua Nitro engine của Nuxt) để viết các end-point API trung gian nằm trong thư mục `server/api`.
-* **UI Framework & Styling:** Sử dụng Ant Design cho các component nhập liệu (Input, Button, Spin) để phát triển nhanh. Kết hợp với Sass (SCSS) để custom toàn diện style gốc của Ant Design, tạo ra các giao diện trẻ trung, không bị cứng nhắc kiểu dashboard.
-* **Cơ sở dữ liệu:** Firebase Firestore để lưu trữ kết quả JSON và cấp phát Link chia sẻ nhanh chóng.
-* **AI Engine:** Google Gemini Flash API.
-* **Triển khai (Deployment):** Vercel (Hỗ trợ native cho Nuxt và Serverless functions).
+* **Thiết kế (Vibe Gen Z):** Định hướng **Dark Mode** mặc định. Sử dụng các gam màu Gradient Neon (Tím, Xanh neon, Cam) để tạo sự bí ẩn, công nghệ. Form input dùng bo góc lớn (Rounded-2xl/full), kết hợp Glassmorphism.
+* **Animation & Micro-interactions:** 
+  * Nút CTA (Ví dụ: "Xem Kết Quả") phải có hiệu ứng nhún (scale) khi chạm.
+  * Nút "Chia sẻ (Share)" có hiệu ứng rung lắc (pulse) nhẹ nhàng để kích thích người dùng bấm vào.
+  * Sử dụng thư viện motion (`@vueuse/motion` hoặc css animation) cho các màn chuyển cảnh.
 
 ---
 
-## 5. Kế hoạch triển khai (Milestones)
+## 4. Ngăn xếp Công nghệ (Tech Stack V2)
 
-* **Giai đoạn 1 (Setup Base - Dự kiến 2-3 ngày):**
-* Khởi tạo dự án Nuxt.
-* Xây dựng hệ thống thư mục (`pages`, `components`, `server/api`).
-* Cấu hình Sass, custom Ant Design.
-* Kết nối Firebase và thử nghiệm gọi Gemini API thành công trên Postman/Insomnia.
-
-
-* **Giai đoạn 2 (Xây dựng UI/UX lõi - Dự kiến 2 ngày):**
-* Code trang chủ (Hub) và các component dùng chung (BaseCard, BaseButton, ShareResult).
-
-
-* **Giai đoạn 3 (Tạo Mini-app đầu tiên & Viral Loop - Dự kiến 2 ngày):**
-* Hoàn thiện luồng của một app ví dụ (VD: Roast AI).
-* Tích hợp tính năng lưu DB và sinh link chia sẻ.
-
-
-* **Giai đoạn 4 (Deploy & Test - Dự kiến 1 ngày):**
-* Deploy lên Vercel.
-* Kiểm tra Rate limit và responsive trên điện thoại thật.
-
-
+* **Framework cốt lõi:** Nuxt 3 (Cấu hình Server-Side Rendering - SSR cho các trang chia sẻ để bot Facebook đọc được OG meta, và CSR cho các form nhập liệu).
+* **UI Framework:** **Tailwind CSS** + **Nuxt UI** (Tối ưu cho Nuxt, siêu nhẹ, custom Dark Mode dễ hơn Ant Design, giao diện cực kỳ hiện đại phù hợp Gen Z).
+* **Cơ sở dữ liệu:** Firebase Firestore (Free Tier cho phép 50k reads, 20k writes/ngày. Dư sức dùng ở giai đoạn đầu, dễ scale sau này).
+* **AI Engine:** Google Gemini Flash API (Phản hồi nhanh, free tier tốt).
+* **Công cụ bổ trợ:** 
+  * `html2canvas`: Xử lý chụp ảnh client.
+  * `nuxt-og-image`: Sinh ảnh OG động cho social sharing.
+* **Triển khai (Deployment):** Vercel (Hobby Plan).
 
 ---
+
+## 5. Kế hoạch Triển khai (Milestones)
+
+* **Giai đoạn 1: Foundation (1 ngày)**
+  * Khởi tạo dự án Nuxt 3.
+  * Cài đặt và cấu hình Tailwind CSS, Nuxt UI, tích hợp Firebase SDK.
+  * Xây dựng cấu trúc thư mục chuẩn.
+* **Giai đoạn 2: UI/UX Core & Loading (1.5 ngày)**
+  * Dựng layout trang chủ (Hub).
+  * Viết các component dùng chung: BaseInput, BaseButton, đặc biệt là `FakeLoading` (nhấp nháy chữ).
+* **Giai đoạn 3: AI Gateway & Firebase DB (2 ngày)**
+  * Viết API endpoint `/api/generate` kết nối Gemini API.
+  * Cài đặt luồng: Gọi AI -> Lưu Firebase lấy ID -> Caching & Fallback.
+  * Xây dựng trang `/share/[id]` đọc dữ liệu từ DB.
+* **Giai đoạn 4: Tích hợp Viral Share & Test (1 ngày)**
+  * Cài đặt `html2canvas` để tải ảnh kết quả có watermark.
+  * Cấu hình `nuxt-og-image` cho Zalo/Facebook.
+  * Deploy Vercel và test thực tế.
+
+---
+*(Với bản PRD này, hệ thống sẽ vừa tận dụng tối đa trí tuệ của AI, vừa sử dụng Cloud Database chuẩn mực để dễ dàng mở rộng dung lượng khi dự án hái ra tiền, trong khi vẫn có lớp bảo vệ (Cache & Fallback) an toàn khi dùng Free Tier).*
