@@ -1,0 +1,25 @@
+{
+  "roast-my-face": [
+    { "title": "Bạn là 'tác phẩm' của tạo hoá 😂", "roast": "Khuôn mặt bạn như một bức tranh trừu tượng mà hoạ sĩ vẽ lúc 3 giờ sáng. Nhưng hey, ít nhất bạn có cá tính! Điểm cộng cho sự tự tin khi dám đăng ảnh lên đây 💪", "score": 65, "hashtag": "#RoastedByAI" },
+    { "title": "AI cũng phải bật cười 🤣", "roast": "Mặt bạn làm AI lag mất 2 giây vì không biết phân loại vào thể loại nào. Nhưng chính sự độc đáo đó mới tạo nên bạn! Crush nhìn vào chắc cũng phải 'wtf' rồi crush luôn 😆", "score": 72, "hashtag": "#FaceOfTheYear" },
+    { "title": "Gương mặt triệu view 🔥", "roast": "Bạn có gương mặt mà nhìn vào là muốn... kể cho bạn bè nghe. Kiểu mặt này đăng lên TikTok chắc viral lắm, nhưng vì lý do không ai ngờ tới 😂. Dù sao thì bạn vẫn xinh/đẹp trai trong mắt mẹ!", "score": 58, "hashtag": "#UniqueBeauty" }
+  ],
+  "ten-tuoi-van-menh": [
+    { "title": "Vận mệnh rực rỡ ✨", "destiny": "Theo các vì sao, bạn thuộc mệnh Hoả — nóng nảy nhưng đầy đam mê! Năm nay tài chính sẽ khởi sắc, nhưng nhớ giữ ví chặt khi đi shopping. Tình duyên có biến động vào tháng 8 — hãy chuẩn bị tinh thần! 🔥", "luckyNumber": 7, "element": "Hoả", "advice": "Mặc đồ đỏ vào thứ 3 để tăng vận may nhé! 🍀" },
+    { "title": "Mệnh Thuỷ — Dịu dàng mà mạnh mẽ 🌊", "destiny": "Bạn là người sâu sắc như đại dương, bên ngoài lặng yên nhưng bên trong sóng cuộn. Cuối năm sẽ có quý nhân phù trợ. Đừng ngại thể hiện bản thân, vũ trụ đang ủng hộ bạn!", "luckyNumber": 3, "element": "Thuỷ", "advice": "Uống nhiều nước để kết nối với mệnh của mình 💧" }
+  ],
+  "cham-diem-doi": [
+    { "title": "Bảng điểm cuộc đời 💯", "score": 78, "review": "Cuộc đời bạn được 78 điểm — thuộc hàng 'trên trung bình khá' 😎. Bạn đã vượt qua nhiều thử thách nhưng vẫn chưa unlock hết achievement. Tiếp tục cố gắng, bạn sắp lên hạng Kim Cương rồi!", "category": "Bạch kim", "advice": "Hãy thử một thứ mới mỗi tuần để tăng điểm nhanh hơn! 🚀" },
+    { "title": "Điểm số bất ngờ 🎯", "score": 85, "review": "85 điểm! Bạn thuộc top 15% cuộc đời đáng sống nhất! Có sự nghiệp ổn, có người thương, có sở thích — basically bạn đang win rồi đó. Chỉ cần thêm chút liều lĩnh là perfect!", "category": "Kim cương", "advice": "Đừng quên tận hưởng hiện tại, đừng chỉ lo cho tương lai 🌈" }
+  ],
+  "tinh-cach-qua-avatar": [
+    { "title": "Đọc vị tính cách 🎭", "personality": "Avatar của bạn toát lên vẻ bí ẩn và sáng tạo. Bạn là kiểu người thích quan sát hơn nói, nhưng khi nói thì ai cũng phải lắng nghe. Bạn có gu thẩm mỹ cao và hơi perfectionist.", "type": "Introvert sáng tạo", "matchWith": "Extrovert năng động — họ sẽ kéo bạn ra khỏi vùng an toàn!", "warning": "Cẩn thận kẻo overthink quá rồi quên sống nha! 🧠" }
+  ],
+  "doi-song-2050": [
+    { "title": "Cuộc sống 2050 🚀", "prediction": "Năm 2050, bạn sẽ sống trong căn hộ trên tầng 150 ở Neo Saigon, đi làm bằng taxi bay, và nuôi 3 con mèo robot. Công việc chính là 'Chuyên viên tâm lý cho AI' — vì AI lúc đó cũng bị stress! 😂", "job2050": "AI Therapist (Chuyên viên tâm lý cho AI)", "home": "Neo Saigon — Tầng 150", "funFact": "Bạn sẽ là người Việt đầu tiên đặt chân lên sao Hoả vào năm 2048! 🪐" }
+  ],
+  "crush-nghi-gi": [
+    { "title": "Crush đang nghĩ... 💘", "thought": "Crush của bạn thầm ngưỡng mộ sự tự tin và hài hước của bạn! Mỗi khi bạn online, crush đều lén check story đầu tiên. Có điều crush hơi ngại vì không biết bạn có thích mình không 🥺", "loveScore": 73, "signal": "Vàng — Có tiềm năng!", "advice": "Hãy chủ động hơn một chút, crush đang chờ tín hiệu từ bạn đấy! 💌" },
+    { "title": "Tín hiệu tình yêu 💕", "thought": "Crush nhìn bạn như nhìn menu ở quán trà sữa — muốn lắm nhưng sợ béo (sợ bị reject) 😂. Bạn đã chiếm được 1 góc nhỏ trong tim crush rồi đó, giờ chỉ cần đẩy mạnh thêm thôi!", "loveScore": 65, "signal": "Vàng — Đang cân nhắc", "advice": "Rủ crush đi ăn, đồ ăn là con đường ngắn nhất đến trái tim! 🍜" }
+  ]
+}
