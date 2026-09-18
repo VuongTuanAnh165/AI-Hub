@@ -30,7 +30,7 @@ useSeoMeta({
       description="Nền tảng mini-app AI siêu vui. Bói vận mệnh, chấm điểm cuộc đời, roast khuôn mặt — tất cả đều miễn phí!"
       :ui="{
         title: 'text-4xl sm:text-5xl lg:text-6xl font-extrabold gradient-neon-text',
-        description: 'text-lg sm:text-xl text-muted max-w-2xl'
+        description: 'text-lg sm:text-xl text-muted max-w-2xl mx-auto text-center'
       }"
     >
       <template #links>
