@@ -36,7 +36,7 @@ const resultCardRef = ref<HTMLElement | null>(null)
 const isCapturing = ref(false)
 
 // Form inputs — dynamic dựa vào slug
-const formData = reactive<Record<string, string>>({
+const formData = reactive<Record<string, any>>({
   name: '',
   birthday: '',
   age: '',
@@ -205,22 +205,21 @@ async function downloadImage() {
   
   try {
     isCapturing.value = true
-    // Import động để tránh lỗi SSR
-    const html2canvas = (await import('html2canvas')).default
+    // Import html-to-image (Hỗ trợ CSS hiện đại tốt hơn html2canvas nhiều)
+    const { toPng } = await import('html-to-image')
     
     // Đợi 1 chút để DOM cập nhật trạng thái isCapturing (hiển thị watermark)
     await nextTick()
     await new Promise(resolve => setTimeout(resolve, 100))
 
-    const canvas = await html2canvas(resultCardRef.value, {
-      scale: 2,
-      useCORS: true,
+    const dataUrl = await toPng(resultCardRef.value, {
+      pixelRatio: 2,
       backgroundColor: '#09090b', // Trùng màu nền web
     })
 
     const link = document.createElement('a')
     link.download = `ai-hub-${slug}-${Date.now()}.png`
-    link.href = canvas.toDataURL('image/png')
+    link.href = dataUrl
     link.click()
 
     gtag('event', 'download_image_clicked', { app_slug: slug })
@@ -229,6 +228,8 @@ async function downloadImage() {
     toast.add({ title: 'Đã lưu ảnh!', description: 'Bạn có thể chia sẻ lên Story ngay bây giờ.', icon: 'i-lucide-download', color: 'success' })
   } catch (err) {
     console.error('Failed to capture image:', err)
+    const toast = useToast()
+    toast.add({ title: 'Lỗi tải ảnh', description: 'Có lỗi xảy ra, vui lòng thử lại sau.', icon: 'i-lucide-alert-circle', color: 'error' })
   } finally {
     isCapturing.value = false
   }
@@ -269,8 +270,8 @@ async function downloadImage() {
             <UInput
               v-else
               v-model="formData[field.key]"
-              :type="field.type || 'text'"
-              :placeholder="field.placeholder"
+              :type="(field.type as any) || 'text'"
+              :placeholder="field.placeholder || ''"
               size="lg"
               class="w-full"
             />

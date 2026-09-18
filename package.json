@@ -17,6 +17,7 @@
     "canvas-confetti": "^1.9.4",
     "firebase": "^12.19.0",
     "firebase-admin": "^14.4.0",
+    "html-to-image": "^1.11.13",
     "html2canvas": "^1.4.1",
     "nuxt": "^4.5.2",
     "nuxt-gtag": "^5.0.0",
