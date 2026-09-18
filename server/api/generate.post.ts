@@ -74,9 +74,33 @@ export default defineEventHandler(async (event) => {
   try {
     const ai = new GoogleGenAI({ apiKey: config.geminiApiKey as string })
 
+    // Ưu tiên dùng model từ ENV, nếu không có thì fallback về bản flash
+    const aiModel = process.env.GEMINI_MODEL || 'gemini-3.6-flash'
+
+    // Xây dựng payload contents hỗ trợ Multimodal (Hình ảnh)
+    const contents: any[] = [{ text: promptConfig.buildUserPrompt(input) }]
+    
+    for (const key in input) {
+      if (typeof input[key] === 'string' && input[key].startsWith('data:image/')) {
+        const match = input[key].match(/^data:(image\/\w+);base64,(.*)$/)
+        if (match) {
+          contents.push({
+            inlineData: {
+              mimeType: match[1],
+              data: match[2]
+            }
+          })
+          // Xoá Base64 khỏi input sau khi đã push vào contents.
+          // Đảm bảo lúc gọi saveResult() ở cuối file, ảnh không bị lưu vào Firestore (Bảo vệ Privacy + Quota)
+          // Mã inputHash đã được tính từ đầu file nên không bị đụng độ (Collision)
+          delete input[key]
+        }
+      }
+    }
+
     const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
-      contents: promptConfig.buildUserPrompt(input),
+      model: aiModel,
+      contents: contents,
       config: {
         systemInstruction: promptConfig.systemPrompt,
         responseMimeType: 'application/json',
@@ -99,6 +123,15 @@ export default defineEventHandler(async (event) => {
     }
   } catch (error: any) {
     console.error('[AI] Gemini error:', error.message || error)
+
+    // Bắt lỗi Safety API của Google (Tránh văng lỗi 503 vô nghĩa khi user up ảnh bậy)
+    const errStr = String(error.message || error).toUpperCase()
+    if (errStr.includes('SAFETY') || errStr.includes('HARM_CATEGORY') || error.status === 400) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Bức ảnh hoặc nội dung vi phạm tiêu chuẩn cộng đồng (nhạy cảm, bạo lực...). AI từ chối phân tích. Vui lòng chọn ảnh khác đàng hoàng hơn!'
+      })
+    }
 
     // 4. Fallback (F3.4) — Nếu lỗi 429 hoặc bất kỳ lỗi nào
     const fallbackItems = mockData[appSlug]

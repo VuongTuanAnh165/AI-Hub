@@ -65,14 +65,14 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center py-16 px-4 gap-8">
+  <div class="flex flex-col items-center justify-center py-20 px-4 gap-10">
     <!-- Animated Icon -->
     <div class="relative">
-      <div class="size-20 rounded-full bg-primary/10 flex items-center justify-center animate-pulse">
-        <UIcon name="i-lucide-brain" class="size-10 text-primary" />
+      <div class="size-28 rounded-full bg-primary/20 flex items-center justify-center animate-pulse shadow-[0_0_50px_rgba(124,58,237,0.5)]">
+        <UIcon name="i-lucide-brain" class="size-14 text-primary" />
       </div>
       <!-- Spinning ring -->
-      <div class="absolute inset-0 size-20 rounded-full border-2 border-transparent border-t-primary animate-spin" />
+      <div class="absolute inset-0 size-28 rounded-full border-[3px] border-transparent border-t-primary border-l-secondary animate-[spin_2s_linear_infinite]" />
     </div>
 
     <!-- Message with fade transition -->

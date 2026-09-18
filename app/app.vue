@@ -17,6 +17,13 @@ const navItems = computed<NavigationMenuItem[]>(() => [
 
 <template>
   <UApp>
+    <!-- V2 Ambient Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="absolute inset-0 bg-noise"></div>
+    </div>
+
     <UHeader>
       <template #title>
         <span class="text-lg font-bold gradient-neon-text">AI Hub</span>

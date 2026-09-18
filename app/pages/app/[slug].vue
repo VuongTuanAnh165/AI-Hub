@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { miniApps } from '~/data/apps'
+import confetti from 'canvas-confetti'
 
 const route = useRoute()
 const slug = route.params.slug as string
@@ -43,14 +44,18 @@ const formData = reactive<Record<string, string>>({
   hobby: '',
   dream: '',
   avatarDescription: '',
-  crushName: ''
+  crushName: '',
+  photo: ''
 })
 
 // Xác định fields nào hiển thị dựa vào slug
 const formFields = computed(() => {
   switch (slug) {
     case 'roast-my-face':
-      return [{ key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' }]
+      return [
+        { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+        { key: 'photo', label: 'Tải ảnh khuôn mặt của bạn lên', type: 'image' }
+      ]
     case 'ten-tuoi-van-menh':
       return [
         { key: 'name', label: 'Họ và tên', placeholder: 'VD: Nguyễn Văn A', type: 'text' },
@@ -118,6 +123,7 @@ async function handleSubmit() {
     // Nếu fake loading đã xong thì nhảy sang kết quả luôn
     if (isFakeLoadingDone.value) {
       state.value = 'result'
+      triggerConfetti()
     }
 
     // Bắn event GA4 (F5.1)
@@ -138,7 +144,34 @@ function onLoadingDone() {
   isFakeLoadingDone.value = true
   if (result.value) {
     state.value = 'result'
+    triggerConfetti()
   }
+}
+
+function triggerConfetti() {
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 }
+  
+  function randomInRange(min: number, max: number) {
+    return Math.random() * (max - min) + min
+  }
+
+  const interval = setInterval(function() {
+    const particleCount = 50
+    confetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      colors: ['#7c3aed', '#06b6d4', '#f97316', '#ffffff']
+    })
+    confetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      colors: ['#7c3aed', '#06b6d4', '#f97316', '#ffffff']
+    })
+  }, 250)
+  
+  setTimeout(() => clearInterval(interval), 1500)
 }
 
 function playAgain() {
@@ -229,7 +262,12 @@ async function downloadImage() {
             :label="field.label"
             class="w-full"
           >
+            <ImageDropzone 
+              v-if="field.type === 'image'" 
+              v-model="formData[field.key]" 
+            />
             <UInput
+              v-else
               v-model="formData[field.key]"
               :type="field.type || 'text'"
               :placeholder="field.placeholder"
@@ -248,7 +286,7 @@ async function downloadImage() {
             size="xl"
             block
             :disabled="!isFormValid"
-            class="animate-cta mt-4"
+            class="animate-cta mt-4 btn-shiny font-bold tracking-wide"
           />
         </form>
 
@@ -272,23 +310,29 @@ async function downloadImage() {
 
     <!-- State: RESULT — Hiển thị kết quả -->
     <div v-if="state === 'result' && result" class="max-w-lg mx-auto">
-      <div ref="resultCardRef" class="p-4 sm:p-0 rounded-2xl bg-[#09090b]">
-        <UCard class="glass border border-white/10 shadow-2xl overflow-hidden relative">
-          <div class="text-center space-y-4">
+      <div ref="resultCardRef" class="p-6 sm:p-2 rounded-[2rem] mesh-card">
+        <UCard class="glass border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative backdrop-blur-xl bg-black/40">
+          <div class="text-center space-y-6">
+            <!-- Polaroid Image (Chỉ hiện nếu có ảnh) -->
+            <div v-if="formData.photo" class="mx-auto w-32 h-36 p-2 bg-white rounded-lg shadow-xl -rotate-3 hover:rotate-0 transition-transform duration-300">
+              <img :src="formData.photo" class="w-full h-24 object-cover rounded-sm mb-2" />
+              <p class="text-black font-bold text-sm tracking-tight capitalize">{{ formData.name || 'Nạn nhân' }}</p>
+            </div>
+
             <!-- Dynamic Result Display -->
-            <h2 class="text-2xl font-bold gradient-neon-text leading-tight pt-2">
+            <h2 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400 leading-tight pt-2 drop-shadow-md">
               {{ result.title }}
             </h2>
 
           <!-- Nội dung chính — render tất cả fields trừ title -->
           <div class="text-left space-y-3">
             <template v-for="(value, key) in result" :key="key">
-              <div v-if="key !== 'title' && typeof value === 'string'" class="p-3 rounded-lg bg-elevated">
-                <p class="text-default">{{ value }}</p>
+              <div v-if="key !== 'title' && typeof value === 'string'" class="p-4 rounded-xl bg-white/5 border border-white/10 shadow-inner">
+                <p class="text-gray-100 text-[1.05rem] leading-relaxed">{{ value }}</p>
               </div>
-              <div v-else-if="key !== 'title' && typeof value === 'number'" class="text-center">
-                <span class="text-5xl font-extrabold gradient-neon-text">{{ value }}</span>
-                <p class="text-dimmed text-sm mt-1">{{ key === 'score' ? 'điểm' : key === 'loveScore' ? '% khả năng' : key }}</p>
+              <div v-else-if="key !== 'title' && typeof value === 'number'" class="text-center py-2">
+                <span class="text-6xl font-black gradient-neon-text drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]">{{ value }}</span>
+                <p class="text-gray-300 font-medium text-sm mt-2 uppercase tracking-widest">{{ key === 'score' ? 'điểm' : key === 'loveScore' ? '% khả năng' : key }}</p>
               </div>
             </template>
           </div>
