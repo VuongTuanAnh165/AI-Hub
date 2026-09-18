@@ -1,8 +1,26 @@
 {
   "roast-my-face": [
-    { "title": "Bạn là 'tác phẩm' của tạo hoá 😂", "roast": "Khuôn mặt bạn như một bức tranh trừu tượng mà hoạ sĩ vẽ lúc 3 giờ sáng. Nhưng hey, ít nhất bạn có cá tính! Điểm cộng cho sự tự tin khi dám đăng ảnh lên đây 💪", "score": 65, "hashtag": "#RoastedByAI" },
-    { "title": "AI cũng phải bật cười 🤣", "roast": "Mặt bạn làm AI lag mất 2 giây vì không biết phân loại vào thể loại nào. Nhưng chính sự độc đáo đó mới tạo nên bạn! Crush nhìn vào chắc cũng phải 'wtf' rồi crush luôn 😆", "score": 72, "hashtag": "#FaceOfTheYear" },
-    { "title": "Gương mặt triệu view 🔥", "roast": "Bạn có gương mặt mà nhìn vào là muốn... kể cho bạn bè nghe. Kiểu mặt này đăng lên TikTok chắc viral lắm, nhưng vì lý do không ai ngờ tới 😂. Dù sao thì bạn vẫn xinh/đẹp trai trong mắt mẹ!", "score": 58, "hashtag": "#UniqueBeauty" }
+    { 
+      "title": "Tác phẩm trừu tượng của tạo hoá 😂", 
+      "details": [
+        { "feature": "Đôi mắt", "comment": "Mắt bạn sâu thẳm như chiếc ví của tôi vào cuối tháng vậy." },
+        { "feature": "Mái tóc", "comment": "Không rõ đây là kiểu tóc mới hay là do bạn vừa đi qua cơn bão số 3?" },
+        { "feature": "Nụ cười", "comment": "Nụ cười rất tự tin, dù có vẻ nó đang cố gắng che giấu sự bất ổn bên trong." }
+      ],
+      "roast": "Tóm lại, khuôn mặt bạn làm AI lag mất 2 giây vì không biết phân loại vào thể loại nào. Nhưng chính sự độc đáo đó mới tạo nên bạn! 😆", 
+      "burnLevel": 85, 
+      "hashtag": "#RoastedByAI" 
+    },
+    { 
+      "title": "Gương mặt vàng trong làng mất ngủ 🐼", 
+      "details": [
+        { "feature": "Quầng thâm", "comment": "Gấu trúc thấy bạn chắc cũng phải gọi bằng cụ." },
+        { "feature": "Làn da", "comment": "Da bạn mịn màng như... đường nhựa mới rải vậy, rất nghệ thuật." }
+      ],
+      "roast": "Mặt bạn đăng lên TikTok chắc viral lắm, nhưng vì lý do không ai ngờ tới 😂. Dù sao thì bạn vẫn xinh đẹp trong mắt mẹ!", 
+      "burnLevel": 92, 
+      "hashtag": "#FaceOfTheYear" 
+    }
   ],
   "ten-tuoi-van-menh": [
     { "title": "Vận mệnh rực rỡ ✨", "destiny": "Theo các vì sao, bạn thuộc mệnh Hoả — nóng nảy nhưng đầy đam mê! Năm nay tài chính sẽ khởi sắc, nhưng nhớ giữ ví chặt khi đi shopping. Tình duyên có biến động vào tháng 8 — hãy chuẩn bị tinh thần! 🔥", "luckyNumber": 7, "element": "Hoả", "advice": "Mặc đồ đỏ vào thứ 3 để tăng vận may nhé! 🍀" },

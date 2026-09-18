@@ -24,8 +24,8 @@ const result = ref<Record<string, any> | null>(null)
 const resultId = ref<string | null>(null)
 const errorMsg = ref('')
 
-// Trạng thái đợi FakeLoading
-const isFakeLoadingDone = ref(false)
+// Trạng thái chờ API thực tế để đồng bộ FakeLoading
+const isApiLoading = ref(false)
 
 // Turnstile Token (F2.1 - Chống spam)
 const turnstileToken = ref('')
@@ -98,7 +98,7 @@ async function handleSubmit() {
   if (!isFormValid.value) return
 
   state.value = 'loading'
-  isFakeLoadingDone.value = false
+  isApiLoading.value = true
   errorMsg.value = ''
 
   // Lọc chỉ lấy fields cần thiết
@@ -120,12 +120,6 @@ async function handleSubmit() {
     result.value = data.result
     resultId.value = data.id
 
-    // Nếu fake loading đã xong thì nhảy sang kết quả luôn
-    if (isFakeLoadingDone.value) {
-      state.value = 'result'
-      triggerConfetti()
-    }
-
     // Bắn event GA4 (F5.1)
     gtag('event', 'ai_generated', {
       app_slug: slug,
@@ -137,12 +131,13 @@ async function handleSubmit() {
     state.value = 'idle'
     // Reset turnstile token khi có lỗi để user xác thực lại
     turnstileToken.value = ''
+  } finally {
+    isApiLoading.value = false
   }
 }
 
 function onLoadingDone() {
-  isFakeLoadingDone.value = true
-  if (result.value) {
+  if (result.value && state.value === 'loading') {
     state.value = 'result'
     triggerConfetti()
   }
@@ -178,7 +173,6 @@ function playAgain() {
   state.value = 'idle'
   result.value = null
   resultId.value = null
-  isFakeLoadingDone.value = false
   errorMsg.value = ''
   // Reset form
   Object.keys(formData).forEach(key => { formData[key] = '' })
@@ -247,8 +241,9 @@ async function downloadImage() {
         to="/"
         class="mb-4"
       />
-      <h1 class="text-3xl sm:text-4xl font-extrabold gradient-neon-text">
-        {{ appInfo?.title }}
+      <h1 class="flex items-center justify-center gap-3 text-3xl sm:text-4xl font-extrabold">
+        <UIcon v-if="appInfo?.icon" :name="appInfo.icon" class="text-primary-500 w-8 h-8 sm:w-10 sm:h-10 drop-shadow-lg" />
+        <span class="gradient-neon-text">{{ appInfo?.title }}</span>
       </h1>
       <p class="text-muted mt-2">{{ appInfo?.description }}</p>
     </div>
@@ -301,10 +296,10 @@ async function downloadImage() {
       </UCard>
     </div>
 
-    <!-- State: LOADING — FakeLoading -->
     <div v-if="state === 'loading'">
       <FakeLoading
         :duration="3500"
+        :isLoading="isApiLoading"
         @done="onLoadingDone"
       />
     </div>
@@ -315,25 +310,43 @@ async function downloadImage() {
         <UCard class="glass border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative backdrop-blur-xl bg-black/40">
           <div class="text-center space-y-6">
             <!-- Polaroid Image (Chỉ hiện nếu có ảnh) -->
-            <div v-if="formData.photo" class="mx-auto w-32 h-36 p-2 bg-white rounded-lg shadow-xl -rotate-3 hover:rotate-0 transition-transform duration-300">
+            <div v-if="formData.photo" class="relative mx-auto w-32 h-36 p-2 bg-white rounded-lg shadow-xl -rotate-3 hover:rotate-0 transition-transform duration-300">
               <img :src="formData.photo" class="w-full h-24 object-cover rounded-sm mb-2" />
               <p class="text-black font-bold text-sm tracking-tight capitalize">{{ formData.name || 'Nạn nhân' }}</p>
+              
+              <!-- ROASTED Stamp -->
+              <div v-if="slug === 'roast-my-face'" class="absolute -top-4 -right-6 rotate-12 pointer-events-none z-10 animate-bounce">
+                <div class="border-4 border-red-600 text-red-600 font-black text-xl px-2 py-1 uppercase rounded-md shadow-[0_0_15px_rgba(220,38,38,0.6)] bg-black/60 backdrop-blur-sm" style="font-family: Impact, sans-serif; letter-spacing: 2px;">
+                  ROASTED
+                </div>
+              </div>
             </div>
 
             <!-- Dynamic Result Display -->
-            <h2 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400 leading-tight pt-2 drop-shadow-md">
+            <h2 class="text-3xl font-black text-gray-100 leading-tight pt-2 drop-shadow-md">
               {{ result.title }}
             </h2>
 
           <!-- Nội dung chính — render tất cả fields trừ title -->
           <div class="text-left space-y-3">
             <template v-for="(value, key) in result" :key="key">
+              <!-- Render String -->
               <div v-if="key !== 'title' && typeof value === 'string'" class="p-4 rounded-xl bg-white/5 border border-white/10 shadow-inner">
                 <p class="text-gray-100 text-[1.05rem] leading-relaxed">{{ value }}</p>
               </div>
+              
+              <!-- Render Number -->
               <div v-else-if="key !== 'title' && typeof value === 'number'" class="text-center py-2">
                 <span class="text-6xl font-black gradient-neon-text drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]">{{ value }}</span>
-                <p class="text-gray-300 font-medium text-sm mt-2 uppercase tracking-widest">{{ key === 'score' ? 'điểm' : key === 'loveScore' ? '% khả năng' : key }}</p>
+                <p class="text-gray-300 font-medium text-sm mt-2 uppercase tracking-widest">{{ key === 'burnLevel' ? '% Sát thương' : (key === 'score' ? 'điểm' : key === 'loveScore' ? '% khả năng' : key) }}</p>
+              </div>
+
+              <!-- Render Array (Roast Details) -->
+              <div v-else-if="key !== 'title' && Array.isArray(value)" class="space-y-3 mt-4 text-left">
+                <div v-for="(item, idx) in value" :key="idx" class="p-3 bg-red-900/20 border border-red-500/30 rounded-lg">
+                  <div class="font-bold text-red-400 text-sm mb-1 uppercase tracking-wider">{{ item.feature }}</div>
+                  <div class="text-gray-200 text-[1rem] leading-relaxed">{{ item.comment }}</div>
+                </div>
               </div>
             </template>
           </div>

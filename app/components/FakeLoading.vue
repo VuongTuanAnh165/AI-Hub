@@ -4,8 +4,11 @@ const props = withDefaults(defineProps<{
   duration?: number
   /** Danh sách các câu thông báo nhấp nháy */
   messages?: string[]
+  /** Biến cờ theo dõi API thực tế đang chạy */
+  isLoading?: boolean
 }>(), {
   duration: 3000,
+  isLoading: true,
   messages: () => [
     'Đang khởi động AI...',
     'Đang phân tích dữ liệu...',
@@ -39,28 +42,32 @@ onMounted(() => {
     currentIndex.value = (currentIndex.value + 1) % props.messages.length
   }, messageSpeed)
 
-  // Animate progress bar
+  // Animate progress bar (chỉ đạt 100% khi API xong)
   progressInterval = setInterval(() => {
-    progress.value = Math.min(progress.value + progressStep, 100)
+    if (props.isLoading) {
+      if (progress.value < 85) {
+        progress.value += progressStep
+      } else {
+        // Chậm dần đều tiệm cận 99% nếu API chưa xong
+        progress.value += (99.9 - progress.value) * 0.015
+      }
+    } else {
+      progress.value = 100
+      if (!isComplete.value) {
+        isComplete.value = true
+        clearInterval(messageInterval)
+        clearInterval(progressInterval)
+        setTimeout(() => {
+          emit('done')
+        }, 300)
+      }
+    }
   }, 50)
-
-  // Emit done after duration
-  doneTimeout = setTimeout(() => {
-    progress.value = 100
-    isComplete.value = true
-    clearInterval(messageInterval)
-    clearInterval(progressInterval)
-
-    setTimeout(() => {
-      emit('done')
-    }, 300)
-  }, props.duration)
 })
 
 onUnmounted(() => {
   clearInterval(messageInterval)
   clearInterval(progressInterval)
-  clearTimeout(doneTimeout)
 })
 </script>
 

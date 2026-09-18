@@ -9,7 +9,7 @@ export interface MiniApp {
 export const miniApps: MiniApp[] = [
   {
     slug: 'roast-my-face',
-    title: '🔥 AI Roast Khuôn Mặt',
+    title: 'AI Roast Khuôn Mặt',
     description: 'Upload ảnh selfie và để AI "phán xét" khuôn mặt bạn một cách hài hước nhất!',
     icon: 'i-lucide-flame',
     badge: 'hot'

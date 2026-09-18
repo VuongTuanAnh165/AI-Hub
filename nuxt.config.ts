@@ -62,6 +62,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Private keys are only available on the server
     geminiApiKey: process.env.GEMINI_API_KEY,
+    groqApiKey: process.env.GROQ_API_KEY,
     firebaseClientEmail: process.env.FIREBASE_CLIENT_EMAIL,
     firebasePrivateKey: process.env.FIREBASE_PRIVATE_KEY,
     turnstile: {
