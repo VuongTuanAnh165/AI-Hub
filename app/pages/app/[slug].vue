@@ -13,8 +13,21 @@ if (!appInfo) {
 }
 
 useSeoMeta({
-  title: `${appInfo.title} — AI Hub`,
-  description: appInfo.description
+  title: appInfo.title,
+  description: appInfo.description,
+  ogTitle: `${appInfo.title} — AI Hub`,
+  ogDescription: appInfo.description,
+})
+
+const url = useRequestURL()
+
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: `${url.origin}/app/${slug}`
+    }
+  ]
 })
 
 // State machine: idle → loading → result

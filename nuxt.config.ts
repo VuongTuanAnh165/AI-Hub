@@ -8,7 +8,9 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     'nuxt-gtag',
     'nuxt-og-image',
-    '@nuxtjs/turnstile'
+    '@nuxtjs/turnstile',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
 
   css: ['~/assets/css/main.css'],
@@ -32,7 +34,7 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
-      title: 'AI Hub — Nền tảng Mini-App AI Viral',
+      titleTemplate: '%s | AI Hub',
       meta: [
         { name: 'description', content: 'Khám phá các mini-app AI siêu vui: bói vận mệnh, chấm điểm cuộc đời, roast khuôn mặt và nhiều hơn nữa!' },
         { name: 'theme-color', content: '#09090b' },

@@ -13,6 +13,13 @@ const navItems = computed<NavigationMenuItem[]>(() => [
     to: '/#apps'
   }
 ])
+
+useSeoMeta({
+  ogSiteName: 'AI Hub',
+  twitterCard: 'summary_large_image',
+  ogType: 'website',
+  author: 'AI Hub Team',
+})
 </script>
 
 <template>

@@ -14,8 +14,11 @@ const badgeLabel = (badge: string | null | undefined) => {
 }
 
 useSeoMeta({
-  title: 'AI Hub — Nền tảng Mini-App AI Viral',
-  description: 'Khám phá các mini-app AI siêu vui: bói vận mệnh, chấm điểm cuộc đời, roast khuôn mặt và nhiều hơn nữa!'
+  title: 'Trang chủ',
+  description: 'Khám phá các mini-app AI siêu vui: bói vận mệnh, chấm điểm cuộc đời, roast khuôn mặt và nhiều hơn nữa!',
+  ogTitle: 'AI Hub — Nền tảng Mini-App AI Viral',
+  ogDescription: 'Khám phá các mini-app AI siêu vui: bói vận mệnh, chấm điểm cuộc đời, roast khuôn mặt và nhiều hơn nữa!',
+  ogImage: '/og-image.png' // Bạn có thể tạo 1 file ảnh og-image.png bỏ vào thư mục public sau
 })
 </script>
 
