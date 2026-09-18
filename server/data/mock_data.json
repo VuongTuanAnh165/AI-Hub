@@ -37,7 +37,29 @@
     { "title": "Cuộc sống 2050 🚀", "prediction": "Năm 2050, bạn sẽ sống trong căn hộ trên tầng 150 ở Neo Saigon, đi làm bằng taxi bay, và nuôi 3 con mèo robot. Công việc chính là 'Chuyên viên tâm lý cho AI' — vì AI lúc đó cũng bị stress! 😂", "job2050": "AI Therapist (Chuyên viên tâm lý cho AI)", "home": "Neo Saigon — Tầng 150", "funFact": "Bạn sẽ là người Việt đầu tiên đặt chân lên sao Hoả vào năm 2048! 🪐" }
   ],
   "crush-nghi-gi": [
-    { "title": "Crush đang nghĩ... 💘", "thought": "Crush của bạn thầm ngưỡng mộ sự tự tin và hài hước của bạn! Mỗi khi bạn online, crush đều lén check story đầu tiên. Có điều crush hơi ngại vì không biết bạn có thích mình không 🥺", "loveScore": 73, "signal": "Vàng — Có tiềm năng!", "advice": "Hãy chủ động hơn một chút, crush đang chờ tín hiệu từ bạn đấy! 💌" },
-    { "title": "Tín hiệu tình yêu 💕", "thought": "Crush nhìn bạn như nhìn menu ở quán trà sữa — muốn lắm nhưng sợ béo (sợ bị reject) 😂. Bạn đã chiếm được 1 góc nhỏ trong tim crush rồi đó, giờ chỉ cần đẩy mạnh thêm thôi!", "loveScore": 65, "signal": "Vàng — Đang cân nhắc", "advice": "Rủ crush đi ăn, đồ ăn là con đường ngắn nhất đến trái tim! 🍜" }
+    { 
+      "title": "Chuyện Tình Chú Bò Cười 🤡", 
+      "tarotCard": "The Fool (Kẻ ngốc) - Một khởi đầu ngây thơ hoặc là sự mù quáng đâm đầu vào ngõ cụt.", 
+      "redFlagLevel": 85, 
+      "loveScore": 25, 
+      "faceMatchScore": 10, 
+      "zodiacMatch": "Lửa gặp Nước - Bốc hơi. Hai bạn như mặt trăng mặt trời, chả ăn nhập gì nhau.", 
+      "thought": "Crush thi thoảng thấy bạn buồn cười, nhưng chủ yếu xem bạn như một người bạn (hoặc anh/em trai/gái mưa) nhiệt tình. Tóm lại là không có tí rung động nào cả 🥺", 
+      "realityCheck": "Bớt ảo tưởng sức mạnh đi! Người ta rep tin nhắn bạn chỉ vì phép lịch sự tối thiểu thôi, đừng tự biên tự diễn nữa!", 
+      "signal": "Hố Đen Hấp Hối 🕳️", 
+      "advice": "Quay đầu là bờ, unfollow là cách tốt nhất để chữa lành." 
+    },
+    { 
+      "title": "Đúng Người - Sai Thời Điểm 🕰️", 
+      "tarotCard": "The Lovers (Tình nhân) - Định mệnh đã gọi tên hai bạn, nhưng rào cản vẫn còn đó.", 
+      "redFlagLevel": 15, 
+      "loveScore": 88, 
+      "faceMatchScore": 92, 
+      "zodiacMatch": "Đất gặp Đất - Quá sức bền vững. Hợp nhau từ sở thích đến cách tiêu tiền.", 
+      "thought": "Người ta cũng đang lén lút thả tim ảnh bạn từ 3 năm trước rồi đó! Chẳng qua là đang đợi bạn bật đèn xanh rõ hơn chút thôi 🥰", 
+      "realityCheck": "Cả 2 đều thích nhau nhưng chờ đối phương mở lời? Cứ cái đà này thì đến già vẫn là 'bạn bè' nhé!", 
+      "signal": "Cờ Xanh Rực Rỡ 🟢", 
+      "advice": "Gửi ngay cho crush một cái meme, bắt chuyện liền đi!" 
+    }
   ]
 }

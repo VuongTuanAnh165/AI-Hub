@@ -58,8 +58,16 @@ const formData = reactive<Record<string, any>>({
   dream: '',
   avatarDescription: '',
   crushName: '',
+  zodiac: '',
+  crushZodiac: '',
+  relationship: '',
+  userPhoto: '',
+  crushPhoto: '',
   photo: ''
 })
+
+const zodiacOptions = ['Bạch Dương', 'Kim Ngưu', 'Song Tử', 'Cự Giải', 'Sư Tử', 'Xử Nữ', 'Thiên Bình', 'Bọ Cạp', 'Nhân Mã', 'Ma Kết', 'Bảo Bình', 'Song Ngư']
+const relationshipOptions = ['Chưa từng nói chuyện', 'Lén lút nhìn nhau', 'Bạn bè bình thường', 'Đang mập mờ', 'Oan gia ngõ hẹp']
 
 // Xác định fields nào hiển thị dựa vào slug
 const formFields = computed(() => {
@@ -96,7 +104,12 @@ const formFields = computed(() => {
     case 'crush-nghi-gi':
       return [
         { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
-        { key: 'crushName', label: 'Tên crush', placeholder: 'VD: Thuý Kiều', type: 'text' }
+        { key: 'zodiac', label: 'Cung hoàng đạo của bạn', type: 'select', options: zodiacOptions },
+        { key: 'userPhoto', label: 'Tải ảnh bạn (Tuỳ chọn)', type: 'image', optional: true },
+        { key: 'crushName', label: 'Tên crush', placeholder: 'VD: Thuý Kiều', type: 'text' },
+        { key: 'crushZodiac', label: 'Cung hoàng đạo crush', type: 'select', options: zodiacOptions },
+        { key: 'crushPhoto', label: 'Tải ảnh crush (Tuỳ chọn)', type: 'image', optional: true },
+        { key: 'relationship', label: 'Trạng thái hiện tại', type: 'select', options: relationshipOptions }
       ]
     default:
       return [{ key: 'name', label: 'Tên của bạn', placeholder: 'Nhập tên...', type: 'text' }]
@@ -104,7 +117,7 @@ const formFields = computed(() => {
 })
 
 const isFormValid = computed(() => {
-  return formFields.value.every(f => formData[f.key]?.trim()) && !!turnstileToken.value
+  return formFields.value.every((f: any) => f.optional ? true : (formData[f.key] && formData[f.key].toString().trim() !== '')) && !!turnstileToken.value
 })
 
 async function handleSubmit() {
@@ -116,8 +129,8 @@ async function handleSubmit() {
 
   // Lọc chỉ lấy fields cần thiết
   const input: Record<string, string> = {}
-  formFields.value.forEach(f => {
-    input[f.key] = formData[f.key]?.trim() || ''
+  formFields.value.forEach((f: any) => {
+    input[f.key] = typeof formData[f.key] === 'string' ? formData[f.key].trim() : formData[f.key] || ''
   })
 
   try {
@@ -275,6 +288,13 @@ async function downloadImage() {
               v-if="field.type === 'image'" 
               v-model="formData[field.key]" 
             />
+            <USelect
+              v-else-if="field.type === 'select'"
+              v-model="formData[field.key]"
+              :items="field.options"
+              size="lg"
+              class="w-full"
+            />
             <UInput
               v-else
               v-model="formData[field.key]"
@@ -323,7 +343,7 @@ async function downloadImage() {
         <UCard class="glass border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative backdrop-blur-xl bg-black/40">
           <div class="text-center space-y-6">
             <!-- Polaroid Image (Chỉ hiện nếu có ảnh) -->
-            <div v-if="formData.photo" class="relative mx-auto w-32 h-36 p-2 bg-white rounded-lg shadow-xl -rotate-3 hover:rotate-0 transition-transform duration-300">
+            <div v-if="slug !== 'crush-nghi-gi' && formData.photo" class="relative mx-auto w-32 h-36 p-2 bg-white rounded-lg shadow-xl -rotate-3 hover:rotate-0 transition-transform duration-300">
               <img :src="formData.photo" class="w-full h-24 object-cover rounded-sm mb-2" />
               <p class="text-black font-bold text-sm tracking-tight capitalize">{{ formData.name || 'Nạn nhân' }}</p>
               
@@ -332,6 +352,24 @@ async function downloadImage() {
                 <div class="border-4 border-red-600 text-red-600 font-black text-xl px-2 py-1 uppercase rounded-md shadow-[0_0_15px_rgba(220,38,38,0.6)] bg-black/60 backdrop-blur-sm" style="font-family: Impact, sans-serif; letter-spacing: 2px;">
                   ROASTED
                 </div>
+              </div>
+            </div>
+
+            <!-- V3: Crush Nghi Gi Polaroid (2 Photos side by side) -->
+            <div v-if="slug === 'crush-nghi-gi' && (formData.userPhoto || formData.crushPhoto)" class="flex justify-center items-center gap-2 sm:gap-4 relative mx-auto my-4">
+              <div v-if="formData.userPhoto" class="relative w-28 h-32 p-2 bg-white rounded-lg shadow-xl rotate-[-6deg] z-10">
+                <img :src="formData.userPhoto" class="w-full h-20 object-cover rounded-sm mb-1" />
+                <p class="text-black font-bold text-xs tracking-tight capitalize text-center truncate">{{ formData.name || 'Bạn' }}</p>
+              </div>
+              
+              <div class="z-20 -mx-4 sm:-mx-6 bg-black/50 p-2 rounded-full backdrop-blur-md shadow-[0_0_20px_rgba(236,72,153,0.5)]">
+                <UIcon :name="result?.loveScore < 40 ? 'i-lucide-heart-crack' : 'i-lucide-heart'" 
+                       :class="['w-8 h-8', result?.loveScore < 40 ? 'text-red-500' : 'text-pink-500 animate-pulse']" />
+              </div>
+              
+              <div v-if="formData.crushPhoto" class="relative w-28 h-32 p-2 bg-white rounded-lg shadow-xl rotate-[6deg] z-10">
+                <img :src="formData.crushPhoto" class="w-full h-20 object-cover rounded-sm mb-1" />
+                <p class="text-black font-bold text-xs tracking-tight capitalize text-center truncate">{{ formData.crushName || 'Crush' }}</p>
               </div>
             </div>
 
@@ -344,14 +382,41 @@ async function downloadImage() {
           <div class="text-left space-y-3">
             <template v-for="(value, key) in result" :key="key">
               <!-- Render String -->
-              <div v-if="key !== 'title' && typeof value === 'string'" class="p-4 rounded-xl bg-white/5 border border-white/10 shadow-inner">
-                <p class="text-gray-100 text-[1.05rem] leading-relaxed">{{ value }}</p>
+              <div v-if="!['title', 'tarotCard', 'redFlagLevel', 'zodiacMatch', 'signal'].includes(key) && typeof value === 'string'" class="p-4 rounded-xl bg-white/5 border border-white/10 shadow-inner">
+                <p :class="['text-[1.05rem] leading-relaxed', key === 'realityCheck' ? 'text-orange-400 font-semibold' : 'text-gray-100']">{{ value }}</p>
               </div>
               
               <!-- Render Number -->
-              <div v-else-if="key !== 'title' && typeof value === 'number'" class="text-center py-2">
+              <div v-else-if="!['title', 'tarotCard', 'redFlagLevel', 'zodiacMatch', 'signal'].includes(key) && typeof value === 'number'" class="text-center py-2">
                 <span class="text-6xl font-black gradient-neon-text drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]">{{ value }}</span>
-                <p class="text-gray-300 font-medium text-sm mt-2 uppercase tracking-widest">{{ key === 'burnLevel' ? '% Sát thương' : (key === 'score' ? 'điểm' : key === 'loveScore' ? '% khả năng' : key) }}</p>
+                <p class="text-gray-300 font-medium text-sm mt-2 uppercase tracking-widest">{{ key === 'burnLevel' ? '% Sát thương' : (key === 'score' ? 'điểm' : key === 'loveScore' ? '% khả năng' : key === 'faceMatchScore' ? '% phu thê' : key) }}</p>
+              </div>
+
+              <!-- V3 Specific: Tarot, Zodiac, RedFlag, Signal -->
+              <div v-else-if="key === 'tarotCard'" class="p-5 rounded-2xl bg-gradient-to-b from-indigo-900/50 to-purple-900/50 border border-purple-500/30 shadow-[0_0_30px_rgba(168,85,247,0.2)] text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-noise opacity-20"></div>
+                <UIcon name="i-lucide-sparkles" class="text-purple-400 w-8 h-8 mx-auto mb-2" />
+                <h3 class="text-purple-300 font-bold text-sm tracking-widest uppercase mb-1">Lá bài định mệnh</h3>
+                <p class="text-2xl font-black text-white" style="font-family: serif;">{{ value }}</p>
+              </div>
+
+              <div v-else-if="key === 'redFlagLevel'" class="text-center py-4 px-4 rounded-xl bg-red-950/30 border border-red-500/20">
+                <h3 class="text-red-400 font-bold text-sm tracking-widest uppercase mb-2">Chỉ số Cờ Đỏ 🚩</h3>
+                <div class="w-full bg-gray-800 rounded-full h-4 mb-2 overflow-hidden shadow-inner">
+                  <div class="bg-gradient-to-r from-orange-500 to-red-600 h-4 rounded-full transition-all duration-1000" :style="{ width: value + '%' }"></div>
+                </div>
+                <p class="text-gray-300 text-sm font-medium">{{ value }}% - {{ value > 70 ? 'Báo động đỏ! Chạy ngay!' : value > 40 ? 'Đáng ngờ, cẩn thận nhé!' : 'Khá an toàn' }}</p>
+              </div>
+
+              <div v-else-if="key === 'signal'" class="text-center py-2">
+                <UBadge size="lg" :color="value.includes('Đỏ') ? 'error' : value.includes('Xanh') ? 'success' : 'primary'" class="text-lg px-4 py-2 font-black shadow-lg">
+                  {{ value }}
+                </UBadge>
+              </div>
+
+              <div v-else-if="key === 'zodiacMatch'" class="p-4 rounded-xl bg-blue-900/20 border border-blue-500/30 text-center shadow-inner">
+                <UIcon name="i-lucide-moon-star" class="text-blue-400 w-6 h-6 mx-auto mb-2" />
+                <p class="text-blue-200 font-medium">{{ value }}</p>
               </div>
 
               <!-- Render Array (Roast Details) -->
