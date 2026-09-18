@@ -63,11 +63,17 @@ const formData = reactive<Record<string, any>>({
   relationship: '',
   userPhoto: '',
   crushPhoto: '',
-  photo: ''
+  photo: '',
+  gender: '',
+  birthTime: '',
+  financeStatus: '',
+  loveStatus: ''
 })
 
 const zodiacOptions = ['Bạch Dương', 'Kim Ngưu', 'Song Tử', 'Cự Giải', 'Sư Tử', 'Xử Nữ', 'Thiên Bình', 'Bọ Cạp', 'Nhân Mã', 'Ma Kết', 'Bảo Bình', 'Song Ngư']
 const relationshipOptions = ['Chưa từng nói chuyện', 'Lén lút nhìn nhau', 'Bạn bè bình thường', 'Đang mập mờ', 'Oan gia ngõ hẹp']
+const financeOptions = ['Giàu ngầm', 'Đủ ăn đủ tiêu', 'Thẻ tín dụng gánh còng lưng', 'Đáy xã hội']
+const loveOptions = ['Độc thân bền vững', 'Đang mập mờ', 'Lụy tình', 'Đã có chủ']
 
 // Xác định fields nào hiển thị dựa vào slug
 const formFields = computed(() => {
@@ -80,14 +86,18 @@ const formFields = computed(() => {
     case 'ten-tuoi-van-menh':
       return [
         { key: 'name', label: 'Họ và tên', placeholder: 'VD: Nguyễn Văn A', type: 'text' },
-        { key: 'birthday', label: 'Ngày sinh', placeholder: 'VD: 15/08/1999', type: 'date' }
+        { key: 'birthday', label: 'Ngày sinh', type: 'date' },
+        { key: 'birthTime', label: 'Giờ sinh (Tuỳ chọn)', type: 'time', optional: true },
+        { key: 'gender', label: 'Giới tính', type: 'select', options: ['Nam', 'Nữ', 'Hệ bí ẩn'] }
       ]
     case 'cham-diem-doi':
       return [
         { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
-        { key: 'age', label: 'Tuổi', placeholder: 'VD: 22', type: 'text' },
-        { key: 'job', label: 'Nghề nghiệp', placeholder: 'VD: Designer', type: 'text' },
-        { key: 'hobby', label: 'Sở thích', placeholder: 'VD: Đọc sách, du lịch', type: 'text' }
+        { key: 'birthday', label: 'Ngày sinh', type: 'date' },
+        { key: 'job', label: 'Ngành học / Nghề nghiệp', placeholder: 'VD: Sinh viên IT', type: 'text' },
+        { key: 'financeStatus', label: 'Tình trạng túi tiền', type: 'select', options: financeOptions },
+        { key: 'loveStatus', label: 'Tình trạng yêu đương', type: 'select', options: loveOptions },
+        { key: 'photo', label: 'Tải ảnh bạn lên (Tuỳ chọn - Để AI soi sắc diện)', type: 'image', optional: true }
       ]
     case 'tinh-cach-qua-avatar':
       return [
@@ -118,6 +128,21 @@ const formFields = computed(() => {
 
 const isFormValid = computed(() => {
   return formFields.value.every((f: any) => f.optional ? true : (formData[f.key] && formData[f.key].toString().trim() !== '')) && !!turnstileToken.value
+})
+
+const loadingTexts = computed(() => {
+  switch (slug) {
+    case 'roast-my-face':
+      return ['Đang phân tích góc cạnh...', 'Đang đo độ dày mặt...', 'Đang tìm kiếm điểm vàng (mà không thấy)...', 'Đang vắt óc nghĩ lời chê...']
+    case 'ten-tuoi-van-menh':
+      return ['Đang thắp hương gọi AI...', 'Đang xin đài âm dương...', 'Đang lật bài Tarot...', 'Đang bấm quẻ tử vi...', 'Sắp ra quẻ rồi...']
+    case 'crush-nghi-gi':
+      return ['Đang dò sóng não crush...', 'Đang bói bài tình yêu...', 'Đang soi tin nhắn cũ...', 'Đang đọc vị ánh mắt...']
+    case 'doi-song-2050':
+      return ['Đang chế tạo cỗ máy thời gian...', 'Đang tua nhanh đến 2050...', 'Đang xem số dư tài khoản tương lai...']
+    default:
+      return undefined
+  }
 })
 
 async function handleSubmit() {
@@ -333,15 +358,28 @@ async function downloadImage() {
       <FakeLoading
         :duration="3500"
         :isLoading="isApiLoading"
+        :texts="loadingTexts"
         @done="onLoadingDone"
       />
     </div>
 
     <!-- State: RESULT — Hiển thị kết quả -->
     <div v-if="state === 'result' && result" class="max-w-lg mx-auto">
-      <div ref="resultCardRef" class="p-6 sm:p-2 rounded-[2rem] mesh-card">
+      <div ref="resultCardRef" class="p-6 sm:p-2 rounded-[2rem] mesh-card relative">
         <UCard class="glass border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative backdrop-blur-xl bg-black/40">
-          <div class="text-center space-y-6">
+          
+          <!-- Hào quang Tarot Card -->
+          <div v-if="slug === 'ten-tuoi-van-menh' && result?.element" class="absolute inset-0 opacity-20 pointer-events-none transition-colors duration-1000"
+               :class="{
+                 'bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-500 via-transparent to-transparent': result.element.includes('Hoả'),
+                 'bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500 via-transparent to-transparent': result.element.includes('Thuỷ'),
+                 'bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-400 via-transparent to-transparent': result.element.includes('Kim'),
+                 'bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-500 via-transparent to-transparent': result.element.includes('Mộc'),
+                 'bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-700 via-transparent to-transparent': result.element.includes('Thổ')
+               }">
+          </div>
+
+          <div class="text-center space-y-6 relative z-10">
             <!-- Polaroid Image (Chỉ hiện nếu có ảnh) -->
             <div v-if="slug !== 'crush-nghi-gi' && formData.photo" class="relative mx-auto w-32 h-36 p-2 bg-white rounded-lg shadow-xl -rotate-3 hover:rotate-0 transition-transform duration-300">
               <img :src="formData.photo" class="w-full h-24 object-cover rounded-sm mb-2" />
@@ -380,14 +418,25 @@ async function downloadImage() {
 
           <!-- Nội dung chính — render tất cả fields trừ title -->
           <div class="text-left space-y-3">
+            
+            <!-- Badges cho Element & Zodiac (Tên Tuổi Vận Mệnh) -->
+            <div v-if="slug === 'ten-tuoi-van-menh' && (result.element || result.zodiac)" class="flex justify-center gap-2 mb-4">
+               <UBadge v-if="result.element" size="lg" color="primary" variant="soft" class="shadow-sm border border-primary/20 backdrop-blur-md">
+                 Bản Mệnh: {{ result.element }}
+               </UBadge>
+               <UBadge v-if="result.zodiac" size="lg" color="secondary" variant="soft" class="shadow-sm border border-secondary/20 backdrop-blur-md">
+                 Cung: {{ result.zodiac }}
+               </UBadge>
+            </div>
+
             <template v-for="(value, key) in result" :key="key">
-              <!-- Render String -->
-              <div v-if="!['title', 'tarotCard', 'redFlagLevel', 'zodiacMatch', 'signal'].includes(key) && typeof value === 'string'" class="p-4 rounded-xl bg-white/5 border border-white/10 shadow-inner">
-                <p :class="['text-[1.05rem] leading-relaxed', key === 'realityCheck' ? 'text-orange-400 font-semibold' : 'text-gray-100']">{{ value }}</p>
+              <!-- Render String (Bỏ qua các key render riêng) -->
+              <div v-if="!['title', 'tarotCard', 'redFlagLevel', 'zodiacMatch', 'signal', 'element', 'zodiac', 'luckyNumber', 'luckyColor', 'advice', 'career', 'love', 'realityCheck', 'tier'].includes(key) && typeof value === 'string'" class="p-4 rounded-xl bg-white/5 border border-white/10 shadow-inner">
+                <p class="text-[1.05rem] leading-relaxed text-gray-100">{{ value }}</p>
               </div>
               
               <!-- Render Number -->
-              <div v-else-if="!['title', 'tarotCard', 'redFlagLevel', 'zodiacMatch', 'signal'].includes(key) && typeof value === 'number'" class="text-center py-2">
+              <div v-else-if="!['title', 'tarotCard', 'redFlagLevel', 'zodiacMatch', 'signal', 'luckyNumber'].includes(key) && typeof value === 'number'" class="text-center py-2">
                 <span class="text-6xl font-black gradient-neon-text drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]">{{ value }}</span>
                 <p class="text-gray-300 font-medium text-sm mt-2 uppercase tracking-widest">{{ key === 'burnLevel' ? '% Sát thương' : (key === 'score' ? 'điểm' : key === 'loveScore' ? '% khả năng' : key === 'faceMatchScore' ? '% phu thê' : key) }}</p>
               </div>
@@ -417,6 +466,97 @@ async function downloadImage() {
               <div v-else-if="key === 'zodiacMatch'" class="p-4 rounded-xl bg-blue-900/20 border border-blue-500/30 text-center shadow-inner">
                 <UIcon name="i-lucide-moon-star" class="text-blue-400 w-6 h-6 mx-auto mb-2" />
                 <p class="text-blue-200 font-medium">{{ value }}</p>
+              </div>
+
+              <!-- V4 Specific: Tên Tuổi Vận Mệnh -->
+              <div v-else-if="slug === 'ten-tuoi-van-menh' && key === 'luckyNumber'" class="text-center py-4">
+                 <span class="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-amber-600 drop-shadow-[0_0_20px_rgba(251,191,36,0.5)]">{{ value }}</span>
+                 <p class="text-yellow-500/80 font-bold text-sm mt-1 uppercase tracking-widest">Con Số May Mắn</p>
+              </div>
+              <!-- V5 Specific: Phân vùng Vận Mệnh -->
+              <div v-else-if="key === 'career'" class="mt-4 p-4 rounded-xl bg-gradient-to-r from-yellow-900/30 to-green-900/30 border border-yellow-500/20 shadow-inner text-left">
+                 <div class="flex items-center gap-2 mb-2">
+                   <UIcon name="i-lucide-coins" class="text-yellow-400 w-5 h-5" />
+                   <h3 class="text-yellow-400 font-bold text-sm tracking-widest uppercase">Tài Lộc & Sự Nghiệp</h3>
+                 </div>
+                 <p class="text-gray-200 leading-relaxed">{{ value }}</p>
+              </div>
+
+              <div v-else-if="key === 'love'" class="mt-4 p-4 rounded-xl bg-gradient-to-r from-pink-900/30 to-red-900/30 border border-pink-500/20 shadow-inner text-left">
+                 <div class="flex items-center gap-2 mb-2">
+                   <UIcon name="i-lucide-heart-crack" class="text-pink-400 w-5 h-5" />
+                   <h3 class="text-pink-400 font-bold text-sm tracking-widest uppercase">Tình Duyên</h3>
+                 </div>
+                 <p class="text-gray-200 leading-relaxed">{{ value }}</p>
+              </div>
+
+              <div v-else-if="key === 'realityCheck'" class="mt-4 p-4 rounded-xl bg-red-950/40 border-2 border-dashed border-red-500/40 shadow-inner relative overflow-hidden text-left">
+                 <div class="flex items-center gap-2 mb-2">
+                   <UIcon name="i-lucide-triangle-alert" class="text-red-500 w-5 h-5" />
+                   <h3 class="text-red-500 font-bold text-sm tracking-widest uppercase">Sự Thật Phũ Phàng</h3>
+                 </div>
+                 <p class="text-orange-300 font-semibold leading-relaxed">{{ value }}</p>
+              </div>
+
+              <div v-else-if="slug === 'ten-tuoi-van-menh' && key === 'luckyColor'" class="text-center py-2">
+                 <p class="text-gray-300 text-sm">Màu sắc hợp mệnh: <span class="font-bold text-white text-lg">{{ value }}</span></p>
+              </div>
+              <div v-else-if="key === 'advice'" class="mt-6 p-5 border border-white/10 bg-black/40 rounded-xl relative shadow-inner">
+                 <UIcon name="i-lucide-quote" class="absolute -top-3 -left-2 w-8 h-8 text-primary/50" />
+                 <p class="text-gray-200 italic leading-relaxed text-center">{{ value }}</p>
+              </div>
+
+              <!-- V6 Specific: Chấm Điểm Cuộc Đời (RPG Stats) -->
+              <div v-else-if="key === 'tier'" class="text-center mt-2 mb-6">
+                <UBadge size="lg" color="primary" variant="soft" class="text-lg font-black tracking-widest uppercase px-6 py-2 shadow-[0_0_20px_rgba(var(--color-primary-500),0.3)]">
+                  Rank: {{ value }}
+                </UBadge>
+              </div>
+
+              <div v-else-if="key === 'stats' && Array.isArray(value)" class="space-y-4 mt-6 p-5 rounded-2xl bg-black/40 border border-white/10 shadow-inner">
+                <h3 class="text-center text-sm font-bold tracking-widest text-gray-400 uppercase mb-2">Chỉ Số Sinh Tồn</h3>
+                <div v-for="(stat, idx) in value" :key="idx" class="flex flex-col gap-1">
+                  <div class="flex justify-between items-center text-sm mb-1">
+                    <div class="flex items-center gap-2">
+                      <UIcon :name="stat.icon || 'i-lucide-star'" 
+                             :class="[
+                               stat.color === 'yellow' ? 'text-yellow-400' : 
+                               stat.color === 'pink' ? 'text-pink-400' : 
+                               stat.color === 'blue' ? 'text-blue-400' : 
+                               stat.color === 'green' ? 'text-green-400' : 'text-primary-400',
+                               'w-4 h-4'
+                             ]" />
+                      <span class="font-semibold text-gray-200">{{ stat.name }}</span>
+                    </div>
+                    <span class="font-bold font-mono text-white">{{ stat.value }}/100</span>
+                  </div>
+                  <div class="w-full bg-gray-800 rounded-full h-2.5 shadow-inner overflow-hidden border border-white/5">
+                    <div :class="[
+                           stat.color === 'yellow' ? 'bg-yellow-500' : 
+                           stat.color === 'pink' ? 'bg-pink-500' : 
+                           stat.color === 'blue' ? 'bg-blue-500' : 
+                           stat.color === 'green' ? 'bg-green-500' : 'bg-primary-500',
+                           'h-2.5 rounded-full transition-all duration-1000'
+                         ]" 
+                         :style="{ width: stat.value + '%' }">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div v-else-if="(key === 'buffs' || key === 'debuffs') && Array.isArray(value)" class="mt-4 p-4 rounded-xl border shadow-inner text-left"
+                   :class="key === 'buffs' ? 'bg-green-950/30 border-green-500/20' : 'bg-red-950/30 border-red-500/20'">
+                <div class="flex items-center gap-2 mb-3">
+                  <UIcon :name="key === 'buffs' ? 'i-lucide-arrow-up-circle' : 'i-lucide-skull'" :class="key === 'buffs' ? 'text-green-400' : 'text-red-400'" class="w-5 h-5" />
+                  <h3 :class="key === 'buffs' ? 'text-green-400' : 'text-red-400'" class="font-bold text-sm tracking-widest uppercase">
+                    {{ key === 'buffs' ? 'Nội Tại (Buffs)' : 'Nghiệp Chướng (Debuffs)' }}
+                  </h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <UBadge v-for="(item, idx) in value" :key="idx" :color="key === 'buffs' ? 'success' : 'error'" variant="soft" size="sm" class="font-medium text-[13px] px-3 py-1">
+                    {{ item }}
+                  </UBadge>
+                </div>
               </div>
 
               <!-- Render Array (Roast Details) -->

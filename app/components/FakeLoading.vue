@@ -3,13 +3,13 @@ const props = withDefaults(defineProps<{
   /** Thời gian tối thiểu hiển thị loading (ms) */
   duration?: number
   /** Danh sách các câu thông báo nhấp nháy */
-  messages?: string[]
+  texts?: string[]
   /** Biến cờ theo dõi API thực tế đang chạy */
   isLoading?: boolean
 }>(), {
   duration: 3000,
   isLoading: true,
-  messages: () => [
+  texts: () => [
     'Đang khởi động AI...',
     'Đang phân tích dữ liệu...',
     'Đang kết nối tín hiệu vũ trụ...',
@@ -27,7 +27,7 @@ const currentIndex = ref(0)
 const progress = ref(0)
 const isComplete = ref(false)
 
-const currentMessage = computed(() => props.messages[currentIndex.value % props.messages.length])
+const currentMessage = computed(() => props.texts[currentIndex.value % props.texts.length])
 
 let messageInterval: ReturnType<typeof setInterval>
 let progressInterval: ReturnType<typeof setInterval>
@@ -39,7 +39,7 @@ onMounted(() => {
 
   // Cycle through messages
   messageInterval = setInterval(() => {
-    currentIndex.value = (currentIndex.value + 1) % props.messages.length
+    currentIndex.value = (currentIndex.value + 1) % props.texts.length
   }, messageSpeed)
 
   // Animate progress bar (chỉ đạt 100% khi API xong)

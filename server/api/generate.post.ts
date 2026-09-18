@@ -84,18 +84,9 @@ export default defineEventHandler(async (event) => {
     // Ưu tiên dùng model từ ENV
     const envModel = process.env.GEMINI_MODEL || 'gemini-3.1-pro-preview'
     
-    // Danh sách model dự phòng trải dài tất cả các dòng ổn định nhất để vét cạn nếu Google sập cục bộ
+    // Giảm số lượng model dự phòng xuống 1-2 cái để tránh chờ quá lâu khi đứt cáp/quá tải. Hỏng là qua Groq luôn.
     const fallbackList = [
-      'gemini-3.1-pro-preview',
-      'gemini-3.5-flash',
-      'gemini-flash-latest',
-      'gemini-3.8-flash',
-      'gemini-3.7-flash',
-      'gemini-3.6-flash',
-      'gemini-3-flash-preview',
-      'gemini-3.1-flash-lite',
-      'gemini-flash-lite-latest',
-      'gemini-2.5-flash-lite'
+      'gemini-3.5-flash'
     ]
     const modelsToTry = [...new Set([envModel, ...fallbackList])]
 

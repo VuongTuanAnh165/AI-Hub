@@ -32,7 +32,6 @@ const ogScore = computed(() => {
 })
 
 // Sinh ảnh OG Thumbnail (F2.3)
-// @ts-expect-error: OgImageComponents is auto-generated
 defineOgImageComponent('ResultShare', {
   title: result.value?.title || 'AI Hub',
   description: ogDescription.value,

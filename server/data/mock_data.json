@@ -23,8 +23,28 @@
     }
   ],
   "ten-tuoi-van-menh": [
-    { "title": "Vận mệnh rực rỡ ✨", "destiny": "Theo các vì sao, bạn thuộc mệnh Hoả — nóng nảy nhưng đầy đam mê! Năm nay tài chính sẽ khởi sắc, nhưng nhớ giữ ví chặt khi đi shopping. Tình duyên có biến động vào tháng 8 — hãy chuẩn bị tinh thần! 🔥", "luckyNumber": 7, "element": "Hoả", "advice": "Mặc đồ đỏ vào thứ 3 để tăng vận may nhé! 🍀" },
-    { "title": "Mệnh Thuỷ — Dịu dàng mà mạnh mẽ 🌊", "destiny": "Bạn là người sâu sắc như đại dương, bên ngoài lặng yên nhưng bên trong sóng cuộn. Cuối năm sẽ có quý nhân phù trợ. Đừng ngại thể hiện bản thân, vũ trụ đang ủng hộ bạn!", "luckyNumber": 3, "element": "Thuỷ", "advice": "Uống nhiều nước để kết nối với mệnh của mình 💧" }
+    { 
+      "title": "Nửa Đời Đầu Phèn, Nửa Đời Sau Nghèo", 
+      "element": "🔥 Hoả (Năng lượng mỏ hỗn)", 
+      "zodiac": "♏ Thiên Yết (Thù dai nhớ lâu)", 
+      "career": "Ngoài mặt tỏ ra bất cần, nhưng bên trong thì rất cần tiền. Năm nay sao Thái Bạch chiếu, quét sạch cửa nhà, nhưng vì bạn nghèo sẵn nên sao chán bỏ đi.", 
+      "love": "Tình duyên lận đận, yêu ai cũng bị chê vì hay dỗi. Hãy quen với sự cô đơn đi nhé.", 
+      "realityCheck": "Người ta rep tin nhắn bạn chậm không phải vì họ bận, mà vì bạn không quan trọng đâu!", 
+      "luckyNumber": 69, 
+      "luckyColor": "Màu Đen của sự huyền bí", 
+      "advice": "Bớt overthink lại và đi ngủ sớm đi." 
+    },
+    { 
+      "title": "Mệnh Phú Quý Nhưng Hay Suy", 
+      "element": "💧 Thuỷ (Hay khóc thầm)", 
+      "zodiac": "♋ Cự Giải (Dễ tổn thương)", 
+      "career": "Bạn có đường tài lộc khá tốt, tuy nhiên làm bao nhiêu cũng cúng hết cho Shopee. Cẩn thận tháng tới nghèo móp mỏ.", 
+      "love": "Bề ngoài bạn luôn tươi cười vui vẻ, nhưng đêm về lại hay nghe nhạc lofi và khóc thầm vì nhớ crush cũ.", 
+      "realityCheck": "Tỉnh táo lại đi, crush cũ đang hạnh phúc bên người mới rồi, đừng có mà sân si nữa!", 
+      "luckyNumber": 86, 
+      "luckyColor": "Màu Xanh của hy vọng (dù hơi mong manh)", 
+      "advice": "Nước mắt không làm ra tiền, hãy lau nước mắt và đi cày cuốc tiếp đi." 
+    }
   ],
   "cham-diem-doi": [
     { "title": "Bảng điểm cuộc đời 💯", "score": 78, "review": "Cuộc đời bạn được 78 điểm — thuộc hàng 'trên trung bình khá' 😎. Bạn đã vượt qua nhiều thử thách nhưng vẫn chưa unlock hết achievement. Tiếp tục cố gắng, bạn sắp lên hạng Kim Cương rồi!", "category": "Bạch kim", "advice": "Hãy thử một thứ mới mỗi tuần để tăng điểm nhanh hơn! 🚀" },
