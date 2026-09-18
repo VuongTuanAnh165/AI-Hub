@@ -54,7 +54,13 @@ export default defineEventHandler(async (event) => {
   const inputHash = createHash('md5').update(inputString).digest('hex')
 
   try {
-    const cached = await findCachedResult(inputHash)
+    const cached = await Promise.race([
+      findCachedResult(inputHash),
+      new Promise<null>(resolve => setTimeout(() => {
+        console.warn('[Cache] Firebase findCachedResult timeout after 3s')
+        resolve(null)
+      }, 3000))
+    ])
     if (cached) {
       return {
         id: cached.id,
@@ -220,15 +226,13 @@ export default defineEventHandler(async (event) => {
     if (fallbackItems && fallbackItems.length > 0) {
       const randomItem = fallbackItems[Math.floor(Math.random() * fallbackItems.length)]
 
-      // Vẫn cố lưu vào DB nếu có thể
+      // Vẫn cố lưu vào DB nếu có thể (Timeout 3s)
       let docId: string | null = null
       try {
-        docId = await saveResult({
-          appSlug,
-          inputHash,
-          input,
-          result: randomItem
-        })
+        docId = await Promise.race([
+          saveResult({ appSlug, inputHash, input, result: randomItem }),
+          new Promise<null>((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+        ])
       } catch { /* ignore */ }
 
       return {
@@ -248,12 +252,15 @@ export default defineEventHandler(async (event) => {
   // 5. Lưu kết quả vào Firestore
   let docId: string | null = null
   try {
-    docId = await saveResult({
-      appSlug,
-      inputHash,
-      input,
-      result: aiResult!
-    })
+    docId = await Promise.race([
+      saveResult({
+        appSlug,
+        inputHash,
+        input,
+        result: aiResult!
+      }),
+      new Promise<null>((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+    ])
   } catch (e) {
     console.warn('[DB] Failed to save result:', (e as Error).message)
   }

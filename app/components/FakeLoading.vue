@@ -97,7 +97,7 @@ onUnmounted(() => {
           :style="{ width: `${progress}%` }"
         />
       </div>
-      <p class="text-dimmed text-xs text-center mt-2">{{ Math.round(progress) }}%</p>
+      <p class="text-dimmed text-xs text-center mt-2">{{ Math.floor(progress) }}%</p>
     </div>
   </div>
 </template>
