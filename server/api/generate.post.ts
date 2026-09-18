@@ -153,6 +153,22 @@ export default defineEventHandler(async (event) => {
       }
     }
 
+    // Hàm parse JSON an toàn (Xử lý Markdown Code Blocks & Trailing Commas)
+    const parseAiResponse = (text: string) => {
+      let cleaned = text.replace(/```json/gi, '').replace(/```/g, '').trim()
+      const start = cleaned.indexOf('{')
+      const end = cleaned.lastIndexOf('}')
+      if (start !== -1 && end !== -1) {
+        cleaned = cleaned.substring(start, end + 1)
+      }
+      // Thử loại bỏ trailing commas (lỗi kinh điển của Llama)
+      cleaned = cleaned.replace(/,\s*([}\]])/g, '$1')
+      // Thử loại bỏ unescaped newlines trong string
+      cleaned = cleaned.replace(/\n/g, '\\n')
+      
+      return JSON.parse(cleaned)
+    }
+
     if (!response) {
       if (config.groqApiKey) {
         console.warn(`[AI] All Gemini models failed. Falling back to Groq Llama 3.2 Vision...`)
@@ -180,7 +196,7 @@ export default defineEventHandler(async (event) => {
           
           const text = chatCompletion.choices[0]?.message?.content || ''
           try {
-            aiResult = JSON.parse(text)
+            aiResult = parseAiResponse(text)
           } catch {
             aiResult = { title: 'Kết quả', content: text }
           }
@@ -194,7 +210,7 @@ export default defineEventHandler(async (event) => {
     } else {
       const text = response.text || ''
       try {
-        aiResult = JSON.parse(text)
+        aiResult = parseAiResponse(text)
       } catch {
         // AI trả text không phải JSON → wrap lại
         aiResult = { title: 'Kết quả', content: text }
