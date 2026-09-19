@@ -69,12 +69,14 @@ const formData = reactive<Record<string, any>>({
   financeStatus: '',
   loveStatus: '',
   socialPlatform: '',
-  platformPurpose: ''
+  platformPurpose: '',
+  badHabit: ''
 })
 
 const zodiacOptions = ['Bạch Dương', 'Kim Ngưu', 'Song Tử', 'Cự Giải', 'Sư Tử', 'Xử Nữ', 'Thiên Bình', 'Bọ Cạp', 'Nhân Mã', 'Ma Kết', 'Bảo Bình', 'Song Ngư']
 const relationshipOptions = ['Chưa từng nói chuyện', 'Lén lút nhìn nhau', 'Bạn bè bình thường', 'Đang mập mờ', 'Oan gia ngõ hẹp']
 const financeOptions = ['Giàu ngầm', 'Đủ ăn đủ tiêu', 'Thẻ tín dụng gánh còng lưng', 'Đáy xã hội']
+const badHabitOptions = ['Thức khuya lướt tóp tóp', 'Hay Overthink', 'Lười tập thể dục', 'Ăn vô tội vạ', 'Nghiện mua sắm', 'Hứa lèo', 'Dễ nổi nóng']
 const loveOptions = ['Độc thân bền vững', 'Đang mập mờ', 'Lụy tình', 'Đã có chủ']
 const genderOptions = ['Nam', 'Nữ', 'Bí ẩn']
 const platformOptions = ['Facebook', 'Instagram', 'Tinder', 'LinkedIn', 'Zalo', 'Threads']
@@ -118,7 +120,10 @@ const formFields = computed(() => {
         { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
         { key: 'age', label: 'Tuổi hiện tại', placeholder: 'VD: 22', type: 'text' },
         { key: 'job', label: 'Nghề nghiệp hiện tại', placeholder: 'VD: Lập trình viên', type: 'text' },
-        { key: 'dream', label: 'Ước mơ lớn nhất', placeholder: 'VD: Đi vòng quanh thế giới', type: 'text' }
+        { key: 'financeStatus', label: 'Tình trạng túi tiền', type: 'select', options: financeOptions },
+        { key: 'badHabit', label: 'Thói quen xấu nhất', type: 'select', options: badHabitOptions },
+        { key: 'dream', label: 'Ước mơ lớn nhất', placeholder: 'VD: Mua nhà mặt đất', type: 'text' },
+        { key: 'photo', label: 'Tải ảnh của bạn (Bắt buộc)', type: 'image', optional: false }
       ]
     case 'crush-nghi-gi':
       return [
@@ -291,6 +296,20 @@ async function downloadImage() {
 </script>
 
 <template>
+  <ClientOnly>
+    <Teleport to="body">
+      <!-- V8 Specific: Cyberpunk Background for Cuộc Sống Năm 2050 -->
+      <div v-if="state === 'result' && slug === 'doi-song-2050' && formData.photo" class="fixed inset-0 z-[-1] pointer-events-none transition-opacity duration-1000 opacity-60">
+        <img :src="formData.photo" class="absolute inset-0 w-full h-full object-cover blur-3xl scale-125" />
+        <div class="absolute inset-0 bg-black/80 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-30 mix-blend-overlay"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-cyan-900/40 via-transparent to-fuchsia-900/40"></div>
+        <!-- Hiệu ứng viền nhấp nháy lưới scanner -->
+        <div class="absolute inset-0 border-[8px] border-cyan-500/10 mix-blend-overlay pointer-events-none"></div>
+      </div>
+    </Teleport>
+  </ClientOnly>
+
   <UContainer class="py-8">
     <!-- Header -->
     <div class="text-center mb-8">
@@ -440,7 +459,7 @@ async function downloadImage() {
 
             <template v-for="(value, key) in result" :key="key">
               <!-- Render String (Bỏ qua các key render riêng) -->
-              <div v-if="!['title', 'archetype', 'hiddenInsecurity', 'suggestedPlatform', 'tarotCard', 'redFlagLevel', 'zodiacMatch', 'signal', 'element', 'zodiac', 'luckyNumber', 'luckyColor', 'advice', 'career', 'love', 'realityCheck', 'tier'].includes(key) && typeof value === 'string'" class="p-4 rounded-xl bg-white/5 border border-white/10 shadow-inner w-full mb-4">
+              <div v-if="!['title', 'archetype', 'hiddenInsecurity', 'suggestedPlatform', 'tarotCard', 'redFlagLevel', 'zodiacMatch', 'signal', 'element', 'zodiac', 'luckyNumber', 'luckyColor', 'advice', 'career', 'love', 'realityCheck', 'tier', 'job2050', 'transport', 'partner', 'look2050'].includes(key) && typeof value === 'string'" class="p-4 rounded-xl bg-white/5 border border-white/10 shadow-inner w-full mb-4">
                 <p class="text-[1.05rem] leading-relaxed text-gray-100">{{ value }}</p>
               </div>
               
@@ -565,6 +584,80 @@ async function downloadImage() {
                   <UBadge v-for="(item, idx) in value" :key="idx" :color="key === 'buffs' ? 'success' : 'error'" variant="soft" size="sm" class="font-medium text-[13px] px-3 py-1">
                     {{ item }}
                   </UBadge>
+                </div>
+              </div>
+
+              <!-- V8 Specific: Cuộc Sống 2050 -->
+              <div v-else-if="key === 'cyberStats' && typeof value === 'object'" class="mt-4 p-5 rounded-2xl bg-black/60 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] space-y-4 w-full relative overflow-hidden">
+                <div class="absolute inset-0 bg-noise opacity-20 pointer-events-none"></div>
+                <h3 class="text-center text-xs font-black tracking-widest text-cyan-400 uppercase mb-2">Chỉ Số Sinh Tồn Cyberpunk</h3>
+                <div v-for="(val, statKey) in value" :key="statKey" class="flex flex-col gap-1 relative z-10">
+                  <div class="flex justify-between items-center text-sm mb-1">
+                    <div class="flex items-center gap-2">
+                      <UIcon :name="statKey === 'wealth' ? 'i-lucide-bitcoin' : statKey === 'techSkill' ? 'i-lucide-cpu' : 'i-lucide-brain-circuit'" 
+                             :class="statKey === 'wealth' ? 'text-yellow-400' : statKey === 'techSkill' ? 'text-cyan-400' : 'text-fuchsia-400'" class="w-4 h-4" />
+                      <span class="font-bold text-gray-200 uppercase tracking-wider text-[10px] sm:text-xs">
+                        {{ statKey === 'wealth' ? 'Tài Sản Crypto' : statKey === 'techSkill' ? 'Kỹ Năng Cyber' : 'Độ Tỉnh Táo' }}
+                      </span>
+                    </div>
+                    <span class="font-black font-mono text-white">{{ val }}/100</span>
+                  </div>
+                  <div class="w-full bg-gray-900 rounded-none h-2 shadow-inner overflow-hidden border border-white/10">
+                    <div :class="[
+                           statKey === 'wealth' ? 'bg-yellow-500' : 
+                           statKey === 'techSkill' ? 'bg-cyan-500' : 'bg-fuchsia-500',
+                           'h-2 transition-all duration-1000'
+                         ]" 
+                         :style="{ width: val + '%' }">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div v-else-if="key === 'inventory' && Array.isArray(value)" class="mt-4 p-4 rounded-xl border bg-emerald-950/30 border-emerald-500/30 shadow-inner text-left w-full">
+                <div class="flex items-center gap-2 mb-3">
+                  <UIcon name="i-lucide-backpack" class="text-emerald-400 w-5 h-5" />
+                  <h3 class="text-emerald-400 font-bold text-sm tracking-widest uppercase">Hành Trang Sinh Tồn</h3>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <div v-for="(item, idx) in value" :key="idx" class="flex items-start gap-2 bg-black/40 px-3 py-2 rounded border border-emerald-500/20 text-emerald-100 text-sm font-medium">
+                    <UIcon name="i-lucide-chevron-right" class="w-4 h-4 mt-0.5 text-emerald-500 shrink-0" />
+                    <span class="leading-relaxed">{{ item }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div v-else-if="['job2050', 'transport', 'partner'].includes(key)" class="mt-4 p-4 rounded-xl bg-gray-900/50 border border-gray-600/30 shadow-inner text-left relative overflow-hidden group w-full">
+                 <div class="absolute w-1 h-full left-0 top-0 transition-all duration-300 group-hover:w-2" :class="key === 'job2050' ? 'bg-orange-500' : key === 'transport' ? 'bg-blue-500' : 'bg-pink-500'"></div>
+                 <div class="flex items-center gap-2 mb-1 pl-2">
+                   <UIcon :name="key === 'job2050' ? 'i-lucide-briefcase' : key === 'transport' ? 'i-lucide-rocket' : 'i-lucide-heart-handshake'" 
+                          :class="key === 'job2050' ? 'text-orange-400' : key === 'transport' ? 'text-blue-400' : 'text-pink-400'" class="w-4 h-4" />
+                   <h3 class="font-bold text-xs tracking-widest uppercase text-gray-400">
+                     {{ key === 'job2050' ? 'Nghề Nghiệp' : key === 'transport' ? 'Phương Tiện' : 'Tình Duyên' }}
+                   </h3>
+                 </div>
+                 <p class="text-gray-100 pl-2 font-medium">{{ value }}</p>
+              </div>
+
+              <div v-else-if="key === 'look2050'" class="mt-4 p-5 rounded-2xl bg-gradient-to-r from-purple-900/40 to-fuchsia-900/40 border border-fuchsia-500/30 shadow-inner text-left relative overflow-hidden w-full">
+                 <UIcon name="i-lucide-scan-face" class="absolute -bottom-2 -right-2 text-fuchsia-500/10 w-24 h-24 pointer-events-none" />
+                 <div class="flex items-center gap-2 mb-2 relative z-10">
+                   <UIcon name="i-lucide-eye" class="text-fuchsia-400 w-5 h-5 animate-pulse" />
+                   <h3 class="text-fuchsia-400 font-bold text-sm tracking-widest uppercase">Diện Mạo 2050</h3>
+                 </div>
+                 <p class="text-fuchsia-100/90 leading-relaxed relative z-10 font-medium">{{ value }}</p>
+              </div>
+
+              <div v-else-if="key === 'prophecy' && Array.isArray(value)" class="mt-6 p-5 rounded-2xl bg-black/60 border border-yellow-500/30 shadow-[0_0_20px_rgba(234,179,8,0.15)] text-left w-full relative overflow-hidden">
+                <div class="absolute inset-0 bg-noise opacity-30 pointer-events-none"></div>
+                <div class="flex items-center justify-center gap-2 mb-4 relative z-10">
+                  <UIcon name="i-lucide-crystal-ball" class="text-yellow-400 w-6 h-6" />
+                  <h3 class="text-yellow-400 font-black text-lg tracking-widest uppercase">Lời Sấm Truyền</h3>
+                </div>
+                <div class="space-y-3 relative z-10">
+                  <div v-for="(item, idx) in value" :key="idx" class="p-4 bg-yellow-950/20 border border-yellow-500/20 rounded-lg hover:bg-yellow-950/40 transition-colors">
+                    <p class="text-yellow-200 text-sm leading-relaxed font-medium">{{ item }}</p>
+                  </div>
                 </div>
               </div>
 

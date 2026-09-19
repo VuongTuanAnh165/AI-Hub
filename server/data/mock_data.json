@@ -54,7 +54,50 @@
     { "title": "Đọc vị tính cách 🎭", "personality": "Avatar của bạn toát lên vẻ bí ẩn và sáng tạo. Bạn là kiểu người thích quan sát hơn nói, nhưng khi nói thì ai cũng phải lắng nghe. Bạn có gu thẩm mỹ cao và hơi perfectionist.", "type": "Introvert sáng tạo", "matchWith": "Extrovert năng động — họ sẽ kéo bạn ra khỏi vùng an toàn!", "warning": "Cẩn thận kẻo overthink quá rồi quên sống nha! 🧠" }
   ],
   "doi-song-2050": [
-    { "title": "Cuộc sống 2050 🚀", "prediction": "Năm 2050, bạn sẽ sống trong căn hộ trên tầng 150 ở Neo Saigon, đi làm bằng taxi bay, và nuôi 3 con mèo robot. Công việc chính là 'Chuyên viên tâm lý cho AI' — vì AI lúc đó cũng bị stress! 😂", "job2050": "AI Therapist (Chuyên viên tâm lý cho AI)", "home": "Neo Saigon — Tầng 150", "funFact": "Bạn sẽ là người Việt đầu tiên đặt chân lên sao Hoả vào năm 2048! 🪐" }
+    {
+      "title": "Tù Nhân Metaverse",
+      "cyberStats": {
+        "wealth": 12,
+        "techSkill": 85,
+        "sanity": 5
+      },
+      "inventory": [
+        "1 USB chứa nhạc Lofi Chill năm 2024",
+        "Giấy chứng nhận nợ vũ trụ đáo hạn năm 2099",
+        "Kính VR dán băng dính đen"
+      ],
+      "job2050": "Nông dân chăn kiến máy trên sao Hỏa",
+      "transport": "Đĩa bay mượn của hàng xóm (sắp hết pin)",
+      "partner": "Kết hôn với 1 AI mã nguồn mở nhưng hay cãi",
+      "look2050": "Do thói quen thức khuya lướt tóp tóp từ năm 2024, đôi mắt của bạn đã được thay bằng cụm camera hồng ngoại chống cận, nhưng lại dính virus hiện quảng cáo Pop-up mỗi 5 phút.",
+      "prophecy": [
+        "Năm 2045: Bạn trúng số Vietlott nhưng không ai nhận xài tiền giấy nữa.",
+        "Năm 2048: Bạn bị trục xuất khỏi Trái Đất vì dám chê AI nấu ăn dở."
+      ],
+      "realityCheck": "Bớt overthink và lo cày cuốc đi, ước mơ của bạn năm 2024 còn chắp vá huống hồ năm 2050!"
+    },
+    {
+      "title": "Lãnh Chúa Trạm Vũ Trụ",
+      "cyberStats": {
+        "wealth": 99,
+        "techSkill": 60,
+        "sanity": 20
+      },
+      "inventory": [
+        "Thẻ đen vô cực của Ngân hàng Liên hành tinh",
+        "Cánh tay phải mạ vàng PNJ",
+        "1 kg rau muống (đồ xa xỉ phẩm năm 2050)"
+      ],
+      "job2050": "CEO Tập đoàn Sản xuất Không khí Đóng Chai",
+      "transport": "Du thuyền Không gian chạy bằng Năng lượng Tình yêu",
+      "partner": "Độc thân vì không ai dám nợ tiền bạn",
+      "look2050": "Vẻ ngoài vẫn giữ nguyên nét như năm 2024 nhưng được độ thêm con chip tỏa ra ánh hào quang của sự giàu có.",
+      "prophecy": [
+        "Năm 2042: Mua đứt luôn nền tảng tóp tóp và xóa sổ nó.",
+        "Năm 2050: Giàu nứt đố đổ vách nhưng đêm nào cũng nghe nhạc suy vì nhớ mùi khói bụi Trái Đất."
+      ],
+      "realityCheck": "Hiện tại thẻ tín dụng còn gánh còng lưng mà mơ làm Lãnh Chúa, đi ngủ sớm đi bạn ơi!"
+    }
   ],
   "crush-nghi-gi": [
     { 
