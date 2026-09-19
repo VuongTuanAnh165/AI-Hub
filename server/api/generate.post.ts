@@ -222,9 +222,10 @@ export default defineEventHandler(async (event) => {
         console.warn(`[AI] All Gemini models failed. Falling back to OpenRouter...`)
         let openRouterSuccess = false
         const openRouterModels = [
-          'meta-llama/llama-3.2-11b-vision-instruct:free', // Tốc độ nhanh, đọc ảnh tốt
-          'google/gemini-2.0-pro-exp-02-05:free',         // Backup từ Google qua OpenRouter
-          'qwen/qwen-vl-plus:free'                        // Quái vật đọc ảnh của Qwen
+          'meta-llama/llama-3.2-11b-vision-instruct',     // Good for vision
+          'google/gemini-2.5-pro',                       // Strong alternative
+          'qwen/qwen-vl-max',                            // Good vision fallback
+          'openrouter/auto'                              // Ultimate fallback
         ]
         
         for (const orModel of openRouterModels) {
@@ -257,8 +258,7 @@ export default defineEventHandler(async (event) => {
                   { role: 'system', content: promptConfig.systemPrompt },
                   { role: 'user', content: orContent }
                 ],
-                temperature: 0.7,
-                response_format: { type: 'json_object' } // OpenRouter supports this for Llama/Gemini
+                temperature: 0.7
               })
             })
 
@@ -287,7 +287,7 @@ export default defineEventHandler(async (event) => {
         throw lastError // Ném lỗi cuối cùng ra ngoài để catch block tổng xử lý MockData
       }
     } else {
-      const text = response.text || ''
+      const text = String(response.text || '')
       aiResult = parseAiResponse(text)
     }
   } catch (error: any) {
