@@ -67,13 +67,18 @@ const formData = reactive<Record<string, any>>({
   gender: '',
   birthTime: '',
   financeStatus: '',
-  loveStatus: ''
+  loveStatus: '',
+  socialPlatform: '',
+  platformPurpose: ''
 })
 
 const zodiacOptions = ['Bạch Dương', 'Kim Ngưu', 'Song Tử', 'Cự Giải', 'Sư Tử', 'Xử Nữ', 'Thiên Bình', 'Bọ Cạp', 'Nhân Mã', 'Ma Kết', 'Bảo Bình', 'Song Ngư']
 const relationshipOptions = ['Chưa từng nói chuyện', 'Lén lút nhìn nhau', 'Bạn bè bình thường', 'Đang mập mờ', 'Oan gia ngõ hẹp']
 const financeOptions = ['Giàu ngầm', 'Đủ ăn đủ tiêu', 'Thẻ tín dụng gánh còng lưng', 'Đáy xã hội']
 const loveOptions = ['Độc thân bền vững', 'Đang mập mờ', 'Lụy tình', 'Đã có chủ']
+const genderOptions = ['Nam', 'Nữ', 'Bí ẩn']
+const platformOptions = ['Facebook', 'Instagram', 'Tinder', 'LinkedIn', 'Zalo', 'Threads']
+const purposeOptions = ['Săn người yêu (Thả thính)', 'Đi xin việc', 'Vay tiền bạn bè', 'Phông bạt sống ảo', 'Ẩn dật theo dõi NYC']
 
 // Xác định fields nào hiển thị dựa vào slug
 const formFields = computed(() => {
@@ -101,8 +106,12 @@ const formFields = computed(() => {
       ]
     case 'tinh-cach-qua-avatar':
       return [
-        { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
-        { key: 'avatarDescription', label: 'Mô tả avatar của bạn', placeholder: 'VD: Ảnh anime tóc xanh, đeo kính, nền galaxy', type: 'text' }
+        { key: 'name', label: 'Biệt danh của bạn', placeholder: 'VD: Cậu Út', type: 'text' },
+        { key: 'age', label: 'Tuổi', placeholder: 'VD: 25', type: 'text' },
+        { key: 'gender', label: 'Giới tính', type: 'select', options: genderOptions },
+        { key: 'socialPlatform', label: 'Dùng ảnh này trên nền tảng nào?', type: 'select', options: platformOptions },
+        { key: 'platformPurpose', label: 'Mục đích thầm kín là gì?', type: 'select', options: purposeOptions },
+        { key: 'photo', label: 'Tải ảnh Avatar lên (Bắt buộc)', type: 'image', optional: false }
       ]
     case 'doi-song-2050':
       return [
@@ -431,7 +440,7 @@ async function downloadImage() {
 
             <template v-for="(value, key) in result" :key="key">
               <!-- Render String (Bỏ qua các key render riêng) -->
-              <div v-if="!['title', 'tarotCard', 'redFlagLevel', 'zodiacMatch', 'signal', 'element', 'zodiac', 'luckyNumber', 'luckyColor', 'advice', 'career', 'love', 'realityCheck', 'tier'].includes(key) && typeof value === 'string'" class="p-4 rounded-xl bg-white/5 border border-white/10 shadow-inner">
+              <div v-if="!['title', 'archetype', 'hiddenInsecurity', 'suggestedPlatform', 'tarotCard', 'redFlagLevel', 'zodiacMatch', 'signal', 'element', 'zodiac', 'luckyNumber', 'luckyColor', 'advice', 'career', 'love', 'realityCheck', 'tier'].includes(key) && typeof value === 'string'" class="p-4 rounded-xl bg-white/5 border border-white/10 shadow-inner w-full mb-4">
                 <p class="text-[1.05rem] leading-relaxed text-gray-100">{{ value }}</p>
               </div>
               
@@ -544,7 +553,7 @@ async function downloadImage() {
                 </div>
               </div>
 
-              <div v-else-if="(key === 'buffs' || key === 'debuffs') && Array.isArray(value)" class="mt-4 p-4 rounded-xl border shadow-inner text-left"
+              <div v-else-if="(key === 'buffs' || key === 'debuffs') && Array.isArray(value)" class="mt-4 p-4 rounded-xl border shadow-inner text-left w-full"
                    :class="key === 'buffs' ? 'bg-green-950/30 border-green-500/20' : 'bg-red-950/30 border-red-500/20'">
                 <div class="flex items-center gap-2 mb-3">
                   <UIcon :name="key === 'buffs' ? 'i-lucide-arrow-up-circle' : 'i-lucide-skull'" :class="key === 'buffs' ? 'text-green-400' : 'text-red-400'" class="w-5 h-5" />
@@ -559,10 +568,52 @@ async function downloadImage() {
                 </div>
               </div>
 
-              <!-- Render Array (Roast Details) -->
-              <div v-else-if="key !== 'title' && Array.isArray(value)" class="space-y-3 mt-4 text-left">
+              <!-- V7 Specific: Tính Cách Qua Avatar (Masterpiece Scores) -->
+              <div v-else-if="key === 'scores' && typeof value === 'object'" class="mt-4 p-5 rounded-2xl bg-black/40 border border-white/10 shadow-inner space-y-4 w-full">
+                <div v-for="(val, statKey) in value" :key="statKey" class="flex flex-col gap-1">
+                  <div class="flex justify-between items-center text-sm mb-1">
+                    <div class="flex items-center gap-2">
+                      <UIcon :name="statKey === 'vibe' ? 'i-lucide-sparkles' : statKey === 'redFlag' ? 'i-lucide-alert-triangle' : 'i-lucide-shield-check'" 
+                             :class="statKey === 'vibe' ? 'text-pink-400' : statKey === 'redFlag' ? 'text-red-400' : 'text-blue-400'" class="w-4 h-4" />
+                      <span class="font-semibold text-gray-200 uppercase tracking-wider text-xs">
+                        {{ statKey === 'vibe' ? 'Sức Hút (Vibe)' : statKey === 'redFlag' ? 'Báo Động Đỏ' : 'Độ Uy Tín' }}
+                      </span>
+                    </div>
+                    <span class="font-bold font-mono text-white">{{ val }}/100</span>
+                  </div>
+                  <div class="w-full bg-gray-800 rounded-full h-2.5 shadow-inner overflow-hidden border border-white/5">
+                    <div :class="[
+                           statKey === 'vibe' ? 'bg-pink-500' : 
+                           statKey === 'redFlag' ? 'bg-red-500' : 'bg-blue-500',
+                           'h-2.5 rounded-full transition-all duration-1000'
+                         ]" 
+                         :style="{ width: val + '%' }">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- V7 Specific: Bất An Thầm Kín & Nền Tảng Phù Hợp -->
+              <div v-else-if="key === 'hiddenInsecurity'" class="mt-4 p-4 rounded-xl border bg-purple-950/40 border-purple-500/30 shadow-inner text-left w-full relative overflow-hidden">
+                <div class="absolute -right-4 -bottom-4 opacity-10">
+                  <UIcon name="i-lucide-eye" class="w-24 h-24 text-purple-400" />
+                </div>
+                <div class="flex items-center gap-2 mb-2 relative z-10">
+                  <UIcon name="i-lucide-eye" class="text-purple-400 w-5 h-5" />
+                  <h3 class="text-purple-400 font-bold text-sm tracking-widest uppercase">Nỗi Bất An Thầm Kín</h3>
+                </div>
+                <p class="text-gray-200 text-[1rem] leading-relaxed italic relative z-10">"{{ value }}"</p>
+              </div>
+
+              <div v-else-if="key === 'suggestedPlatform'" class="mt-4 p-5 rounded-xl border bg-primary-950/30 border-primary-500/30 shadow-inner text-center w-full">
+                <h3 class="text-primary-400 font-bold text-xs tracking-widest uppercase mb-1">Nền Tảng Thực Sự Phù Hợp</h3>
+                <p class="text-white text-[1.1rem] font-bold">{{ value }}</p>
+              </div>
+
+              <!-- Render Array (Roast Details / Analysis) -->
+              <div v-else-if="key !== 'title' && Array.isArray(value)" class="space-y-3 mt-4 text-left w-full">
                 <div v-for="(item, idx) in value" :key="idx" class="p-3 bg-red-900/20 border border-red-500/30 rounded-lg">
-                  <div class="font-bold text-red-400 text-sm mb-1 uppercase tracking-wider">{{ item.feature }}</div>
+                  <div class="font-bold text-red-400 text-sm mb-1 uppercase tracking-wider">{{ item.feature || item.aspect }}</div>
                   <div class="text-gray-200 text-[1rem] leading-relaxed">{{ item.comment }}</div>
                 </div>
               </div>
