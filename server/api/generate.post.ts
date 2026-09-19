@@ -1,11 +1,24 @@
 import { createHash } from 'node:crypto'
-import Groq from 'groq-sdk'
+
 import { GoogleGenAI, HarmCategory, HarmBlockThreshold } from '@google/genai'
 import { getPromptConfig } from '../data/prompts'
 import { saveResult, findCachedResult } from '../utils/firebase-admin'
 import mockDataRaw from '../data/mock_data.json'
 
 const mockData = mockDataRaw as Record<string, any[]>
+
+// Simple IP-based Rate Limiter (Memory-based)
+const rateLimit = new Map<string, { count: number, resetTime: number }>()
+const MAX_REQUESTS = 10
+const WINDOW_MS = 60 * 1000 // 1 minute
+
+// Helper function to get IP (handles Cloudflare/Proxy headers)
+function getClientIp(event: any) {
+  return getRequestHeader(event, 'cf-connecting-ip') || 
+         getRequestHeader(event, 'x-forwarded-for')?.split(',')[0] || 
+         event.node.req.socket.remoteAddress || 
+         'unknown'
+}
 
 /**
  * POST /api/generate
@@ -21,6 +34,24 @@ const mockData = mockDataRaw as Record<string, any[]>
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const { appSlug, input, turnstileToken } = body || {}
+
+  // 0. Rate Limiting (F2.1 - Chống spam API)
+  const ip = getClientIp(event)
+  const now = Date.now()
+  if (ip !== 'unknown') {
+    const userLimit = rateLimit.get(ip)
+    if (!userLimit || now > userLimit.resetTime) {
+      rateLimit.set(ip, { count: 1, resetTime: now + WINDOW_MS })
+    } else {
+      if (userLimit.count >= MAX_REQUESTS) {
+        throw createError({
+          statusCode: 429,
+          statusMessage: 'Bạn thao tác quá nhanh. Vui lòng đợi 1 phút rồi thử lại!'
+        })
+      }
+      userLimit.count++
+    }
+  }
 
   // 1. Validate
   if (!appSlug || !input) {
@@ -222,7 +253,10 @@ export default defineEventHandler(async (event) => {
               },
               body: JSON.stringify({
                 model: orModel,
-                messages: [{ role: 'user', content: orContent }],
+                messages: [
+                  { role: 'system', content: promptConfig.systemPrompt },
+                  { role: 'user', content: orContent }
+                ],
                 temperature: 0.7,
                 response_format: { type: 'json_object' } // OpenRouter supports this for Llama/Gemini
               })

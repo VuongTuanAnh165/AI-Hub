@@ -1,26 +1,30 @@
 <script setup lang="ts">
+import RoastResult from '~/components/results/RoastResult.vue'
+import VanMenhResult from '~/components/results/VanMenhResult.vue'
+import ChamDiemResult from '~/components/results/ChamDiemResult.vue'
+import AvatarResult from '~/components/results/AvatarResult.vue'
+import Life2050Result from '~/components/results/Life2050Result.vue'
+import CrushResult from '~/components/results/CrushResult.vue'
+import ResultCardWrapper from '~/components/results/ResultCardWrapper.vue'
+
 const route = useRoute()
 const id = route.params.id as string
 
-// Fetch kết quả từ API
 const { data, error } = await useFetch(`/api/result/${id}`)
 
 if (error.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Kết quả không tồn tại hoặc đã hết hạn'
-  })
+  throw createError({ statusCode: 404, statusMessage: 'Kết quả không tồn tại hoặc đã hết hạn' })
 }
 
 const result = computed(() => (data.value as any)?.result || null)
 const appSlug = computed(() => (data.value as any)?.appSlug || '')
+const formData = computed(() => (data.value as any)?.input || {})
 
 useSeoMeta({
   title: result.value?.title ? `${result.value.title} — AI Hub` : 'Kết quả AI Hub',
   description: 'Xem kết quả AI và tạo kết quả của riêng bạn!'
 })
 
-// Xác định các trường text để show lên OG Image
 const ogDescription = computed(() => {
   if (!result.value) return 'Khám phá kết quả độc đáo của AI!'
   return result.value.review || result.value.roast || result.value.destiny || result.value.prediction || result.value.thought || result.value.personality || ''
@@ -31,7 +35,6 @@ const ogScore = computed(() => {
   return result.value.score || result.value.loveScore
 })
 
-// Sinh ảnh OG Thumbnail (F2.3)
 defineOgImageComponent('ResultShare', {
   title: result.value?.title || 'AI Hub',
   description: ogDescription.value,
@@ -40,62 +43,59 @@ defineOgImageComponent('ResultShare', {
 
 const { gtag } = useGtag()
 onMounted(() => {
-  // Bắn event GA4 khi có người xem trang share
-  gtag('event', 'share_page_viewed', {
-    app_slug: appSlug.value
-  })
+  gtag('event', 'share_page_viewed', { app_slug: appSlug.value })
 })
 </script>
 
 <template>
-  <UContainer class="py-8">
-    <div class="max-w-lg mx-auto text-center">
-      <!-- Result Card -->
-      <UCard v-if="result" class="glass mb-8">
-        <div class="space-y-4">
-          <h1 class="text-2xl sm:text-3xl font-extrabold gradient-neon-text">
-            {{ result.title }}
-          </h1>
-
-          <!-- Nội dung kết quả -->
-          <div class="text-left space-y-3">
-            <template v-for="(value, key) in result" :key="key">
-              <div v-if="key !== 'title' && typeof value === 'string'" class="p-3 rounded-lg bg-elevated">
-                <p class="text-default">{{ value }}</p>
-              </div>
-              <div v-else-if="key !== 'title' && typeof value === 'number'" class="text-center">
-                <span class="text-5xl font-extrabold gradient-neon-text">{{ value }}</span>
-                <p class="text-dimmed text-sm mt-1">{{ key === 'score' ? 'điểm' : key === 'loveScore' ? '% khả năng' : key }}</p>
-              </div>
-            </template>
-          </div>
-
-          <!-- Disclaimer -->
-          <p class="text-dimmed text-xs">
-            ⚠️ Kết quả chỉ mang tính chất giải trí. Không có giá trị khoa học.
-          </p>
-        </div>
-      </UCard>
-
-      <!-- CTA — Khép kín vòng lặp Viral (F2.4) -->
-      <div class="space-y-4">
-        <UButton
-          :to="appSlug ? `/app/${appSlug}` : '/'"
-          label="👉 Tạo kết quả của riêng bạn!"
-          size="xl"
-          block
-          class="animate-cta animate-pulse-cta text-lg font-bold"
-        />
-
-        <UButton
-          to="/"
-          label="🏠 Khám phá thêm mini-app khác"
-          color="neutral"
-          variant="outline"
-          size="lg"
-          block
-        />
+  <ClientOnly>
+    <Teleport to="body">
+      <div v-if="appSlug === 'doi-song-2050' && formData.photo" class="fixed inset-0 z-[-1] pointer-events-none transition-opacity duration-1000 opacity-60">
+        <img :src="formData.photo" class="absolute inset-0 w-full h-full object-cover blur-3xl scale-125" />
+        <div class="absolute inset-0 bg-black/80 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-30 mix-blend-overlay"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-cyan-900/40 via-transparent to-fuchsia-900/40"></div>
+        <div class="absolute inset-0 border-[8px] border-cyan-500/10 mix-blend-overlay pointer-events-none"></div>
       </div>
+    </Teleport>
+  </ClientOnly>
+
+  <UContainer class="py-8">
+    <div class="max-w-lg mx-auto text-center mb-6">
+      <h2 class="text-xl text-gray-400 font-bold mb-2">Bạn bè của bạn đã thử nghiệm:</h2>
+      <UButton
+        :to="appSlug ? `/app/${appSlug}` : '/'"
+        label="👉 Thử ngay với bạn!"
+        size="xl"
+        block
+        class="animate-cta animate-pulse-cta text-lg font-bold mb-4"
+      />
+    </div>
+
+    <div v-if="result" class="max-w-lg mx-auto">
+      <ResultCardWrapper :slug="appSlug" :formData="formData" :result="result" @reset="navigateTo('/app/' + appSlug)">
+        <RoastResult v-if="appSlug === 'roast-my-face'" :result="result" />
+        <VanMenhResult v-else-if="appSlug === 'ten-tuoi-van-menh'" :result="result" />
+        <ChamDiemResult v-else-if="appSlug === 'cham-diem-doi'" :result="result" />
+        <AvatarResult v-else-if="appSlug === 'tinh-cach-qua-avatar'" :result="result" />
+        <Life2050Result v-else-if="appSlug === 'doi-song-2050'" :result="result" />
+        <CrushResult v-else-if="appSlug === 'crush-nghi-gi'" :result="result" />
+      </ResultCardWrapper>
+      
+      <p class="text-dimmed text-xs mt-6 text-center">
+        ⚠️ Kết quả chỉ mang tính chất giải trí. Không có giá trị khoa học.
+      </p>
+    </div>
+
+    <div class="max-w-lg mx-auto mt-8">
+      <UButton
+        to="/"
+        label="🏠 Khám phá thêm mini-app khác"
+        color="neutral"
+        variant="outline"
+        size="lg"
+        block
+      />
     </div>
   </UContainer>
 </template>

@@ -2,6 +2,8 @@
   "roast-my-face": [
     { 
       "title": "Tác phẩm trừu tượng của tạo hoá 😂", 
+      "overallRating": 4,
+      "celebrity": "Bản lỗi của anh da đen Khaby Lame",
       "details": [
         { "feature": "Đôi mắt", "comment": "Mắt bạn sâu thẳm như chiếc ví của tôi vào cuối tháng vậy." },
         { "feature": "Mái tóc", "comment": "Không rõ đây là kiểu tóc mới hay là do bạn vừa đi qua cơn bão số 3?" },
@@ -9,17 +11,19 @@
       ],
       "roast": "Tóm lại, khuôn mặt bạn làm AI lag mất 2 giây vì không biết phân loại vào thể loại nào. Nhưng chính sự độc đáo đó mới tạo nên bạn! 😆", 
       "burnLevel": 85, 
-      "hashtag": "#RoastedByAI" 
+      "hashtags": ["#RoastedByAI", "#TruuTuong", "#GiaGiauBatOn"]
     },
     { 
       "title": "Gương mặt vàng trong làng mất ngủ 🐼", 
+      "overallRating": 6,
+      "celebrity": "Lệnh Hồ Xung sau 3 đêm code frontend",
       "details": [
         { "feature": "Quầng thâm", "comment": "Gấu trúc thấy bạn chắc cũng phải gọi bằng cụ." },
         { "feature": "Làn da", "comment": "Da bạn mịn màng như... đường nhựa mới rải vậy, rất nghệ thuật." }
       ],
       "roast": "Mặt bạn đăng lên TikTok chắc viral lắm, nhưng vì lý do không ai ngờ tới 😂. Dù sao thì bạn vẫn xinh đẹp trong mắt mẹ!", 
       "burnLevel": 92, 
-      "hashtag": "#FaceOfTheYear" 
+      "hashtags": ["#FaceOfTheYear", "#ThucKhuyaCungGauTruc", "#ThieuNgu"]
     }
   ],
   "ten-tuoi-van-menh": [
@@ -47,11 +51,58 @@
     }
   ],
   "cham-diem-doi": [
-    { "title": "Bảng điểm cuộc đời 💯", "score": 78, "review": "Cuộc đời bạn được 78 điểm — thuộc hàng 'trên trung bình khá' 😎. Bạn đã vượt qua nhiều thử thách nhưng vẫn chưa unlock hết achievement. Tiếp tục cố gắng, bạn sắp lên hạng Kim Cương rồi!", "category": "Bạch kim", "advice": "Hãy thử một thứ mới mỗi tuần để tăng điểm nhanh hơn! 🚀" },
-    { "title": "Điểm số bất ngờ 🎯", "score": 85, "review": "85 điểm! Bạn thuộc top 15% cuộc đời đáng sống nhất! Có sự nghiệp ổn, có người thương, có sở thích — basically bạn đang win rồi đó. Chỉ cần thêm chút liều lĩnh là perfect!", "category": "Kim cương", "advice": "Đừng quên tận hưởng hiện tại, đừng chỉ lo cho tương lai 🌈" }
+    {
+      "title": "Chúa tể Overthink 🧠",
+      "score": 45,
+      "tier": "Đáy Xã Hội",
+      "stats": [
+        { "name": "Tài chính", "value": 20, "icon": "i-lucide-coins", "color": "yellow" },
+        { "name": "Tình duyên", "value": 15, "icon": "i-lucide-heart", "color": "pink" },
+        { "name": "Tâm lý", "value": 10, "icon": "i-lucide-brain", "color": "blue" },
+        { "name": "Nhân phẩm", "value": 85, "icon": "i-lucide-clover", "color": "green" }
+      ],
+      "buffs": ["Tự chữa lành bằng trà sữa", "Giỏi che giấu sự bất ổn"],
+      "debuffs": ["Ví luôn rỗng vào giữa tháng", "Crush không bao giờ rep tin nhắn"],
+      "review": "Cuộc đời bạn như một bản nhạc buồn, nhưng may mắn là bạn biết cách remix nó bằng nụ cười gượng gạo.",
+      "realityCheck": "Bớt thức khuya đọc Tarot đi, nó không làm bạn giàu lên đâu!",
+      "advice": "Hãy ra ngoài hít thở không khí và bớt suy nghĩ lại."
+    },
+    {
+      "title": "Bậc thầy Hưởng Thụ 🍹",
+      "score": 85,
+      "tier": "Kim Cương",
+      "stats": [
+        { "name": "Tài chính", "value": 90, "icon": "i-lucide-coins", "color": "yellow" },
+        { "name": "Tình duyên", "value": 60, "icon": "i-lucide-heart", "color": "pink" },
+        { "name": "Tâm lý", "value": 95, "icon": "i-lucide-brain", "color": "blue" },
+        { "name": "Nhân phẩm", "value": 75, "icon": "i-lucide-clover", "color": "green" }
+      ],
+      "buffs": ["Miễn nhiễm với drama", "Ngủ ngon trong mọi hoàn cảnh"],
+      "debuffs": ["Dễ bị dụ dỗ đi ăn", "Đôi lúc hơi lười biếng"],
+      "review": "Bạn có một cuộc sống khá viên mãn và biết cách tận hưởng. Không bon chen, không vội vã, châm ngôn sống là 'chill'.",
+      "realityCheck": "Đừng chill quá mà quên mất hạn chót deadline nhé, sếp đang chờ kìa!",
+      "advice": "Cứ giữ phong độ này, nhưng thỉnh thoảng cũng nên tập thể dục một chút."
+    }
   ],
   "tinh-cach-qua-avatar": [
-    { "title": "Đọc vị tính cách 🎭", "personality": "Avatar của bạn toát lên vẻ bí ẩn và sáng tạo. Bạn là kiểu người thích quan sát hơn nói, nhưng khi nói thì ai cũng phải lắng nghe. Bạn có gu thẩm mỹ cao và hơi perfectionist.", "type": "Introvert sáng tạo", "matchWith": "Extrovert năng động — họ sẽ kéo bạn ra khỏi vùng an toàn!", "warning": "Cẩn thận kẻo overthink quá rồi quên sống nha! 🧠" }
+    {
+      "title": "Chúa Tể Phông Bạt 🎭",
+      "archetype": "Khởi Nghiệp Mõm",
+      "scores": {
+        "vibe": 90,
+        "redFlag": 85,
+        "trust": 20
+      },
+      "tags": ["#SongAo", "#DoLechPhaCao", "#UyTinAm"],
+      "analysis": [
+        { "aspect": "Góc chụp & Ánh mắt", "comment": "Góc chụp ngước lên 45 độ tôn vinh sự chanh sả, ánh mắt xa xăm như đang bận tìm kiếm nhà đầu tư thiên thần." },
+        { "aspect": "Filter & Hậu cảnh", "comment": "Filter sắc nét làm mờ cả nhân phẩm, hậu cảnh là quán cafe sang chảnh nhưng ly nước thì cạn khô từ 2 tiếng trước." },
+        { "aspect": "Độ lệch pha (Reality Check)", "comment": "Mang ảnh này lên Tinder thì được, chứ mang đi vay tiền thì không ai dám cho mượn đâu." }
+      ],
+      "hiddenInsecurity": "Đằng sau bức ảnh hào nhoáng là sự bất an về một tương lai chưa xác định và một chiếc ví đang kêu cứu.",
+      "suggestedPlatform": "Tinder hoặc Instagram",
+      "advice": "Hãy sống thật với bản thân một chút, không phải lúc nào cũng cần gồng mình lên đâu."
+    }
   ],
   "doi-song-2050": [
     {

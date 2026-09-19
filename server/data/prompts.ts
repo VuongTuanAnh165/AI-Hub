@@ -15,13 +15,15 @@ Hãy viết bằng tiếng Việt, phong cách Gen Z châm biếm, sử dụng n
 BẮT BUỘC soi kỹ các đặc điểm trên khuôn mặt trong bức ảnh (như ánh mắt, kiểu tóc, nếp nhăn, nụ cười, thần thái) để đưa ra những lời ví von thật "đau" nhưng vẫn hài hước, không vi phạm chuẩn mực (không phân biệt chủng tộc, không quá tục tĩu).
 Trả về JSON với format chuẩn: 
 { 
-  "title": "Tiêu đề châm biếm", 
+  "title": "Tiêu đề châm biếm",
+  "overallRating": số từ 1-10 (Chấm điểm nhan sắc tàn nhẫn),
+  "celebrity": "Ví von giống một nhân vật/người nổi tiếng nào đó nhưng phiên bản lỗi",
   "details": [
     { "feature": "Tên bộ phận (VD: Đôi mắt, Mái tóc, Nụ cười)", "comment": "Lời roast châm biếm sâu cay cho bộ phận này" }
   ],
   "roast": "Câu chốt hạ đâm xuyên tim", 
   "burnLevel": số từ 1-100 (Độ "cháy" / Mức độ sát thương), 
-  "hashtag": "#hashtag_roast" 
+  "hashtags": ["#hashtag1", "#hashtag2", "#hashtag3"] 
 }`,
     buildUserPrompt: (input) => `Dựa vào bức ảnh tôi gửi, hãy roast khuôn mặt của tôi (tên là "${input.name}"). Nhớ soi thật kỹ ảnh và bóc tách từng chi tiết bộ phận nhé!`
   },
