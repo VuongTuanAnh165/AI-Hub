@@ -5,6 +5,7 @@ export interface FormField {
   type: 'text' | 'date' | 'time' | 'select' | 'image'
   options?: string[]
   optional?: boolean
+  multiple?: boolean
 }
 
 export interface MiniApp {
@@ -25,6 +26,12 @@ const loveOptions = ['Độc thân bền vững', 'Đang mập mờ', 'Lụy tì
 const genderOptions = ['Nam', 'Nữ', 'Bí ẩn']
 const platformOptions = ['Facebook', 'Instagram', 'Tinder', 'LinkedIn', 'Zalo', 'Threads']
 const purposeOptions = ['Săn người yêu (Thả thính)', 'Đi xin việc', 'Vay tiền bạn bè', 'Phông bạt sống ảo', 'Ẩn dật theo dõi NYC']
+const moodOptions = ['Tự tin rạng ngời', 'Suy vl', 'Cố tỏ ra ngầu', 'Gương mặt bất ổn', 'Thả thính sương sương']
+const focusOptions = ['Tình duyên lận đận', 'Sự nghiệp & Tiền tài', 'Nghiệp chướng & Thị phi']
+const struggleOptions = ['Đang nợ nần', 'Đang thất nghiệp', 'Lụy tình', 'Overthink mỗi đêm', 'Mất phương hướng', 'Áp lực đồng trang lứa (Peer pressure)']
+const initiateOptions = ['Tôi chủ động', 'Crush chủ động', 'Cả hai', 'Chờ sung rụng']
+const bloodTypeOptions = ['A', 'B', 'AB', 'O', 'Không rõ']
+const contactTimeOptions = ['Mới lướt qua đời nhau', 'Dưới 3 tháng', '3 - 6 tháng', 'Hơn 1 năm', 'Thanh mai trúc mã']
 
 export const miniApps: MiniApp[] = [
   {
@@ -35,6 +42,9 @@ export const miniApps: MiniApp[] = [
     badge: 'hot',
     formFields: [
       { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      { key: 'age', label: 'Tuổi', placeholder: 'VD: 18', type: 'text', optional: true },
+      { key: 'gender', label: 'Giới tính', type: 'select', options: genderOptions, optional: true },
+      { key: 'mood', label: 'Trạng thái muốn thể hiện?', type: 'select', options: moodOptions, optional: true },
       { key: 'photo', label: 'Tải ảnh khuôn mặt của bạn lên', type: 'image' }
     ],
     loadingTexts: ['Đang phân tích góc cạnh...', 'Đang đo độ dày mặt...', 'Đang tìm kiếm điểm vàng (mà không thấy)...', 'Đang vắt óc nghĩ lời chê...']
@@ -49,7 +59,9 @@ export const miniApps: MiniApp[] = [
       { key: 'name', label: 'Họ và tên', placeholder: 'VD: Nguyễn Văn A', type: 'text' },
       { key: 'birthday', label: 'Ngày sinh', type: 'date' },
       { key: 'birthTime', label: 'Giờ sinh (Tuỳ chọn)', type: 'time', optional: true },
-      { key: 'gender', label: 'Giới tính', type: 'select', options: ['Nam', 'Nữ', 'Hệ bí ẩn'] }
+      { key: 'gender', label: 'Giới tính', type: 'select', options: genderOptions },
+      { key: 'bloodType', label: 'Nhóm máu (Tuỳ chọn)', type: 'select', options: bloodTypeOptions, optional: true },
+      { key: 'focus', label: 'Điều bạn muốn bói nhất?', type: 'select', options: focusOptions }
     ],
     loadingTexts: ['Đang thắp hương gọi AI...', 'Đang xin đài âm dương...', 'Đang lật bài Tarot...', 'Đang bấm quẻ tử vi...', 'Sắp ra quẻ rồi...']
   },
@@ -65,6 +77,7 @@ export const miniApps: MiniApp[] = [
       { key: 'job', label: 'Ngành học / Nghề nghiệp', placeholder: 'VD: Sinh viên IT', type: 'text' },
       { key: 'financeStatus', label: 'Tình trạng túi tiền', type: 'select', options: financeOptions },
       { key: 'loveStatus', label: 'Tình trạng yêu đương', type: 'select', options: loveOptions },
+      { key: 'struggle', label: 'Nỗi đau nhức nhối hiện tại', type: 'select', options: struggleOptions, multiple: true },
       { key: 'photo', label: 'Tải ảnh bạn lên (Tuỳ chọn - Để AI soi sắc diện)', type: 'image', optional: true }
     ]
   },
@@ -94,7 +107,8 @@ export const miniApps: MiniApp[] = [
       { key: 'age', label: 'Tuổi hiện tại', placeholder: 'VD: 22', type: 'text' },
       { key: 'job', label: 'Nghề nghiệp hiện tại', placeholder: 'VD: Lập trình viên', type: 'text' },
       { key: 'financeStatus', label: 'Tình trạng túi tiền', type: 'select', options: financeOptions },
-      { key: 'badHabit', label: 'Thói quen xấu nhất', type: 'select', options: badHabitOptions },
+      { key: 'currentAsset', label: 'Tài sản hiện có (Tuỳ chọn)', placeholder: 'VD: 1 chiếc xe wave và 20k', type: 'text', optional: true },
+      { key: 'badHabit', label: 'Thói quen xấu nhất (Có thể chọn nhiều)', type: 'select', options: badHabitOptions, multiple: true },
       { key: 'dream', label: 'Ước mơ lớn nhất', placeholder: 'VD: Mua nhà mặt đất', type: 'text' },
       { key: 'photo', label: 'Tải ảnh của bạn (Bắt buộc)', type: 'image', optional: false }
     ],
@@ -113,7 +127,9 @@ export const miniApps: MiniApp[] = [
       { key: 'crushName', label: 'Tên crush', placeholder: 'VD: Thuý Kiều', type: 'text' },
       { key: 'crushZodiac', label: 'Cung hoàng đạo crush', type: 'select', options: zodiacOptions },
       { key: 'crushPhoto', label: 'Tải ảnh crush (Tuỳ chọn)', type: 'image', optional: true },
-      { key: 'relationship', label: 'Trạng thái hiện tại', type: 'select', options: relationshipOptions }
+      { key: 'relationship', label: 'Trạng thái hiện tại', type: 'select', options: relationshipOptions },
+      { key: 'contactTime', label: 'Đã quen nhau bao lâu?', type: 'select', options: contactTimeOptions },
+      { key: 'whoInitiates', label: 'Ai thường chủ động nhắn tin trước?', type: 'select', options: initiateOptions }
     ],
     loadingTexts: ['Đang dò sóng não crush...', 'Đang bói bài tình yêu...', 'Đang soi tin nhắn cũ...', 'Đang đọc vị ánh mắt...']
   }

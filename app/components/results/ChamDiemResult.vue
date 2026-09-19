@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import SectionCard from './SectionCard.vue'
 import StatBar from './StatBar.vue'
+import ResultTitle from './ui/ResultTitle.vue'
+import ResultBadgeList from './ui/ResultBadgeList.vue'
+import ResultQuote from './ui/ResultQuote.vue'
 
 defineProps<{
   result: Record<string, any>
@@ -10,9 +13,7 @@ defineProps<{
 <template>
   <div class="w-full flex flex-col items-center">
     <!-- Title -->
-    <h2 class="text-2xl sm:text-3xl font-extrabold mb-2 mt-2 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-600" style="line-height: 1.4;">
-      {{ result.title }}
-    </h2>
+    <ResultTitle :title="result.title" color="green" />
 
     <!-- Score -->
     <div v-if="result.score" class="text-center mb-2">
@@ -47,11 +48,11 @@ defineProps<{
           <UIcon name="i-lucide-arrow-up-circle" class="text-green-400 w-5 h-5" />
           <h3 class="text-green-400 font-bold text-sm tracking-widest uppercase">Nội Tại (Buffs)</h3>
         </div>
-        <div class="flex flex-wrap gap-2">
-          <UBadge v-for="(item, idx) in result.buffs" :key="idx" color="success" variant="soft" size="sm" class="font-medium text-[13px] px-3 py-1">
+        <ul class="space-y-2">
+          <li v-for="(item, idx) in result.buffs" :key="idx" class="text-gray-200 text-sm leading-relaxed pl-3 relative before:absolute before:content-[''] before:w-1.5 before:h-1.5 before:bg-green-500 before:rounded-full before:left-0 before:top-1.5">
             {{ item }}
-          </UBadge>
-        </div>
+          </li>
+        </ul>
       </div>
 
       <div v-if="result.debuffs && Array.isArray(result.debuffs)" class="flex-1 p-4 rounded-xl border bg-red-950/30 border-red-500/20 shadow-inner text-left">
@@ -59,11 +60,11 @@ defineProps<{
           <UIcon name="i-lucide-skull" class="text-red-400 w-5 h-5" />
           <h3 class="text-red-400 font-bold text-sm tracking-widest uppercase">Nghiệp Chướng</h3>
         </div>
-        <div class="flex flex-wrap gap-2">
-          <UBadge v-for="(item, idx) in result.debuffs" :key="idx" color="error" variant="soft" size="sm" class="font-medium text-[13px] px-3 py-1">
+        <ul class="space-y-2">
+          <li v-for="(item, idx) in result.debuffs" :key="idx" class="text-gray-200 text-sm leading-relaxed pl-3 relative before:absolute before:content-[''] before:w-1.5 before:h-1.5 before:bg-red-500 before:rounded-full before:left-0 before:top-1.5">
             {{ item }}
-          </UBadge>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -73,14 +74,9 @@ defineProps<{
     </div>
 
     <!-- Reality Check -->
-    <SectionCard v-if="result.realityCheck" title="Thực Tế Phũ Phàng" icon="i-lucide-zap" color="yellow" :bgOpacity="20">
-      <p class="text-orange-300 font-semibold leading-relaxed">{{ result.realityCheck }}</p>
-    </SectionCard>
+    <ResultQuote v-if="result.realityCheck" :text="result.realityCheck" icon="i-lucide-zap" color="yellow" />
 
     <!-- Advice -->
-    <div v-if="result.advice" class="mt-6 p-5 border border-white/10 bg-black/40 rounded-xl relative shadow-inner w-full">
-      <UIcon name="i-lucide-quote" class="absolute -top-3 -left-2 w-8 h-8 text-primary/50" />
-      <p class="text-gray-200 italic leading-relaxed text-center">{{ result.advice }}</p>
-    </div>
+    <ResultQuote v-if="result.advice" :text="result.advice" color="primary" />
   </div>
 </template>

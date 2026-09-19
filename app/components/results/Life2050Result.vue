@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import SectionCard from './SectionCard.vue'
 import StatBar from './StatBar.vue'
+import ResultTitle from './ui/ResultTitle.vue'
+import ResultBadgeList from './ui/ResultBadgeList.vue'
+import ResultQuote from './ui/ResultQuote.vue'
 
 defineProps<{
   result: Record<string, any>
@@ -9,13 +13,11 @@ defineProps<{
 <template>
   <div class="w-full flex flex-col items-center">
     <!-- Title -->
-    <h2 class="text-2xl sm:text-3xl font-extrabold mb-4 mt-2 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500" style="line-height: 1.4;">
-      {{ result.title }}
-    </h2>
+    <ResultTitle :title="result.title" color="blue" />
 
     <!-- Cyberpunk Stats -->
-    <div v-if="result.cyberStats" class="mt-2 p-5 rounded-2xl bg-black/60 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] space-y-4 w-full relative overflow-hidden">
-      <div class="absolute inset-0 bg-noise opacity-20 pointer-events-none"></div>
+    <div v-if="result.cyberStats" class="mt-4 p-5 rounded-2xl bg-black/60 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] space-y-4 w-full relative overflow-hidden">
+      <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 pointer-events-none"></div>
       <h3 class="text-center text-xs font-black tracking-widest text-cyan-400 uppercase mb-2">Chỉ Số Sinh Tồn Cyberpunk</h3>
       
       <div class="relative z-10 space-y-3">
@@ -26,44 +28,27 @@ defineProps<{
     </div>
 
     <!-- Inventory -->
-    <div v-if="result.inventory && Array.isArray(result.inventory)" class="mt-4 p-4 rounded-xl border bg-emerald-950/30 border-emerald-500/30 shadow-inner text-left w-full">
-      <div class="flex items-center gap-2 mb-3">
+    <div v-if="result.inventory && Array.isArray(result.inventory)" class="mt-4 w-full">
+      <div class="flex items-center gap-2 mb-2 justify-center">
         <UIcon name="i-lucide-backpack" class="text-emerald-400 w-5 h-5" />
         <h3 class="text-emerald-400 font-bold text-sm tracking-widest uppercase">Hành Trang Sinh Tồn</h3>
       </div>
-      <div class="flex flex-wrap gap-2">
-        <UBadge v-for="(item, idx) in result.inventory" :key="idx" color="success" variant="soft" size="sm" class="font-medium text-[13px] px-3 py-1">
-          {{ item }}
-        </UBadge>
-      </div>
+      <ResultBadgeList :items="result.inventory" color="green" variant="solid" />
     </div>
 
     <!-- Job, Transport, Partner -->
-    <div v-if="result.job2050" class="mt-4 p-4 rounded-xl bg-gray-900/50 border border-gray-600/30 shadow-inner text-left relative overflow-hidden group w-full">
-      <div class="absolute w-1 h-full left-0 top-0 transition-all duration-300 group-hover:w-2 bg-orange-500"></div>
-      <div class="flex items-center gap-2 mb-1 pl-2">
-        <UIcon name="i-lucide-briefcase" class="text-orange-400 w-4 h-4" />
-        <h3 class="font-bold text-xs tracking-widest uppercase text-gray-400">Nghề Nghiệp</h3>
-      </div>
-      <p class="text-gray-100 pl-2 font-medium">{{ result.job2050 }}</p>
-    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mt-4">
+      <SectionCard v-if="result.job2050" title="Nghề Nghiệp" icon="i-lucide-briefcase" color="orange" :bgOpacity="30">
+        <p class="text-gray-100 font-medium">{{ result.job2050 }}</p>
+      </SectionCard>
 
-    <div v-if="result.transport" class="mt-4 p-4 rounded-xl bg-gray-900/50 border border-gray-600/30 shadow-inner text-left relative overflow-hidden group w-full">
-      <div class="absolute w-1 h-full left-0 top-0 transition-all duration-300 group-hover:w-2 bg-blue-500"></div>
-      <div class="flex items-center gap-2 mb-1 pl-2">
-        <UIcon name="i-lucide-rocket" class="text-blue-400 w-4 h-4" />
-        <h3 class="font-bold text-xs tracking-widest uppercase text-gray-400">Phương Tiện</h3>
-      </div>
-      <p class="text-gray-100 pl-2 font-medium">{{ result.transport }}</p>
-    </div>
+      <SectionCard v-if="result.transport" title="Phương Tiện" icon="i-lucide-rocket" color="blue" :bgOpacity="30">
+        <p class="text-gray-100 font-medium">{{ result.transport }}</p>
+      </SectionCard>
 
-    <div v-if="result.partner" class="mt-4 p-4 rounded-xl bg-gray-900/50 border border-gray-600/30 shadow-inner text-left relative overflow-hidden group w-full">
-      <div class="absolute w-1 h-full left-0 top-0 transition-all duration-300 group-hover:w-2 bg-pink-500"></div>
-      <div class="flex items-center gap-2 mb-1 pl-2">
-        <UIcon name="i-lucide-heart-handshake" class="text-pink-400 w-4 h-4" />
-        <h3 class="font-bold text-xs tracking-widest uppercase text-gray-400">Tình Duyên</h3>
-      </div>
-      <p class="text-gray-100 pl-2 font-medium">{{ result.partner }}</p>
+      <SectionCard v-if="result.partner" title="Tình Duyên" icon="i-lucide-heart-handshake" color="pink" :bgOpacity="30" class="sm:col-span-2">
+        <p class="text-gray-100 font-medium">{{ result.partner }}</p>
+      </SectionCard>
     </div>
 
     <!-- Look 2050 -->
@@ -78,7 +63,7 @@ defineProps<{
 
     <!-- Prophecy -->
     <div v-if="result.prophecy && Array.isArray(result.prophecy)" class="mt-6 p-5 rounded-2xl bg-black/60 border border-yellow-500/30 shadow-[0_0_20px_rgba(234,179,8,0.15)] text-left w-full relative overflow-hidden">
-      <div class="absolute inset-0 bg-noise opacity-30 pointer-events-none"></div>
+      <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 pointer-events-none"></div>
       <div class="flex items-center justify-center gap-2 mb-4 relative z-10">
         <UIcon name="i-lucide-crystal-ball" class="text-yellow-400 w-6 h-6" />
         <h3 class="text-yellow-400 font-black text-lg tracking-widest uppercase">Lời Sấm Truyền</h3>
@@ -89,5 +74,8 @@ defineProps<{
         </div>
       </div>
     </div>
+    
+    <!-- Reality Check -->
+    <ResultQuote v-if="result.realityCheck" :text="result.realityCheck" icon="i-lucide-zap" color="yellow" />
   </div>
 </template>

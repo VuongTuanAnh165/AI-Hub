@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import SectionCard from './SectionCard.vue'
+import ResultTitle from './ui/ResultTitle.vue'
+import ResultBadgeList from './ui/ResultBadgeList.vue'
+import ResultQuote from './ui/ResultQuote.vue'
 
 defineProps<{
   result: Record<string, any>
@@ -9,9 +12,7 @@ defineProps<{
 <template>
   <div class="w-full flex flex-col items-center">
     <!-- Title -->
-    <h2 class="text-2xl sm:text-3xl font-extrabold mb-4 mt-2 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-500" style="line-height: 1.4;">
-      {{ result.title }}
-    </h2>
+    <ResultTitle :title="result.title" color="red" />
 
     <!-- Overall Rating (if added later via prompt) -->
     <div v-if="result.overallRating" class="mb-4">
@@ -35,10 +36,7 @@ defineProps<{
     </div>
 
     <!-- The Roast -->
-    <div v-if="result.roast" class="mt-6 p-5 bg-red-950/40 border border-red-500/30 rounded-xl relative shadow-[0_0_15px_rgba(239,68,68,0.15)] w-full">
-      <UIcon name="i-lucide-flame" class="absolute -top-3 -left-2 w-8 h-8 text-red-500 animate-pulse" />
-      <p class="text-red-300 font-bold leading-relaxed text-center text-lg italic">"{{ result.roast }}"</p>
-    </div>
+    <ResultQuote v-if="result.roast" :text="result.roast" icon="i-lucide-flame" color="red" />
 
     <!-- Details -->
     <div v-if="result.details && Array.isArray(result.details)" class="space-y-3 mt-6 text-left w-full">
@@ -49,15 +47,11 @@ defineProps<{
     </div>
 
     <!-- Hashtags -->
-    <div v-if="result.hashtags && Array.isArray(result.hashtags)" class="flex flex-wrap justify-center gap-2 mt-6 w-full">
-      <UBadge v-for="(tag, idx) in result.hashtags" :key="idx" size="md" color="neutral" variant="solid" class="bg-red-950/50 text-red-300 border border-red-500/30 px-3 py-1.5">
-        {{ tag }}
-      </UBadge>
+    <div v-if="result.hashtags && Array.isArray(result.hashtags)" class="mt-6 w-full">
+      <ResultBadgeList :items="result.hashtags" color="red" variant="solid" />
     </div>
-    <div v-else-if="result.hashtag" class="mt-6">
-      <UBadge size="md" color="neutral" variant="solid" class="bg-red-950/50 text-red-300 border border-red-500/30 px-3 py-1.5">
-        {{ result.hashtag }}
-      </UBadge>
+    <div v-else-if="result.hashtag" class="mt-6 w-full">
+      <ResultBadgeList :items="[result.hashtag]" color="red" variant="solid" />
     </div>
   </div>
 </template>

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import SectionCard from './SectionCard.vue'
 import StatBar from './StatBar.vue'
+import ResultTitle from './ui/ResultTitle.vue'
+import ResultBadgeList from './ui/ResultBadgeList.vue'
+import ResultQuote from './ui/ResultQuote.vue'
 
 defineProps<{
   result: Record<string, any>
@@ -10,26 +13,20 @@ defineProps<{
 <template>
   <div class="w-full flex flex-col items-center">
     <!-- Title -->
-    <h2 class="text-2xl sm:text-3xl font-extrabold mb-2 mt-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500" style="line-height: 1.4;">
-      {{ result.title }}
-    </h2>
+    <ResultTitle :title="result.title" color="blue" />
 
     <!-- Archetype -->
-    <div v-if="result.archetype" class="text-center mt-2 mb-4">
-      <UBadge size="lg" color="secondary" variant="soft" class="text-lg font-black tracking-widest uppercase px-6 py-2 shadow-[0_0_20px_rgba(var(--color-secondary-500),0.3)]">
+    <div v-if="result.archetype" class="text-center mb-4">
+      <UBadge size="lg" color="primary" variant="soft" class="text-lg font-black tracking-widest uppercase px-6 py-2 shadow-[0_0_20px_rgba(var(--color-primary-500),0.3)]">
         {{ result.archetype }}
       </UBadge>
     </div>
 
     <!-- Tags -->
-    <div v-if="result.tags && Array.isArray(result.tags)" class="flex flex-wrap justify-center gap-2 mb-4 w-full">
-      <UBadge v-for="(tag, idx) in result.tags" :key="idx" size="md" color="neutral" variant="solid" class="bg-white/10 text-white border border-white/20 px-3 py-1.5 hover:bg-white/20 transition-colors">
-        {{ tag }}
-      </UBadge>
-    </div>
+    <ResultBadgeList v-if="result.tags" :items="result.tags" color="neutral" variant="solid" />
 
     <!-- Scores -->
-    <div v-if="result.scores" class="mt-2 p-5 rounded-2xl bg-black/40 border border-white/10 shadow-inner space-y-4 w-full">
+    <div v-if="result.scores" class="mt-4 p-5 rounded-2xl bg-black/40 border border-white/10 shadow-inner space-y-4 w-full">
       <StatBar v-if="result.scores.vibe" label="Sức Hút (Vibe)" :value="result.scores.vibe" icon="i-lucide-sparkles" color="pink" />
       <StatBar v-if="result.scores.redFlag" label="Báo Động Đỏ" :value="result.scores.redFlag" icon="i-lucide-alert-triangle" color="red" />
       <StatBar v-if="result.scores.trust" label="Độ Uy Tín" :value="result.scores.trust" icon="i-lucide-shield-check" color="blue" />
@@ -55,9 +52,6 @@ defineProps<{
     </div>
 
     <!-- Advice -->
-    <div v-if="result.advice" class="mt-6 p-5 border border-white/10 bg-black/40 rounded-xl relative shadow-inner w-full">
-      <UIcon name="i-lucide-quote" class="absolute -top-3 -left-2 w-8 h-8 text-primary/50" />
-      <p class="text-gray-200 italic leading-relaxed text-center">{{ result.advice }}</p>
-    </div>
+    <ResultQuote v-if="result.advice" :text="result.advice" color="primary" />
   </div>
 </template>

@@ -44,7 +44,8 @@ const formData = reactive<Record<string, any>>({
   avatarDescription: '', crushName: '', zodiac: '', crushZodiac: '',
   relationship: '', userPhoto: '', crushPhoto: '', photo: '', gender: '',
   birthTime: '', financeStatus: '', loveStatus: '', socialPlatform: '',
-  platformPurpose: '', badHabit: ''
+  platformPurpose: '', badHabit: [], mood: '', focus: '', struggle: [],
+  currentAsset: '', whoInitiates: '', bloodType: '', contactTime: ''
 })
 
 const isFormValid = computed(() => {
@@ -58,9 +59,19 @@ async function handleSubmit() {
   errorMsg.value = ''
 
   const input: Record<string, string> = {}
-  appInfo?.formFields.forEach(f => {
-    input[f.key] = typeof formData[f.key] === 'string' ? formData[f.key].trim() : formData[f.key] || ''
-  })
+  for (const f of appInfo?.formFields || []) {
+    let val = formData[f.key]
+    
+    // Nén ảnh nếu là trường hình ảnh và có dữ liệu Base64
+    if (f.type === 'image' && typeof val === 'string' && val.startsWith('data:image/')) {
+      val = await compressImage(val)
+    }
+
+    if (Array.isArray(val)) {
+      val = val.join(', ')
+    }
+    input[f.key] = typeof val === 'string' ? val.trim() : val || ''
+  }
 
   try {
     const data = await $fetch<any>('/api/generate', {
@@ -142,6 +153,7 @@ const shareUrl = computed(() => {
         <form @submit.prevent="handleSubmit" class="flex flex-col gap-4 w-full">
           <UFormField v-for="field in appInfo?.formFields" :key="field.key" :label="field.label" class="w-full">
             <ImageDropzone v-if="field.type === 'image'" v-model="formData[field.key]" />
+            <USelectMenu v-else-if="field.type === 'select' && field.multiple" v-model="formData[field.key]" :items="field.options" multiple class="w-full" size="lg" />
             <USelect v-else-if="field.type === 'select'" v-model="formData[field.key]" :items="field.options" size="lg" class="w-full" />
             <UInput v-else v-model="formData[field.key]" :type="field.type as any" :placeholder="field.placeholder || ''" size="lg" class="w-full" />
           </UFormField>

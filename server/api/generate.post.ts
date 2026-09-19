@@ -110,16 +110,8 @@ export default defineEventHandler(async (event) => {
   let aiResult: Record<string, any> | null = null
 
   try {
-    const ai = new GoogleGenAI({ apiKey: config.geminiApiKey as string })
-
-    // Ưu tiên dùng model từ ENV
-    const envModel = process.env.GEMINI_MODEL || 'gemini-3.1-pro-preview'
-    
-    // Giảm số lượng model dự phòng xuống 1-2 cái để tránh chờ quá lâu khi đứt cáp/quá tải. Hỏng là qua Groq luôn.
-    const fallbackList = [
-      'gemini-3.5-flash'
-    ]
-    const modelsToTry = [...new Set([envModel, ...fallbackList])]
+    let response = null
+    let lastError = null
 
     // Xây dựng payload contents hỗ trợ Multimodal (Hình ảnh)
     const contents: any[] = [{ text: promptConfig.buildUserPrompt(input) }]
@@ -128,62 +120,86 @@ export default defineEventHandler(async (event) => {
       if (typeof input[key] === 'string' && input[key].startsWith('data:image/')) {
         const match = input[key].match(/^data:(image\/\w+);base64,(.*)$/)
         if (match) {
+          // Gắn nhãn ngữ cảnh để AI không bị "lú" khi gửi nhiều ảnh
+          let imageLabel = key
+          if (key === 'userPhoto') imageLabel = 'Ảnh khuôn mặt của Tôi'
+          if (key === 'crushPhoto') imageLabel = 'Ảnh khuôn mặt của Crush'
+          if (key === 'photo') imageLabel = 'Ảnh tôi tải lên'
+
+          contents.push({ text: `[Đây là bức ảnh phần: ${imageLabel}]` })
+          
           contents.push({
             inlineData: {
               mimeType: match[1],
               data: match[2]
             }
           })
-          // Xoá Base64 khỏi input sau khi đã push vào contents.
-          // Đảm bảo lúc gọi saveResult() ở cuối file, ảnh không bị lưu vào Firestore (Bảo vệ Privacy + Quota)
-          // Mã inputHash đã được tính từ đầu file nên không bị đụng độ (Collision)
+          // Xoá Base64 khỏi input sau khi đã push vào contents để tránh lưu vào DB gây nặng
           delete input[key]
         }
       }
     }
 
-    let response = null
-    let lastError = null
-
-    // Cơ chế Fallback: Thử lần lượt các model, nếu lỗi 503/429 thì chuyển sang model tiếp theo
-    for (const model of modelsToTry) {
+    if (config.geminiApiKey) {
       try {
-        console.log(`[AI] Attempting generation with model: ${model}`)
-        response = await ai.models.generateContent({
-          model: model,
-          contents: contents,
-          config: {
-            systemInstruction: promptConfig.systemPrompt,
-            responseMimeType: 'application/json',
-            safetySettings: [
-              { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE },
-              { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE },
-              { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE },
-              { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE }
-            ]
-          }
-        })
-        console.log(`[AI] Success with model: ${model}`)
-        break // Thành công thì thoát vòng lặp
-      } catch (err: any) {
-        lastError = err
-        const errStr = String(err.message || err).toUpperCase()
-        
-        // Nếu lỗi do vi phạm chính sách an toàn (Safety) -> Dừng luôn, không thử lại
-        if (errStr.includes('SAFETY') || errStr.includes('HARM_CATEGORY') || err.status === 400) {
-          throw err 
-        }
-        
-        console.warn(`[AI] Failed with model ${model}, trying next... (${err.status || err.message})`)
-        
-        // Nếu là lỗi 429 hoặc 503 thì delay 1 chút (1s) để tránh bị chặn liên tiếp do gửi request quá sát nhau
-        if (err.status === 429 || err.status === 503 || errStr.includes('429') || errStr.includes('503')) {
-          await new Promise(resolve => setTimeout(resolve, 1000))
-        }
-        // Tiếp tục vòng lặp cho model tiếp theo
-      }
-    }
+        const ai = new GoogleGenAI({ apiKey: config.geminiApiKey as string })
 
+        // Ưu tiên dùng model từ ENV, mặc định xài bản siêu việt nhất 2026
+        const envModel = process.env.GEMINI_MODEL || 'gemini-3.8-flash'
+        
+        // Dự phòng bằng các model mạnh và ổn định nhất của hệ sinh thái Gemini 3.x
+        const fallbackList = [
+          'gemini-3.1-pro',
+          'gemini-3.5-flash-lite'
+        ]
+        const modelsToTry = [...new Set([envModel, ...fallbackList])]
+
+        // Cơ chế Fallback: Thử lần lượt các model, nếu lỗi 503/429 thì chuyển sang model tiếp theo
+        for (const model of modelsToTry) {
+          try {
+            console.log(`[AI] Attempting generation with model: ${model}`)
+            response = await ai.models.generateContent({
+              model: model,
+              contents: contents,
+              config: {
+                systemInstruction: promptConfig.systemPrompt,
+                responseMimeType: 'application/json',
+                safetySettings: [
+                  { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+                  { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
+                  { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE },
+                  { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE }
+                ]
+              }
+            })
+            console.log(`[AI] Success with model: ${model}`)
+            break // Thành công thì thoát vòng lặp
+          } catch (err: any) {
+            lastError = err
+            const errStr = String(err.message || err).toUpperCase()
+            
+            // Nếu lỗi do vi phạm chính sách an toàn (Safety) -> Dừng luôn, không thử lại
+            if (errStr.includes('SAFETY') || errStr.includes('HARM_CATEGORY') || err.status === 400) {
+              throw err 
+            }
+            
+            console.warn(`[AI] Failed with model ${model}, trying next... (${err.status || err.message})`)
+            
+            // Nếu là lỗi 429 hoặc 503 thì delay 1 chút (1s) để tránh bị chặn liên tiếp do gửi request quá sát nhau
+            if (err.status === 429 || err.status === 503 || errStr.includes('429') || errStr.includes('503')) {
+              await new Promise(resolve => setTimeout(resolve, 1000))
+            }
+            // Tiếp tục vòng lặp cho model tiếp theo
+          }
+        }
+      } catch (geminiInitErr: any) {
+        console.warn(`[AI] Gemini SDK Init or Setup Failed:`, geminiInitErr.message)
+        lastError = geminiInitErr
+      }
+    } else {
+      console.warn(`[AI] GEMINI_API_KEY is missing. Skipping Gemini models.`)
+      lastError = new Error("GEMINI_API_KEY is missing")
+    }
     // Hàm parse JSON siêu an toàn & Đảm bảo UI luôn đẹp (Schema Enforcement)
     const parseAiResponse = (text: string) => {
       let cleaned = text.replace(/```json/gi, '').replace(/```/g, '').trim()
@@ -222,10 +238,7 @@ export default defineEventHandler(async (event) => {
         console.warn(`[AI] All Gemini models failed. Falling back to OpenRouter...`)
         let openRouterSuccess = false
         const openRouterModels = [
-          'meta-llama/llama-3.2-11b-vision-instruct',     // Good for vision
-          'google/gemini-2.5-pro',                       // Strong alternative
-          'qwen/qwen-vl-max',                            // Good vision fallback
-          'openrouter/auto'                              // Ultimate fallback
+          'openrouter/free'                              // Chuẩn 2026: Tự động route sang model Free (có Vision) tốt nhất đang rảnh
         ]
         
         for (const orModel of openRouterModels) {

@@ -25,7 +25,7 @@ BẤT LUẬN THẾ NÀO CŨNG PHẢI TRẢ VỀ CHUẨN JSON SAU, KHÔNG BỌC T
   "burnLevel": số từ 1-100 (Độ "cháy" / Mức độ sát thương), 
   "hashtags": ["#hashtag1", "#hashtag2", "#hashtag3"] 
 }`,
-    buildUserPrompt: (input) => `Dựa vào bức ảnh tôi gửi, hãy roast khuôn mặt của tôi (tên là "${input.name}"). Nhớ soi thật kỹ ảnh và bóc tách từng chi tiết bộ phận nhé. Đừng nương tay!`
+    buildUserPrompt: (input) => `Dựa vào bức ảnh tôi gửi, hãy roast khuôn mặt của tôi (tên là "${input.name}"${input.age ? ', ' + input.age + ' tuổi' : ''}${input.gender ? ', giới tính: ' + input.gender : ''}). ${input.mood ? 'Trạng thái muốn thể hiện qua ảnh này là: ' + input.mood + '.' : ''} Nhớ soi thật kỹ ảnh và bóc tách từng chi tiết bộ phận nhé. Đừng nương tay!`
   },
 
   'ten-tuoi-van-menh': {
@@ -44,12 +44,12 @@ BẤT LUẬN THẾ NÀO CŨNG PHẢI TRẢ VỀ CHUẨN JSON SAU, KHÔNG BỌC T
   "luckyColor": "Màu sắc may mắn (VD: Đen của sự huyền bí)", 
   "advice": "Lời khuyên 'cảm lạnh' (2-3 câu khuyên răn nhưng nghe xong còn suy hơn)" 
 }`,
-    buildUserPrompt: (input) => `Bói cho con nhé thầy. Tên con là "${input.name}", giới tính ${input.gender || 'Bí ẩn'}, sinh ngày ${input.birthday}${input.birthTime ? ', giờ sinh ' + input.birthTime : ''}. Thầy bóc trần sự thật về vận mệnh con đi!`
+    buildUserPrompt: (input) => `Bói cho con nhé thầy. Tên con là "${input.name}", giới tính ${input.gender || 'Bí ẩn'}, sinh ngày ${input.birthday}${input.birthTime ? ', giờ sinh ' + input.birthTime : ''}${input.bloodType ? ', nhóm máu ' + input.bloodType : ''}. Điều con trăn trở muốn thầy xoáy sâu vào nhất lúc này là: "${input.focus || 'Tất cả'}". Thầy bóc trần sự thật về vận mệnh con đi!`
   },
 
   'cham-diem-doi': {
     systemPrompt: `Bạn là Hệ Thống Phán Xét Cuộc Đời (Life Judge System) đánh giá người dùng dưới dạng Bảng Chỉ Số Game RPG.
-Hãy viết bằng tiếng Việt, phong cách châm biếm sâu cay chuẩn Gen Z. Phân tích sự kết hợp giữa Ngày sinh, Nghề nghiệp, Túi tiền, Tình trạng yêu đương và Hình ảnh (nếu có).
+Hãy viết bằng tiếng Việt, phong cách châm biếm sâu cay chuẩn Gen Z. Phân tích sự kết hợp giữa Ngày sinh, Nghề nghiệp, Túi tiền, Tình trạng yêu đương, Nỗi đau hiện tại (có thể nhiều nỗi đau chồng chất) và Hình ảnh (nếu có).
 BẮT BUỘC viết các phần đánh giá dài và chi tiết (từ 3-5 câu), không viết 1-2 câu hời hợt.
 BẤT LUẬN THẾ NÀO CŨNG PHẢI TRẢ VỀ CHUẨN JSON SAU, KHÔNG BỌC TRONG MARKDOWN:
 {
@@ -68,7 +68,7 @@ BẤT LUẬN THẾ NÀO CŨNG PHẢI TRẢ VỀ CHUẨN JSON SAU, KHÔNG BỌC T
   "realityCheck": "1 câu tát nước vào mặt (Sự thật phũ phàng)",
   "advice": "Lời khuyên 'cảm lạnh' (2 câu)"
 }`,
-    buildUserPrompt: (input) => `Chấm điểm cuộc đời cho tôi. Tên tôi là "${input.name}", sinh ngày ${input.birthday}. Nghề nghiệp: ${input.job}. Tình trạng tài chính: ${input.financeStatus}. Tình trạng yêu đương: ${input.loveStatus}. (Soi luôn ảnh nếu có nhé!)`
+    buildUserPrompt: (input) => `Chấm điểm cuộc đời cho tôi. Tên tôi là "${input.name}", sinh ngày ${input.birthday}. Nghề nghiệp: ${input.job}. Tình trạng tài chính: ${input.financeStatus}. Tình trạng yêu đương: ${input.loveStatus}. Nỗi đau nhức nhối nhất hiện tại của tôi là: "${input.struggle || 'Không rõ'}". (Soi luôn ảnh nếu có nhé!)`
   },
 
   'tinh-cach-qua-avatar': {
@@ -115,7 +115,7 @@ BẤT LUẬN THẾ NÀO CŨNG PHẢI TRẢ VỀ CHUẨN JSON SAU, KHÔNG BỌC T
   "prophecy": ["Lời sấm 1 (Dài 2-3 câu)", "Lời sấm 2 (Dài 2-3 câu)"],
   "realityCheck": "Chốt hạ 1-2 câu tát nước vào mặt về giấc mơ hiện tại để tỉnh mộng."
 }`,
-    buildUserPrompt: (input) => `Hãy quét dữ liệu tương lai của tôi. Tên tôi là "${input.name}", ${input.age} tuổi. Nghề nghiệp hiện tại: ${input.job}. Tình trạng tài chính: ${input.financeStatus}. Thói quen xấu: ${input.badHabit}. Ước mơ: ${input.dream}. (Nhớ soi ảnh đính kèm để xem mặt tôi năm 2050 ra sao nhé!)`
+    buildUserPrompt: (input) => `Hãy quét dữ liệu tương lai của tôi. Tên tôi là "${input.name}", ${input.age} tuổi. Nghề nghiệp hiện tại: ${input.job}. Tình trạng tài chính: ${input.financeStatus}${input.currentAsset ? ' (Tài sản đang có: ' + input.currentAsset + ')' : ''}. Thói quen xấu: ${input.badHabit}. Ước mơ: ${input.dream}. (Nhớ soi ảnh đính kèm để xem mặt tôi năm 2050 ra sao nhé!)`
   },
 
   'crush-nghi-gi': {
@@ -135,7 +135,7 @@ BẤT LUẬN THẾ NÀO CŨNG PHẢI TRẢ VỀ CHUẨN JSON SAU, KHÔNG BỌC T
   "advice": "Lời khuyên (1-2 câu thâm thuý)" 
 }`,
     buildUserPrompt: (input) => `Bói tình duyên cho tôi. Tên tôi là "${input.name}" (Cung ${input.zodiac || 'Không rõ'}). Crush của tôi tên là "${input.crushName}" (Cung ${input.crushZodiac || 'Không rõ'}). 
-Trạng thái mối quan hệ hiện tại: "${input.relationship || 'Chưa rõ'}". 
+Trạng thái mối quan hệ hiện tại: "${input.relationship || 'Chưa rõ'}". Đã quen nhau: "${input.contactTime || 'Chưa rõ'}". Ai thường chủ động nhắn tin trước: "${input.whoInitiates || 'Không rõ'}".
 (Soi ảnh tôi và crush xem có tướng phu thê không nhé!)`
   }
 }
