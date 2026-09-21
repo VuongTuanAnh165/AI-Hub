@@ -9,6 +9,7 @@ import ChamDiemResult from '~/components/results/ChamDiemResult.vue'
 import AvatarResult from '~/components/results/AvatarResult.vue'
 import Life2050Result from '~/components/results/Life2050Result.vue'
 import CrushResult from '~/components/results/CrushResult.vue'
+import AnimalResult from '~/components/results/AnimalResult.vue'
 import ResultCardWrapper from '~/components/results/ResultCardWrapper.vue'
 
 const route = useRoute()
@@ -40,7 +41,8 @@ const isApiLoading = ref(false)
 const turnstileToken = ref('')
 
 const formData = reactive<Record<string, any>>({
-  name: '', birthday: '', age: '', job: '', hobby: '', dream: '',
+  name: '', birthday: '', age: '', job: '', hobby: [], dream: '',
+  personality: '', sleepHabit: '', socialStyle: '',
   avatarDescription: '', crushName: '', zodiac: '', crushZodiac: '',
   relationship: '', userPhoto: '', crushPhoto: '', photo: '', gender: '',
   birthTime: '', financeStatus: '', loveStatus: '', socialPlatform: '',
@@ -180,6 +182,7 @@ const shareUrl = computed(() => {
         <AvatarResult v-else-if="slug === 'tinh-cach-qua-avatar'" :result="result" />
         <Life2050Result v-else-if="slug === 'doi-song-2050'" :result="result" />
         <CrushResult v-else-if="slug === 'crush-nghi-gi'" :result="result" />
+        <AnimalResult v-else-if="slug === 'dong-vat-cua-ban'" :result="result" />
       </ResultCardWrapper>
       <p class="text-dimmed text-xs mt-6 text-center">
         ⚠️ Kết quả chỉ mang tính chất giải trí. Không có giá trị khoa học.

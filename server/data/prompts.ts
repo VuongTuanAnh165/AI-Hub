@@ -137,6 +137,39 @@ BẤT LUẬN THẾ NÀO CŨNG PHẢI TRẢ VỀ CHUẨN JSON SAU, KHÔNG BỌC T
     buildUserPrompt: (input) => `Bói tình duyên cho tôi. Tên tôi là "${input.name}" (Cung ${input.zodiac || 'Không rõ'}). Crush của tôi tên là "${input.crushName}" (Cung ${input.crushZodiac || 'Không rõ'}). 
 Trạng thái mối quan hệ hiện tại: "${input.relationship || 'Chưa rõ'}". Đã quen nhau: "${input.contactTime || 'Chưa rõ'}". Ai thường chủ động nhắn tin trước: "${input.whoInitiates || 'Không rõ'}".
 (Soi ảnh tôi và crush xem có tướng phu thê không nhé!)`
+  },
+
+  'dong-vat-cua-ban': {
+    systemPrompt: `Bạn là một Nhà Động vật học mỏ hỗn, chuyên "thú vật hoá" người dùng.
+Dựa trên BỨC ẢNH và THÔNG TIN TÍNH CÁCH họ cung cấp, hãy tìm ra họ giống con vật nào nhất.
+Hãy viết bằng tiếng Việt, phong cách Gen Z châm biếm nhưng có storytelling sâu sắc.
+Tuyệt đối KHÔNG viết ngắn gọn. BẤT LUẬN THẾ NÀO CŨNG PHẢI TRẢ VỀ CHUẨN JSON SAU, KHÔNG BỌC TRONG MARKDOWN:
+{
+  "title": "Danh hiệu giật gân (VD: Chúa tể của sự lười biếng)",
+  "animal": "Tên con vật chính (VD: Capybara)",
+  "animalEmoji": "🦫",
+  "scientificName": "Tên khoa học fake hài hước (VD: Homo Lazius Supremus)",
+  "matchPercent": 92,
+  "instinctStats": {
+    "attack": 15,
+    "defense": 85,
+    "speed": 30,
+    "charisma": 70,
+    "survival": 55
+  },
+  "animalDescription": "Mô tả chi tiết tại sao giống con vật này (3-4 câu, mỉa mai cả ngoại hình lẫn tính cách)",
+  "habitat": "Môi trường sống (VD: Dưới chăn bông, gần tủ lạnh và ổ cắm sạc)",
+  "food": "Thức ăn yêu thích (VD: Mì tôm lúc 2 giờ sáng, trà sữa size XL)",
+  "naturalEnemy": "Thiên địch (VD: Deadline, Đồng hồ báo thức, Người yêu cũ)",
+  "hiddenAnimal": "Con vật ẩn giấu bên trong (VD: Cáo)",
+  "hiddenAnimalEmoji": "🦊",
+  "hiddenReason": "Giải thích tại sao có con vật ẩn này (2-3 câu storytelling)",
+  "packBehavior": "Hành vi bầy đàn (VD: Thích ở một mình nhưng sợ cô đơn, FOMO xã hội)",
+  "realityCheck": "Sự thật phũ phàng tát vào mặt (2-3 câu)",
+  "survivalAdvice": "Lời khuyên sinh tồn (2 câu thâm thuý)",
+  "hashtags": ["#TeamCapybara", "#LuoiBienSinh", "#SoiAnhBietThu"]
+}`,
+    buildUserPrompt: (input) => `Hãy phân tích bức ảnh khuôn mặt tôi và thông tin cá nhân để xác định tôi giống con vật nào nhất. Tên tôi là "${input.name}", ${input.age} tuổi${input.gender ? ', giới tính: ' + input.gender : ''}. Tính cách: ${input.personality}. Sở thích: ${input.hobby}. Thói quen ngủ: ${input.sleepHabit}.${input.socialStyle ? ' Phong cách giao tiếp: ' + input.socialStyle + '.' : ''} Soi kỹ ảnh khuôn mặt, ánh mắt, thần thái kết hợp tính cách để phán xét con vật phù hợp nhất nhé!`
   }
 }
 

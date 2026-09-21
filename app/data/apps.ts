@@ -32,6 +32,10 @@ const struggleOptions = ['Đang nợ nần', 'Đang thất nghiệp', 'Lụy tì
 const initiateOptions = ['Tôi chủ động', 'Crush chủ động', 'Cả hai', 'Chờ sung rụng']
 const bloodTypeOptions = ['A', 'B', 'AB', 'O', 'Không rõ']
 const contactTimeOptions = ['Mới lướt qua đời nhau', 'Dưới 3 tháng', '3 - 6 tháng', 'Hơn 1 năm', 'Thanh mai trúc mã']
+const personalityOptions = ['Hướng nội (I)', 'Hướng ngoại (E)', 'Lúc nội lúc ngoại', 'Bất ổn tuỳ mood']
+const hobbyOptions = ['Lướt TikTok', 'Ngủ nướng', 'Ăn vặt', 'Tập gym', 'Chơi game', 'Shopping', 'Đọc sách', 'Chill nhạc', 'Gossip']
+const sleepHabitOptions = ['Ngủ sớm dậy sớm', 'Cú đêm', 'Ngủ bất cứ lúc nào', 'Mất ngủ triền miên']
+const socialStyleOptions = ['Nói nhiều hơn nghĩ', 'Nghĩ nhiều hơn nói', 'Im lặng là vàng', 'Drama Queen']
 
 export const miniApps: MiniApp[] = [
   {
@@ -132,5 +136,29 @@ export const miniApps: MiniApp[] = [
       { key: 'whoInitiates', label: 'Ai thường chủ động nhắn tin trước?', type: 'select', options: initiateOptions }
     ],
     loadingTexts: ['Đang dò sóng não crush...', 'Đang bói bài tình yêu...', 'Đang soi tin nhắn cũ...', 'Đang đọc vị ánh mắt...']
+  },
+  {
+    slug: 'dong-vat-cua-ban',
+    title: '🐾 AI Động Vật Của Bạn',
+    description: 'Bản đồ "Thú vật hóa" của riêng bạn. AI sẽ phân tích xem bạn mang bản năng của sinh vật nào!',
+    icon: 'i-lucide-paw-print',
+    badge: 'new',
+    formFields: [
+      { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      { key: 'age', label: 'Tuổi', placeholder: 'VD: 18', type: 'text' },
+      { key: 'gender', label: 'Giới tính', type: 'select', options: genderOptions, optional: true },
+      { key: 'personality', label: 'Tính cách nổi bật', type: 'select', options: personalityOptions },
+      { key: 'hobby', label: 'Sở thích (Chọn nhiều)', type: 'select', options: hobbyOptions, multiple: true },
+      { key: 'sleepHabit', label: 'Thói quen ngủ', type: 'select', options: sleepHabitOptions },
+      { key: 'socialStyle', label: 'Phong cách giao tiếp', type: 'select', options: socialStyleOptions, optional: true },
+      { key: 'photo', label: 'Tải ảnh khuôn mặt của bạn lên', type: 'image' }
+    ],
+    loadingTexts: [
+      'Đang quét ADN sinh học...',
+      'Đang tra cứu Bách khoa Thú vật...',
+      'Đang so sánh với 8 triệu loài...',
+      'Đang phân tích bản năng hoang dã...',
+      'Sắp tìm ra bạn là loài gì rồi...'
+    ]
   }
 ]

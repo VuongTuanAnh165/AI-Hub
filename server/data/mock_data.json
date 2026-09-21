@@ -175,5 +175,32 @@
       "signal": "Cờ Xanh Rực Rỡ 🟢", 
       "advice": "Bật đèn xanh rõ hơn đi, hoặc tự mình cầm lái luôn cũng được!" 
     }
+  ],
+  "dong-vat-cua-ban": [
+    {
+      "title": "Chúa tể của sự lười biếng 💤",
+      "animal": "Capybara",
+      "animalEmoji": "🦫",
+      "scientificName": "Homo Lazius Supremus",
+      "matchPercent": 98,
+      "instinctStats": {
+        "attack": 5,
+        "defense": 95,
+        "speed": 10,
+        "charisma": 100,
+        "survival": 80
+      },
+      "animalDescription": "Nhìn ánh mắt đờ đẫn thiếu ngủ và nụ cười công nghiệp của bạn, AI khẳng định 100% bạn mang cốt cách của Capybara. Thích yên bình nhưng lại dính vào drama.",
+      "habitat": "Dưới chăn bông dày, nơi có ổ cắm sạc và sóng wifi.",
+      "food": "Trà sữa full topping size XL lúc 2h sáng.",
+      "naturalEnemy": "Deadline dí sát, chuông báo thức 6h sáng.",
+      "hiddenAnimal": "Cáo sa mạc",
+      "hiddenAnimalEmoji": "🦊",
+      "hiddenReason": "Ẩn sau vẻ vô hại đờ đẫn, bạn sở hữu sự nhạy bén của loài Cáo, đặc biệt khi hóng drama.",
+      "packBehavior": "Sợ đám đông nhưng sợ bị bỏ rơi (FOMO chúa).",
+      "realityCheck": "Bạn không chill như bạn nghĩ đâu, bạn chỉ đang trốn tránh sự thật là nợ ngập đầu thôi!",
+      "survivalAdvice": "Dậy mà đi làm đi, Capybara ngoài đời có người nuôi chứ bạn thì phải tự kiếm cơm!",
+      "hashtags": ["#TeamCapybara", "#LuoiBienSinh", "#BatOn"]
+    }
   ]
 }
