@@ -41,6 +41,10 @@ const biggestRegretOptions = ['Không học hành đàng hoàng', 'Để tuột 
 const favoriteGenreOptions = ['Hành động', 'Kinh dị', 'Tình cảm', 'Hài hước', 'Viễn tưởng', 'Cổ trang', 'Anime', 'Trinh thám']
 const dangerReactionOptions = ['Lao vào chiến', 'Chạy trước tính sau', 'Đứng im phân tích', 'Gọi người khác giúp', 'Giả chết', 'Quay TikTok']
 const lifeMottoOptions = ['YOLO - sống hết mình', 'An phận thủ thường', 'Revenge is best served cold', 'Tiền là tất cả', 'Tình yêu chiến thắng tất cả', 'Không tin ai cả']
+const loveLanguageOptions = ['Lời nói ngọt ngào', 'Quà tặng bất ngờ', 'Ôm ấp & chạm', 'Dành thời gian bên nhau', 'Hành động thiết thực']
+const idealDateOptions = ['Cà phê chill & nói chuyện', 'Đi ăn nhà hàng sang', 'Picnic công viên', 'Xem phim ôm nhau', 'Phiêu lưu mạo hiểm', 'Ở nhà nấu ăn cùng nhau']
+const dealBreakerOptions = ['Nói dối', 'Lạnh nhạt vô tâm', 'Kiểm soát quá mức', 'Không có chí tiến thủ', 'Mê game quên đời', 'Flirt với người khác']
+const loveHistoryOptions = ['FA lâu năm (chưa từng yêu)', 'Mới chia tay', 'Đã yêu vài lần nhưng không bền', 'Đang crush ai đó', 'Tâm hồn đã chai sạn']
 
 export const miniApps: MiniApp[] = [
   {
@@ -210,6 +214,29 @@ export const miniApps: MiniApp[] = [
       'Đang dựng cảnh quay huyền thoại...',
       'Đang chọn nhạc nền epic...',
       'Phim sắp chiếu rồi...'
+    ]
+  },
+  {
+    slug: 'nguoi-yeu-tuong-lai',
+    title: '💘 AI Người Yêu Tương Lai',
+    description: 'AI sẽ gán ghép cho bạn một hồ sơ người yêu hoàn hảo (hoặc dở khóc dở cười) với điểm tương hợp và dự đoán tình yêu!',
+    icon: 'i-lucide-heart-handshake',
+    badge: 'hot',
+    formFields: [
+      { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      { key: 'age', label: 'Tuổi', placeholder: 'VD: 22', type: 'text' },
+      { key: 'gender', label: 'Giới tính', type: 'select', options: ['Nam', 'Nữ', 'Bí ẩn'] },
+      { key: 'loveLanguage', label: 'Ngôn ngữ tình yêu của bạn', type: 'select', options: loveLanguageOptions },
+      { key: 'idealDate', label: 'Buổi hẹn lý tưởng', type: 'select', options: idealDateOptions },
+      { key: 'dealBreaker', label: 'Điều KHÔNG thể chấp nhận', type: 'select', options: dealBreakerOptions },
+      { key: 'loveHistory', label: 'Tình trạng tình yêu', type: 'select', options: loveHistoryOptions }
+    ],
+    loadingTexts: [
+      'Đang quét radar tình yêu...',
+      'Đang tìm kiếm nửa kia của bạn...',
+      'Đang phân tích độ tương hợp...',
+      'Đang viết kịch bản meet-cute...',
+      'Sắp tìm thấy rồi...'
     ]
   }
 ]

@@ -301,5 +301,33 @@
       "posterTagline": "Đừng bao giờ đánh thức một con quái vật đang ngủ nướng.",
       "directorNote": "Diễn viên chính cứ đòi ngủ trong lúc quay, nhưng lên hình thì ngầu phết."
     }
+  ],
+  "nguoi-yeu-tuong-lai": [
+    {
+      "partnerProfile": {
+        "name": "Bảo Hân",
+        "age": 24,
+        "zodiac": "Bạch Dương ♈",
+        "occupation": "Graphic Designer tự do / Con sen chính hiệu",
+        "appearance": "Cao 1m62, tóc bob ngắn uốn cụp nhuộm màu nâu trà sữa. Đôi mắt to tròn hay đảo quanh tìm đồ ăn. Thích mặc áo phông oversize và quần jeans rách gối.",
+        "personality": "Năng động, nhiều năng lượng nhưng đôi khi hơi hậu đậu. Cực kỳ tình cảm, thích dính lấy người yêu như sam và luôn có những món quà bất ngờ."
+      },
+      "greenFlags": [
+        "Trả lời tin nhắn nhanh hơn vận tốc ánh sáng",
+        "Nhớ rõ bạn thích ăn gì, ghét ăn gì",
+        "Nuôi một con mèo béo tên Bánh Bao"
+      ],
+      "redFlags": [
+        "Hay quên chìa khóa nhà",
+        "Cãi nhau là im lặng rồi tự đi mua trà sữa uống"
+      ],
+      "meetCuteStory": "Hai bạn đụng trúng nhau tại một sự kiện công nghệ. Cô ấy làm đổ cốc cà phê đá xay lên chiếc áo sơ mi trắng mới cóng của bạn. Thay vì xin lỗi bình thường, cô ấy hoảng hốt lấy khăn giấy lau lấy lau để, kết quả là chiếc áo của bạn trông như bức tranh trừu tượng. Hai người nhìn nhau cười phá lên và thế là xin số điện thoại.",
+      "firstDate": "Một buổi tối cuối tuần ở công viên bờ sông. Hai người trải thảm picnic, ăn gà rán và uống bia lon. Đang chill thì trời đột ngột đổ mưa rào, cả hai phải chạy trối chết vào mái hiên trú mưa, ướt sũng nhưng cười không ngớt.",
+      "compatibilityScore": 92,
+      "compatibilityReason": "Sự trầm tính của bạn hoàn toàn bù trừ cho vẻ tăng động của cô ấy. Hai bạn giống như hai mảnh ghép lồi lõm vừa vặn khớp vào nhau.",
+      "timeline": "Rất có thể là 2 tháng nữa, trong một ngày thứ Ba mệt mỏi nhất của bạn.",
+      "loveAdvice": "Hãy tập làm quen với sự bất ngờ đi, vì cô ấy sẽ mang đến cho bạn những trải nghiệm chưa từng có. Và nhớ mang theo ô khi đi chơi!",
+      "signature": "— Bà Mối AI 4.0, uy tín chất lượng"
+    }
   ]
 }
