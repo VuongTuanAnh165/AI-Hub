@@ -36,6 +36,8 @@ const personalityOptions = ['Hướng nội (I)', 'Hướng ngoại (E)', 'Lúc 
 const hobbyOptions = ['Lướt TikTok', 'Ngủ nướng', 'Ăn vặt', 'Tập gym', 'Chơi game', 'Shopping', 'Đọc sách', 'Chill nhạc', 'Gossip']
 const sleepHabitOptions = ['Ngủ sớm dậy sớm', 'Cú đêm', 'Ngủ bất cứ lúc nào', 'Mất ngủ triền miên']
 const socialStyleOptions = ['Nói nhiều hơn nghĩ', 'Nghĩ nhiều hơn nói', 'Im lặng là vàng', 'Drama Queen']
+const personalityTraitOptions = ['Lạc quan vô đối', 'Bi quan chuyên nghiệp', 'Lạnh lùng bí ẩn', 'Hài hước tự nhiên', 'Nóng tính nhưng thương người', 'Mơ mộng viển vông']
+const biggestRegretOptions = ['Không học hành đàng hoàng', 'Để tuột mất người yêu', 'Chọn sai ngành', 'Không dám liều', 'Tin nhầm người', 'Chưa có gì để hối tiếc']
 
 export const miniApps: MiniApp[] = [
   {
@@ -159,6 +161,29 @@ export const miniApps: MiniApp[] = [
       'Đang so sánh với 8 triệu loài...',
       'Đang phân tích bản năng hoang dã...',
       'Sắp tìm ra bạn là loài gì rồi...'
+    ]
+  },
+  {
+    slug: 'vu-tru-khac',
+    title: '🌌 AI Bạn Ở Vũ Trụ Khác',
+    description: 'Bạn sẽ làm gì, trông như thế nào ở 5 vũ trụ song song? Mở cổng đa vũ trụ để khám phá ngay!',
+    icon: 'i-lucide-orbit',
+    badge: 'new',
+    formFields: [
+      { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      { key: 'age', label: 'Tuổi', placeholder: 'VD: 22', type: 'text' },
+      { key: 'gender', label: 'Giới tính', type: 'select', options: genderOptions, optional: true },
+      { key: 'job', label: 'Nghề nghiệp hiện tại', placeholder: 'VD: Kế toán', type: 'text' },
+      { key: 'personalityTrait', label: 'Tính cách nổi bật', type: 'select', options: personalityTraitOptions },
+      { key: 'biggestRegret', label: 'Hối tiếc lớn nhất trong đời', type: 'select', options: biggestRegretOptions },
+      { key: 'photo', label: 'Tải ảnh khuôn mặt của bạn lên', type: 'image' }
+    ],
+    loadingTexts: [
+      'Đang quét tần số đa vũ trụ...',
+      'Đang mở cổng chiều không gian...',
+      'Đang liên lạc với phiên bản khác của bạn...',
+      'Đang đồng bộ dữ liệu xuyên vũ trụ...',
+      'Cổng đa vũ trụ sắp mở...'
     ]
   }
 ]

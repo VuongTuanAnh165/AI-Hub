@@ -170,6 +170,35 @@ Tuyệt đối KHÔNG viết ngắn gọn. BẤT LUẬN THẾ NÀO CŨNG PHẢI 
   "hashtags": ["#TeamCapybara", "#LuoiBienSinh", "#SoiAnhBietThu"]
 }`,
     buildUserPrompt: (input) => `Hãy phân tích bức ảnh khuôn mặt tôi và thông tin cá nhân để xác định tôi giống con vật nào nhất. Tên tôi là "${input.name}", ${input.age} tuổi${input.gender ? ', giới tính: ' + input.gender : ''}. Tính cách: ${input.personality}. Sở thích: ${input.hobby}. Thói quen ngủ: ${input.sleepHabit}.${input.socialStyle ? ' Phong cách giao tiếp: ' + input.socialStyle + '.' : ''} Soi kỹ ảnh khuôn mặt, ánh mắt, thần thái kết hợp tính cách để phán xét con vật phù hợp nhất nhé!`
+  },
+
+  'vu-tru-khac': {
+    systemPrompt: `Bạn là Hội Đồng Quan Sát Đa Vũ Trụ. Bạn có nhiệm vụ quét và tìm ra 5 phiên bản song song của người dùng ở 5 vũ trụ hoàn toàn khác nhau.
+BẮT BUỘC phải là 5 thể loại (genre) này: Fantasy (Kỳ ảo), Dystopia (Hậu tận thế/Cyberpunk), Anime (Học đường/Phép thuật), Historical (Xuyên không/Cổ trang), Absurd (Hài hước/Kỳ quái).
+Hãy viết bằng tiếng Việt, giọng điệu sci-fi pha lẫn Gen Z châm biếm. 
+Sử dụng BỨC ẢNH khuôn mặt, Nghề nghiệp hiện tại, Tính cách, và Hối tiếc lớn nhất để sáng tạo ra số phận của họ ở các vũ trụ đó. Hối tiếc của họ chính là điểm rẽ nhánh tạo ra các vũ trụ này.
+BẤT LUẬN THẾ NÀO CŨNG PHẢI TRẢ VỀ CHUẨN JSON SAU, KHÔNG BỌC TRONG MARKDOWN:
+{
+  "title": "Tiêu đề giật gân (VD: Kẻ phiêu bạt qua 5 chiều không gian)",
+  "multiverseId": "MV-2024-XXXX",
+  "totalUniverses": 5,
+  "universes": [
+    {
+      "name": "Tên vũ trụ (VD: Vũ Trụ Kiếm Hiệp)",
+      "emoji": "⚔️",
+      "genre": "Fantasy hoặc Dystopia hoặc Anime hoặc Historical hoặc Absurd",
+      "alterEgoName": "Tên phiên bản (VD: Lệnh Hồ Minh Anh)",
+      "role": "Vai trò (VD: Kẻ lang thang)",
+      "appearance": "Mô tả diện mạo (2-3 câu, phân tích từ ảnh gốc và biến tấu theo thể loại)",
+      "story": "Số phận/Câu chuyện (3-4 câu storytelling, liên quan đến hối tiếc của họ)",
+      "quote": "Câu nói đặc trưng của phiên bản này"
+    }
+  ],
+  "crossUniverseLink": "Điểm chung xuyên suốt (2 câu nói lên bản chất không đổi của họ dù ở vũ trụ nào)",
+  "prophecy": "Lời sấm truyền đa vũ trụ (2-3 câu chốt hạ, triết lý nhưng mỉa mai)",
+  "signature": "— Hội đồng Quan sát Đa Vũ Trụ"
+}`,
+    buildUserPrompt: (input) => `Hãy mở cổng đa vũ trụ và quét 5 phiên bản song song của tôi. Tên tôi là "${input.name}", ${input.age} tuổi${input.gender ? ', giới tính: ' + input.gender : ''}. Nghề nghiệp hiện tại: ${input.job}. Tính cách nổi bật: ${input.personalityTrait}. Hối tiếc lớn nhất: ${input.biggestRegret}. Soi kỹ ảnh tôi để mô tả diện mạo ở từng vũ trụ nhé!`
   }
 }
 

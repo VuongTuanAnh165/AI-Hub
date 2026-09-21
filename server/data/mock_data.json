@@ -202,5 +202,67 @@
       "survivalAdvice": "Dậy mà đi làm đi, Capybara ngoài đời có người nuôi chứ bạn thì phải tự kiếm cơm!",
       "hashtags": ["#TeamCapybara", "#LuoiBienSinh", "#BatOn"]
     }
+  ],
+  "vu-tru-khac": [
+    {
+      "title": "Kẻ Phiêu Bạt Qua 5 Chiều Không Gian",
+      "multiverseId": "MV-2024-X999",
+      "totalUniverses": 5,
+      "universes": [
+        {
+          "name": "Vũ Trụ Kỳ Ảo (Fantasy)",
+          "emoji": "⚔️",
+          "genre": "Fantasy",
+          "alterEgoName": "Minh Anh Kẻ Diệt Rồng",
+          "role": "Kiếm Khách Lang Thang",
+          "appearance": "Đôi mắt sắc lẹm, vết sẹo dài trên má minh chứng cho những trận chiến ác liệt. Khoác trên mình chiếc áo choàng nhuốm máu rồng.",
+          "story": "Vì một lần tin nhầm người, bạn đã bị lừa uống độc dược và phải đi đày ra rìa thế giới. Giờ đây bạn sống để tìm kẻ phản bội.",
+          "quote": "Lưỡi kiếm của ta sắc hơn cả những lời hứa giả dối của ngươi."
+        },
+        {
+          "name": "Vũ Trụ Cyberpunk (Dystopia)",
+          "emoji": "🦾",
+          "genre": "Dystopia",
+          "alterEgoName": "M.A.-77",
+          "role": "Hacker Bóng Đêm",
+          "appearance": "Cánh tay máy móc phát sáng neon, đôi mắt được thay bằng kính thực tế ảo quét dữ liệu liên tục.",
+          "story": "Để trả nợ cho sai lầm thời trẻ, bạn bán linh hồn cho tập đoàn công nghệ NeoCorp. Hiện tại bạn là hacker bị truy nã gắt gao nhất.",
+          "quote": "Dữ liệu không biết nói dối, chỉ có con người mới thế."
+        },
+        {
+          "name": "Vũ Trụ Anime (Học Đường)",
+          "emoji": "🌸",
+          "genre": "Anime",
+          "alterEgoName": "Minh Anh-senpai",
+          "role": "Hội Trưởng Hội Học Sinh",
+          "appearance": "Tóc vuốt keo bảnh tỏn, cặp kính tri thức lấp lánh mỗi khi đẩy gọng kính. Ánh mắt lạnh lùng nhưng ấm áp.",
+          "story": "Bạn đã chọn học hành đàng hoàng và trở thành học sinh ưu tú nhất toàn trường. Nhưng hằng đêm bạn vẫn thức trắng vì cô đơn.",
+          "quote": "Bỏ lỡ một bài kiểm tra có thể học lại, bỏ lỡ em thì không."
+        },
+        {
+          "name": "Vũ Trụ Xuyên Không (Historical)",
+          "emoji": "📜",
+          "genre": "Historical",
+          "alterEgoName": "Minh Anh Thừa Tướng",
+          "role": "Đệ Nhất Gian Thần",
+          "appearance": "Mặc quan phục thêu rồng phượng, tay cầm quạt lông chim. Nụ cười nửa miệng khó đoán.",
+          "story": "Bạn quyết định liều lĩnh tham gia vào cuộc chiến vương quyền. Dưới một người trên vạn người, nhưng lại bị chính người mình yêu ám sát.",
+          "quote": "Ngai vàng này rất lạnh, nhưng máu của kẻ thù thì ấm."
+        },
+        {
+          "name": "Vũ Trụ Bất Ổn (Absurd)",
+          "emoji": "🤡",
+          "genre": "Absurd",
+          "alterEgoName": "Mâm Xôi Trắng",
+          "role": "Thần Mõm",
+          "appearance": "Mặc đồ ngủ khủng long xanh, mặt mũi lúc nào cũng như chưa tỉnh ngủ nhưng miệng thì không bao giờ ngừng nói.",
+          "story": "Ở thế giới mà ai nói nhiều nhất sẽ làm Vua, bạn đã đánh bại mọi đối thủ bằng kỹ năng lảm nhảm 24/7 của mình.",
+          "quote": "Tồn tại hay không tồn tại, đó không phải là vấn đề. Vấn đề là tối nay ăn gì?"
+        }
+      ],
+      "crossUniverseLink": "Dù ở bất kỳ vũ trụ nào, bạn vẫn luôn mang trong mình một trái tim đầy mâu thuẫn: lúc muốn cứu thế giới, lúc chỉ muốn ngủ nướng.",
+      "prophecy": "Đừng cố thay đổi quá khứ, vì ở vũ trụ nào bạn cũng sẽ tìm ra cách tự làm khổ mình thôi. Hãy sống tốt ở hiện tại!",
+      "signature": "— Hội đồng Quan sát Đa Vũ Trụ, Phân khu Đông Nam Á"
+    }
   ]
 }
