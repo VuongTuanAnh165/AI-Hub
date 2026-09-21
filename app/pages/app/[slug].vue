@@ -13,6 +13,7 @@ import AnimalResult from '~/components/results/AnimalResult.vue'
 import MultiverseResult from '~/components/results/MultiverseResult.vue'
 import MovieCharacterResult from '~/components/results/MovieCharacterResult.vue'
 import FutureLoverResult from '~/components/results/FutureLoverResult.vue'
+import RedFlagResult from '~/components/results/RedFlagResult.vue'
 import ResultCardWrapper from '~/components/results/ResultCardWrapper.vue'
 
 const route = useRoute()
@@ -43,11 +44,15 @@ const errorMsg = ref('')
 const isApiLoading = ref(false)
 const turnstileToken = ref('')
 
+const OTHER_OPTION = 'Khác...'
+const otherValues = reactive<Record<string, string>>({})
+
 const formData = reactive<Record<string, any>>({
   name: '', birthday: '', age: '', job: '', hobby: [], dream: '',
   personality: '', sleepHabit: '', socialStyle: '', personalityTrait: '', biggestRegret: '',
-  favoriteGenre: '', dangerReaction: '', lifeMotto: '',
-  loveLanguage: '', idealDate: '', dealBreaker: '', loveHistory: '',
+  favoriteGenre: [], dangerReaction: '', lifeMotto: '',
+  loveLanguage: '', idealDate: '', dealBreaker: [], loveHistory: '',
+  conflictStyle: [], textingHabit: '', jealousyLevel: '', partnerFriends: '', breakupStyle: '',
   avatarDescription: '', crushName: '', zodiac: '', crushZodiac: '',
   relationship: '', userPhoto: '', crushPhoto: '', photo: '', gender: '',
   birthTime: '', financeStatus: '', loveStatus: '', socialPlatform: '',
@@ -55,8 +60,45 @@ const formData = reactive<Record<string, any>>({
   currentAsset: '', whoInitiates: '', bloodType: '', contactTime: ''
 })
 
+function getFieldOptions(field: any) {
+  if (!field.options) return []
+  if (field.allowOther) return [...field.options, OTHER_OPTION]
+  return field.options
+}
+
+function needsOtherInput(field: any): boolean {
+  if (!field.allowOther) return false
+  const val = formData[field.key]
+  if (field.multiple && Array.isArray(val)) return val.includes(OTHER_OPTION)
+  return val === OTHER_OPTION
+}
+
+function getResolvedValue(field: any): string {
+  let val = formData[field.key]
+  if (field.multiple && Array.isArray(val)) {
+    const resolved = val.map((v: string) => v === OTHER_OPTION ? (otherValues[field.key] || '') : v).filter(Boolean)
+    return resolved.join(', ')
+  }
+  if (val === OTHER_OPTION) return otherValues[field.key] || ''
+  return typeof val === 'string' ? val : (Array.isArray(val) ? val.join(', ') : val || '')
+}
+
 const isFormValid = computed(() => {
-  return appInfo.formFields.every(f => f.optional ? true : (formData[f.key] && formData[f.key].toString().trim() !== '')) && !!turnstileToken.value
+  return appInfo.formFields.every(f => {
+    if (f.optional) return true
+    const val = formData[f.key]
+    if (!val || val.toString().trim() === '') return false
+    // If user selected 'Khác...' but hasn't typed anything, field is not valid
+    if (f.allowOther) {
+      if (f.multiple && Array.isArray(val) && val.includes(OTHER_OPTION)) {
+        return !!(otherValues[f.key] && otherValues[f.key]!.trim())
+      }
+      if (val === OTHER_OPTION) {
+        return !!(otherValues[f.key] && otherValues[f.key]!.trim())
+      }
+    }
+    return true
+  }) && !!turnstileToken.value
 })
 
 async function handleSubmit() {
@@ -74,10 +116,14 @@ async function handleSubmit() {
       val = await compressImage(val)
     }
 
-    if (Array.isArray(val)) {
-      val = val.join(', ')
+    // Resolve "Khác..." values
+    if (f.allowOther) {
+      input[f.key] = getResolvedValue(f)
+    } else if (Array.isArray(val)) {
+      input[f.key] = val.join(', ')
+    } else {
+      input[f.key] = typeof val === 'string' ? val.trim() : val || ''
     }
-    input[f.key] = typeof val === 'string' ? val.trim() : val || ''
   }
 
   try {
@@ -122,7 +168,11 @@ function playAgain() {
   result.value = null
   resultId.value = null
   errorMsg.value = ''
-  Object.keys(formData).forEach(key => { formData[key] = '' })
+  Object.keys(formData).forEach(key => {
+    if (Array.isArray(formData[key])) formData[key] = []
+    else formData[key] = ''
+  })
+  Object.keys(otherValues).forEach(key => { otherValues[key] = '' })
 }
 
 const shareUrl = computed(() => {
@@ -160,9 +210,11 @@ const shareUrl = computed(() => {
         <form @submit.prevent="handleSubmit" class="flex flex-col gap-4 w-full">
           <UFormField v-for="field in appInfo?.formFields" :key="field.key" :label="field.label" class="w-full">
             <ImageDropzone v-if="field.type === 'image'" v-model="formData[field.key]" />
-            <USelectMenu v-else-if="field.type === 'select' && field.multiple" v-model="formData[field.key]" :items="field.options" multiple class="w-full" size="lg" />
-            <USelect v-else-if="field.type === 'select'" v-model="formData[field.key]" :items="field.options" size="lg" class="w-full" />
+            <USelectMenu v-else-if="field.type === 'select' && field.multiple" v-model="formData[field.key]" :items="getFieldOptions(field)" multiple class="w-full" size="lg" />
+            <USelect v-else-if="field.type === 'select'" v-model="formData[field.key]" :items="getFieldOptions(field)" size="lg" class="w-full" />
             <UInput v-else v-model="formData[field.key]" :type="field.type as any" :placeholder="field.placeholder || ''" size="lg" class="w-full" />
+            <!-- "Khác..." text input -->
+            <UInput v-if="needsOtherInput(field)" v-model="otherValues[field.key]" placeholder="Nhập câu trả lời của bạn..." size="lg" class="w-full mt-2" />
           </UFormField>
           <div class="mt-4 flex justify-center w-full overflow-hidden rounded-lg">
             <NuxtTurnstile v-model="turnstileToken" />
@@ -191,6 +243,7 @@ const shareUrl = computed(() => {
         <MultiverseResult v-else-if="slug === 'vu-tru-khac'" :result="result" />
         <MovieCharacterResult v-else-if="slug === 'nhan-vat-phim'" :result="result" />
         <FutureLoverResult v-else-if="slug === 'nguoi-yeu-tuong-lai'" :result="result" />
+        <RedFlagResult v-else-if="slug === 'red-flag-green-flag'" :result="result" />
       </ResultCardWrapper>
       <p class="text-dimmed text-xs mt-6 text-center">
         ⚠️ Kết quả chỉ mang tính chất giải trí. Không có giá trị khoa học.

@@ -329,5 +329,45 @@
       "loveAdvice": "Hãy tập làm quen với sự bất ngờ đi, vì cô ấy sẽ mang đến cho bạn những trải nghiệm chưa từng có. Và nhớ mang theo ô khi đi chơi!",
       "signature": "— Bà Mối AI 4.0, uy tín chất lượng"
     }
+  ],
+  "red-flag-green-flag": [
+    {
+      "verdict": "Green Flag Tiềm Ẩn, nhưng Cần Bảo Hành Thường Xuyên",
+      "greenFlagCount": 3,
+      "redFlagCount": 2,
+      "greenFlags": [
+        {
+          "flag": "Giao tiếp thẳng thắn",
+          "reason": "Việc bạn chọn 'Nói thẳng luôn' khi cãi nhau cho thấy bạn không thích chơi trò mind-games. Bạn muốn giải quyết vấn đề chứ không phải giải quyết người yêu."
+        },
+        {
+          "flag": "Tôn trọng không gian riêng",
+          "reason": "Bạn hiểu rằng người yêu cũng có cuộc sống riêng. Việc không ghen tuông với bạn bè của họ là một dấu hiệu trưởng thành lớn."
+        },
+        {
+          "flag": "Breakup văn minh",
+          "reason": "Không bóc phốt, không khóc lóc ầm ĩ. Bạn biết cách kết thúc một mối quan hệ trong sự tôn trọng."
+        }
+      ],
+      "redFlags": [
+        {
+          "flag": "Thánh bơ tin nhắn",
+          "reason": "Đã online mà không thèm rep? Thói quen 'Seen rồi trả lời sau' của bạn có thể khiến đối phương overthink đến mất ngủ đấy!"
+        },
+        {
+          "flag": "Ghen ngầm nguy hiểm",
+          "reason": "Mặc dù tỏ ra không sao, nhưng sở thích 'Stalk toàn bộ MXH' cho thấy bạn vẫn có tính chiếm hữu cao ngầm bên trong."
+        }
+      ],
+      "attachmentStyle": {
+        "type": "Secure - Avoidant Mix",
+        "emoji": "🔒🏃",
+        "description": "Bạn có vẻ khá an toàn trong mối quan hệ, nhưng lại có xu hướng hơi tránh né khi cảm thấy áp lực (thể hiện qua việc bơ tin nhắn). Cần người yêu cực kỳ kiên nhẫn."
+      },
+      "warningLabel": "CẢNH BÁO: Sản phẩm có tính cách độc lập cao. Có thể biến mất vài tiếng không lý do nhưng vẫn yêu bạn. Vui lòng không khủng bố tin nhắn.",
+      "userManual": "DO: Thẳng thắn, rõ ràng, cho ăn ngon. DON'T: Bắt bẻ từng chữ trong tin nhắn, ép buộc trả lời ngay lập tức.",
+      "loveScore": 75,
+      "finalAdvice": "Hãy bớt lười nhắn tin lại một chút, người yêu bạn không phải là tổng đài tự động đâu!"
+    }
   ]
 }
