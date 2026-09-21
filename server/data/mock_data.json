@@ -264,5 +264,42 @@
       "prophecy": "Đừng cố thay đổi quá khứ, vì ở vũ trụ nào bạn cũng sẽ tìm ra cách tự làm khổ mình thôi. Hãy sống tốt ở hiện tại!",
       "signature": "— Hội đồng Quan sát Đa Vũ Trụ, Phân khu Đông Nam Á"
     }
+  ],
+  "nhan-vat-phim": [
+    {
+      "movieTitle": "Đặc Vụ Bất Đắc Dĩ: Nhiệm Vụ Cuối Cùng",
+      "genre": "Hành Động - Hài Hước",
+      "rottenTomatoesScore": 92,
+      "audienceVerdict": "Cười té ghế nhưng cảnh hành động lại quá đỉnh! Nhân vật chính thực sự là một huyền thoại sống.",
+      "mainCharacter": {
+        "characterName": "John 'Sleepy' Minh",
+        "role": "Sát thủ giải nghệ bị ép quay lại giang hồ",
+        "appearance": "Đôi mắt lờ đờ thiếu ngủ, mái tóc bù xù tự nhiên nhưng toát lên vẻ nguy hiểm ngầm. Luôn mặc một chiếc áo khoác măng tô cũ kỹ.",
+        "backstory": "Đã thề sẽ không bao giờ đụng đến súng nữa sau khi tìm được chân lý sống YOLO. Nhưng mọi thứ thay đổi khi chú chó corgi yêu quý của anh bị bắt cóc.",
+        "weapon": "Kỹ năng ném dép lào chuẩn xác đến từng milimet",
+        "weakness": "Dễ bị phân tâm bởi đồ ăn ngon và chỗ ngủ êm ái"
+      },
+      "sideCast": [
+        {
+          "role": "Sidekick",
+          "name": "Tommy 'Hacker' Lê",
+          "description": "Một thiên tài máy tính nhưng hay hoảng loạn, chuyên hỗ trợ từ xa."
+        },
+        {
+          "role": "Villain",
+          "name": "Baron Von Độc Ác",
+          "description": "Kẻ ác với sở thích mặc vest trắng và vuốt ve mèo cưng."
+        },
+        {
+          "role": "Love Interest",
+          "name": "Anna Sát Thủ Đẹp Trai",
+          "description": "Người phụ nữ duy nhất có thể theo kịp tốc độ của anh."
+        }
+      ],
+      "iconicScene": "Giữa vòng vây của hàng chục kẻ địch có vũ trang, anh từ từ rút ra chiếc dép lào huyền thoại. Chỉ bằng một cú ném, chiếc dép dội qua lại giữa các vách tường, hạ gục tất cả trong sự ngỡ ngàng của tên trùm.",
+      "iconicQuote": "Tôi chỉ muốn đi ngủ thôi, mấy người làm ồn quá rồi đấy!",
+      "posterTagline": "Đừng bao giờ đánh thức một con quái vật đang ngủ nướng.",
+      "directorNote": "Diễn viên chính cứ đòi ngủ trong lúc quay, nhưng lên hình thì ngầu phết."
+    }
   ]
 }

@@ -11,6 +11,7 @@ import Life2050Result from '~/components/results/Life2050Result.vue'
 import CrushResult from '~/components/results/CrushResult.vue'
 import AnimalResult from '~/components/results/AnimalResult.vue'
 import MultiverseResult from '~/components/results/MultiverseResult.vue'
+import MovieCharacterResult from '~/components/results/MovieCharacterResult.vue'
 import ResultCardWrapper from '~/components/results/ResultCardWrapper.vue'
 
 const route = useRoute()
@@ -44,6 +45,7 @@ const turnstileToken = ref('')
 const formData = reactive<Record<string, any>>({
   name: '', birthday: '', age: '', job: '', hobby: [], dream: '',
   personality: '', sleepHabit: '', socialStyle: '', personalityTrait: '', biggestRegret: '',
+  favoriteGenre: '', dangerReaction: '', lifeMotto: '',
   avatarDescription: '', crushName: '', zodiac: '', crushZodiac: '',
   relationship: '', userPhoto: '', crushPhoto: '', photo: '', gender: '',
   birthTime: '', financeStatus: '', loveStatus: '', socialPlatform: '',
@@ -185,6 +187,7 @@ const shareUrl = computed(() => {
         <CrushResult v-else-if="slug === 'crush-nghi-gi'" :result="result" />
         <AnimalResult v-else-if="slug === 'dong-vat-cua-ban'" :result="result" />
         <MultiverseResult v-else-if="slug === 'vu-tru-khac'" :result="result" />
+        <MovieCharacterResult v-else-if="slug === 'nhan-vat-phim'" :result="result" />
       </ResultCardWrapper>
       <p class="text-dimmed text-xs mt-6 text-center">
         ⚠️ Kết quả chỉ mang tính chất giải trí. Không có giá trị khoa học.

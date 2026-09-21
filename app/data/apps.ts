@@ -38,6 +38,9 @@ const sleepHabitOptions = ['Ngủ sớm dậy sớm', 'Cú đêm', 'Ngủ bất 
 const socialStyleOptions = ['Nói nhiều hơn nghĩ', 'Nghĩ nhiều hơn nói', 'Im lặng là vàng', 'Drama Queen']
 const personalityTraitOptions = ['Lạc quan vô đối', 'Bi quan chuyên nghiệp', 'Lạnh lùng bí ẩn', 'Hài hước tự nhiên', 'Nóng tính nhưng thương người', 'Mơ mộng viển vông']
 const biggestRegretOptions = ['Không học hành đàng hoàng', 'Để tuột mất người yêu', 'Chọn sai ngành', 'Không dám liều', 'Tin nhầm người', 'Chưa có gì để hối tiếc']
+const favoriteGenreOptions = ['Hành động', 'Kinh dị', 'Tình cảm', 'Hài hước', 'Viễn tưởng', 'Cổ trang', 'Anime', 'Trinh thám']
+const dangerReactionOptions = ['Lao vào chiến', 'Chạy trước tính sau', 'Đứng im phân tích', 'Gọi người khác giúp', 'Giả chết', 'Quay TikTok']
+const lifeMottoOptions = ['YOLO - sống hết mình', 'An phận thủ thường', 'Revenge is best served cold', 'Tiền là tất cả', 'Tình yêu chiến thắng tất cả', 'Không tin ai cả']
 
 export const miniApps: MiniApp[] = [
   {
@@ -184,6 +187,29 @@ export const miniApps: MiniApp[] = [
       'Đang liên lạc với phiên bản khác của bạn...',
       'Đang đồng bộ dữ liệu xuyên vũ trụ...',
       'Cổng đa vũ trụ sắp mở...'
+    ]
+  },
+  {
+    slug: 'nhan-vat-phim',
+    title: '🎬 AI Nếu Bạn Là Nhân Vật Phim',
+    description: 'AI sẽ casting bạn vào một bộ phim bom tấn với vai diễn, kỹ năng, điểm yếu và câu thoại "để đời"!',
+    icon: 'i-lucide-film',
+    badge: 'new',
+    formFields: [
+      { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      { key: 'age', label: 'Tuổi', placeholder: 'VD: 22', type: 'text' },
+      { key: 'gender', label: 'Giới tính', type: 'select', options: genderOptions, optional: true },
+      { key: 'favoriteGenre', label: 'Thể loại phim yêu thích', type: 'select', options: favoriteGenreOptions },
+      { key: 'dangerReaction', label: 'Khi gặp nguy hiểm, bạn sẽ?', type: 'select', options: dangerReactionOptions },
+      { key: 'lifeMotto', label: 'Phương châm sống', type: 'select', options: lifeMottoOptions },
+      { key: 'photo', label: 'Tải ảnh khuôn mặt của bạn lên', type: 'image' }
+    ],
+    loadingTexts: [
+      'Đang casting bạn vào Hollywood...',
+      'Đang viết kịch bản phim bom tấn...',
+      'Đang dựng cảnh quay huyền thoại...',
+      'Đang chọn nhạc nền epic...',
+      'Phim sắp chiếu rồi...'
     ]
   }
 ]
