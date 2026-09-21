@@ -195,13 +195,26 @@ const shareUrl = computed(() => {
   </ClientOnly>
 
   <UContainer class="py-8">
-    <div class="text-center mb-8">
-      <UButton label="← Quay lại" variant="ghost" color="neutral" to="/" class="mb-4" />
+    <div class="text-center mb-8 relative">
+      <UButton label="← Quay lại" variant="ghost" color="neutral" to="/" class="absolute left-0 top-0 hidden md:flex" />
+      <UButton label="← Quay lại" variant="ghost" color="neutral" to="/" class="mb-4 md:hidden" />
+      
+      <div class="flex justify-center mb-3">
+        <UBadge
+          v-if="appInfo?.category"
+          :label="appInfo.category"
+          color="neutral"
+          variant="subtle"
+          size="md"
+          class="rounded-full px-3 py-1 text-xs"
+        />
+      </div>
+      
       <h1 class="flex items-center justify-center gap-3 text-3xl sm:text-4xl font-extrabold">
         <UIcon v-if="appInfo?.icon" :name="appInfo.icon" class="text-primary-500 w-8 h-8 sm:w-10 sm:h-10 drop-shadow-lg" />
         <span class="gradient-neon-text">{{ appInfo?.title }}</span>
       </h1>
-      <p class="text-muted mt-2">{{ appInfo?.description }}</p>
+      <p class="text-muted mt-2 max-w-2xl mx-auto">{{ appInfo?.description }}</p>
     </div>
 
     <!-- State: IDLE -->

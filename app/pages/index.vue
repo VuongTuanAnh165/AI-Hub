@@ -98,23 +98,27 @@ useSeoMeta({
           :description="app.description"
           :icon="app.icon"
           :to="`/app/${app.slug}`"
-          class="hover-glow cursor-pointer"
+          class="hover-glow cursor-pointer flex flex-col h-full"
         >
           <template #badge>
-            <div class="flex items-center gap-2">
-              <UBadge
-                v-if="app.badge"
-                :label="badgeLabel(app.badge)"
-                :color="badgeColor(app.badge)"
-                variant="subtle"
-                size="sm"
-              />
+            <UBadge
+              v-if="app.badge"
+              :label="badgeLabel(app.badge)"
+              :color="badgeColor(app.badge)"
+              variant="subtle"
+              size="sm"
+            />
+          </template>
+          <template #default>
+            <div class="mt-auto pt-4 flex items-center justify-between">
               <UBadge
                 :label="app.category"
                 color="neutral"
-                variant="subtle"
-                size="sm"
+                variant="soft"
+                size="xs"
+                class="rounded-full"
               />
+              <span class="text-xs text-primary-500 font-medium">Chơi ngay &rarr;</span>
             </div>
           </template>
         </UPageCard>
