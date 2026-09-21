@@ -1,5 +1,19 @@
 <script setup lang="ts">
-import { miniApps } from '~/data/apps'
+import { ref, computed } from 'vue'
+import { miniApps, APP_CATEGORIES } from '~/data/apps'
+
+const searchQuery = ref('')
+const selectedCategory = ref('Tất cả')
+
+const filteredApps = computed(() => {
+  return miniApps.filter(app => {
+    const matchesCategory = selectedCategory.value === 'Tất cả' || app.category === selectedCategory.value
+    const matchesSearch = !searchQuery.value || 
+      app.title.toLowerCase().includes(searchQuery.value.toLowerCase()) || 
+      app.description.toLowerCase().includes(searchQuery.value.toLowerCase())
+    return matchesCategory && matchesSearch
+  })
+})
 
 const badgeColor = (badge: string | null | undefined) => {
   if (badge === 'hot') return 'error' as const
@@ -59,9 +73,26 @@ useSeoMeta({
       title="Chọn trò chơi của bạn"
       description="Mỗi app là một trải nghiệm AI độc đáo. Chơi, chia sẻ và xem bạn bè phản ứng thế nào!"
     >
-      <UPageGrid>
+      <!-- Toolbar: Search & Filter -->
+      <div class="flex flex-col sm:flex-row gap-4 mb-8 justify-center items-center">
+        <UInput 
+          v-model="searchQuery" 
+          icon="i-lucide-search" 
+          placeholder="Tìm kiếm mini-app..." 
+          class="w-full sm:max-w-xs" 
+          size="lg" 
+        />
+        <USelect 
+          v-model="selectedCategory" 
+          :items="APP_CATEGORIES" 
+          class="w-full sm:max-w-xs" 
+          size="lg" 
+        />
+      </div>
+
+      <UPageGrid v-if="filteredApps.length > 0">
         <UPageCard
-          v-for="app in miniApps"
+          v-for="app in filteredApps"
           :key="app.slug"
           :title="app.title"
           :description="app.description"
@@ -69,21 +100,38 @@ useSeoMeta({
           :to="`/app/${app.slug}`"
           class="hover-glow cursor-pointer"
         >
-          <template v-if="app.badge" #badge>
-            <UBadge
-              :label="badgeLabel(app.badge)"
-              :color="badgeColor(app.badge)"
-              variant="subtle"
-              size="sm"
-            />
+          <template #badge>
+            <div class="flex items-center gap-2">
+              <UBadge
+                v-if="app.badge"
+                :label="badgeLabel(app.badge)"
+                :color="badgeColor(app.badge)"
+                variant="subtle"
+                size="sm"
+              />
+              <UBadge
+                :label="app.category"
+                color="neutral"
+                variant="subtle"
+                size="sm"
+              />
+            </div>
           </template>
         </UPageCard>
 
         <!-- Ad Placeholder — Giữa các Card -->
-        <div class="ad-placeholder col-span-full">
+        <div class="ad-placeholder col-span-full mt-4">
           Ad Space — Khoảng trống dự phòng
         </div>
       </UPageGrid>
+
+      <!-- Empty State -->
+      <div v-else class="text-center py-16">
+        <UIcon name="i-lucide-search-x" class="text-6xl text-gray-600 mb-4" />
+        <h3 class="text-xl font-bold text-gray-300">Không tìm thấy kết quả</h3>
+        <p class="text-gray-500 mt-2">Thử một từ khóa khác hoặc chọn "Tất cả" danh mục xem sao nhé!</p>
+        <UButton label="Xóa bộ lọc" variant="soft" color="neutral" class="mt-4" @click="searchQuery = ''; selectedCategory = 'Tất cả'" />
+      </div>
     </UPageSection>
   </div>
 </template>

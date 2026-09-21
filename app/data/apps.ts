@@ -14,10 +14,24 @@ export interface MiniApp {
   title: string
   description: string
   icon: string
+  category: string
   badge?: 'hot' | 'new' | null
   formFields: FormField[]
   loadingTexts?: string[]
 }
+
+export const APP_CATEGORIES = [
+  'Tất cả',
+  '🔮 Tâm linh & Tử vi',
+  '💘 Tình yêu & Mối quan hệ',
+  '🎭 Tính cách & Tâm lý',
+  '😂 Hài hước & Troll',
+  '🚀 Tương lai & Vận mệnh',
+  '💼 Sự nghiệp & Tài chính',
+  '📚 Học tập & Trí tuệ',
+  '🎨 Sáng tạo & Nghệ thuật',
+  '🏃 Sức khoẻ & Lối sống'
+]
 
 const zodiacOptions = ['Bạch Dương', 'Kim Ngưu', 'Song Tử', 'Cự Giải', 'Sư Tử', 'Xử Nữ', 'Thiên Bình', 'Bọ Cạp', 'Nhân Mã', 'Ma Kết', 'Bảo Bình', 'Song Ngư']
 const relationshipOptions = ['Chưa từng nói chuyện', 'Lén lút nhìn nhau', 'Bạn bè bình thường', 'Đang mập mờ', 'Oan gia ngõ hẹp']
@@ -58,6 +72,7 @@ export const miniApps: MiniApp[] = [
     title: 'AI Roast Khuôn Mặt',
     description: 'Upload ảnh selfie và để AI "phán xét" khuôn mặt bạn một cách hài hước nhất!',
     icon: 'i-lucide-flame',
+    category: '😂 Hài hước & Troll',
     badge: 'hot',
     formFields: [
       { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
@@ -73,6 +88,7 @@ export const miniApps: MiniApp[] = [
     title: '🔮 Tên Tuổi Vận Mệnh',
     description: 'Nhập tên và ngày sinh, AI sẽ phân tích vận mệnh và tính cách bạn.',
     icon: 'i-lucide-sparkles',
+    category: '🔮 Tâm linh & Tử vi',
     badge: 'hot',
     formFields: [
       { key: 'name', label: 'Họ và tên', placeholder: 'VD: Nguyễn Văn A', type: 'text' },
@@ -89,6 +105,7 @@ export const miniApps: MiniApp[] = [
     title: '💯 Chấm Điểm Cuộc Đời',
     description: 'Trả lời vài câu hỏi, AI sẽ chấm điểm cuộc đời bạn trên thang 100.',
     icon: 'i-lucide-trophy',
+    category: '🚀 Tương lai & Vận mệnh',
     badge: 'new',
     formFields: [
       { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
@@ -105,6 +122,7 @@ export const miniApps: MiniApp[] = [
     title: '🎭 Tính Cách Qua Avatar',
     description: 'AI đọc vị tính cách bạn chỉ qua ảnh avatar mạng xã hội.',
     icon: 'i-lucide-user-circle',
+    category: '🎭 Tính cách & Tâm lý',
     badge: null,
     formFields: [
       { key: 'name', label: 'Biệt danh của bạn', placeholder: 'VD: Cậu Út', type: 'text' },
@@ -120,6 +138,7 @@ export const miniApps: MiniApp[] = [
     title: '🚀 Cuộc Sống Năm 2050',
     description: 'Nhập thông tin cá nhân và AI sẽ dự đoán cuộc sống của bạn năm 2050.',
     icon: 'i-lucide-rocket',
+    category: '🚀 Tương lai & Vận mệnh',
     badge: 'new',
     formFields: [
       { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
@@ -138,6 +157,7 @@ export const miniApps: MiniApp[] = [
     title: '💘 Crush Nghĩ Gì Về Bạn',
     description: 'Nhập tên bạn và tên crush, AI sẽ "bói" crush đang nghĩ gì về bạn.',
     icon: 'i-lucide-heart',
+    category: '💘 Tình yêu & Mối quan hệ',
     badge: null,
     formFields: [
       { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
@@ -157,6 +177,7 @@ export const miniApps: MiniApp[] = [
     title: '🐾 AI Động Vật Của Bạn',
     description: 'Bản đồ "Thú vật hóa" của riêng bạn. AI sẽ phân tích xem bạn mang bản năng của sinh vật nào!',
     icon: 'i-lucide-paw-print',
+    category: '🎭 Tính cách & Tâm lý',
     badge: 'new',
     formFields: [
       { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
@@ -181,6 +202,7 @@ export const miniApps: MiniApp[] = [
     title: '🌌 AI Bạn Ở Vũ Trụ Khác',
     description: 'Bạn sẽ làm gì, trông như thế nào ở 5 vũ trụ song song? Mở cổng đa vũ trụ để khám phá ngay!',
     icon: 'i-lucide-orbit',
+    category: '🎭 Tính cách & Tâm lý',
     badge: 'new',
     formFields: [
       { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
@@ -204,6 +226,7 @@ export const miniApps: MiniApp[] = [
     title: '🎬 AI Nếu Bạn Là Nhân Vật Phim',
     description: 'AI sẽ casting bạn vào một bộ phim bom tấn với vai diễn, kỹ năng, điểm yếu và câu thoại "để đời"!',
     icon: 'i-lucide-film',
+    category: '😂 Hài hước & Troll',
     badge: 'new',
     formFields: [
       { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
@@ -227,6 +250,7 @@ export const miniApps: MiniApp[] = [
     title: '💘 AI Người Yêu Tương Lai',
     description: 'AI sẽ gán ghép cho bạn một hồ sơ người yêu hoàn hảo (hoặc dở khóc dở cười) với điểm tương hợp và dự đoán tình yêu!',
     icon: 'i-lucide-heart-handshake',
+    category: '💘 Tình yêu & Mối quan hệ',
     badge: 'hot',
     formFields: [
       { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
@@ -250,6 +274,7 @@ export const miniApps: MiniApp[] = [
     title: '🚩 Phiếu Kiểm Định Tình Yêu',
     description: 'AI sẽ khám bệnh tình yêu và dán nhãn Green Flag hay Red Flag cho từng hành vi của bạn!',
     icon: 'i-lucide-flag',
+    category: '💘 Tình yêu & Mối quan hệ',
     badge: 'new',
     formFields: [
       { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
