@@ -1,6 +1,5 @@
 | STT ưu tiên | Tên mini app                                 | Mô tả ý tưởng ngắn                                                                                           | Category tương ứng        |    Viral   |
 | ----------: | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------- | :--------: |
-|       **1** | 📸 **AI Chấm Ảnh Social**                    | Upload ảnh, AI chấm vibe, bố cục, độ nổi bật và mức độ phù hợp để đăng mạng xã hội.                          | 🤳 Mạng xã hội & Viral    | 🔥🔥🔥🔥🔥 |
 |       **2** | 💬 **AI Phân Tích Đoạn Chat**                | Dán đoạn chat, AI phân tích cách nói chuyện, mức độ chủ động, cảm xúc và các tín hiệu trong cuộc trò chuyện. | 💘 Tình yêu & Mối quan hệ | 🔥🔥🔥🔥🔥 |
 |       **3** | 😂 **AI Roast Bạn Bè**                       | Upload ảnh hoặc nhập thông tin bạn bè để AI tạo màn roast hài hước, có thể chọn nhiều mức độ.                | 😂 Hài hước & Troll       | 🔥🔥🔥🔥🔥 |
 |       **4** | 🎬 **AI Biến Bạn Thành Poster Phim**         | Upload ảnh, AI tạo tên phim, vai diễn, tagline và poster điện ảnh riêng cho bạn.                             | 🎨 Sáng tạo & Nghệ thuật  | 🔥🔥🔥🔥🔥 |

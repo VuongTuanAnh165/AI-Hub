@@ -97,6 +97,30 @@ export const miniApps: MiniApp[] = [
     ]
   },
   {
+    slug: 'at-chu-bai',
+    title: '🃏 AI Đoán Con Át Chủ Bài',
+    description: 'AI khám phá "con át chủ bài" của bạn — điểm mạnh đặc biệt có thể giúp bạn tạo lợi thế trong cuộc sống.',
+    icon: 'i-lucide-award',
+    category: '🎭 Tính cách & Tâm lý',
+    badge: 'new',
+    formFields: [
+      { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      { key: 'gender', label: 'Giới tính', type: 'select', options: genderOptions },
+      { key: 'personality', label: 'Tính cách nổi bật nhất?', type: 'select', options: personalityTraitOptions, allowOther: true },
+      { key: 'weakness', label: 'Điểm yếu lớn nhất?', type: 'select', options: badHabitOptions, allowOther: true },
+      { key: 'dangerReaction', label: 'Phản xạ khi gặp biến cố lớn?', type: 'select', options: dangerReactionOptions },
+      { key: 'conflictStyle', label: 'Khi cãi nhau, bạn thường?', type: 'select', options: conflictStyleOptions },
+      { key: 'motto', label: 'Khẩu hiệu sống của bạn?', type: 'select', options: lifeMottoOptions, allowOther: true }
+    ],
+    loadingTexts: [
+      'Đang xào bài Tarot...', 
+      'Đang phân tích hồ sơ tâm lý...', 
+      'Đang mô phỏng tình huống sinh tử...', 
+      'Đang tính toán độ sát thương...',
+      'Đang rút lá bài lật ngược thế cờ...'
+    ]
+  },
+  {
     slug: 'roast-my-face',
     title: 'AI Roast Khuôn Mặt',
     description: 'Upload ảnh selfie và để AI "phán xét" khuôn mặt bạn một cách hài hước nhất!',

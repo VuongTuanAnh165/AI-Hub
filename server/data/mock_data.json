@@ -53,6 +53,60 @@
       "advice": "Xin hãy nhờ một người bạn có tâm chụp ảnh giùm, và đừng bao giờ chụp từ dưới lên nữa!"
     }
   ],
+  "at-chu-bai": [
+    {
+      "title": "Kẻ Thao Túng Sự Thương Hại",
+      "cardName": "♠️ Át Bích — Sự Tĩnh Lặng Chết Người",
+      "cardEmoji": "🤫",
+      "cardTagline": "Kẻ thù nguy hiểm nhất là kẻ không nói một lời nào.",
+      "description": "Bạn là kiểu người giấu sự sắc sảo đằng sau vẻ ngoài vô hại. Thay vì tranh cãi ồn ào, bạn dùng sự im lặng để đo lường giới hạn của đối phương và bắt họ tự bộc lộ điểm yếu.",
+      "stats": [
+        { "name": "IQ Cảm Xúc", "value": 92, "icon": "i-lucide-heart", "color": "pink" },
+        { "name": "Tầm Nhìn", "value": 85, "icon": "i-lucide-eye", "color": "blue" },
+        { "name": "Bản Lĩnh", "value": 88, "icon": "i-lucide-shield", "color": "orange" },
+        { "name": "Sáng Tạo", "value": 75, "icon": "i-lucide-lightbulb", "color": "yellow" },
+        { "name": "Ảnh Hưởng", "value": 95, "icon": "i-lucide-crown", "color": "purple" }
+      ],
+      "lethalityRate": 95,
+      "theCrisis": "Khi bị một người bạn tin tưởng phản bội, hoặc khi bị dồn ép trong một cuộc tranh luận vô lý mà bạn biết rõ mình đúng nhưng không ai nghe.",
+      "activationCondition": "Kích hoạt khi bạn nhận ra việc giải thích bằng lời nói đã trở nên hoàn toàn vô tác dụng.",
+      "theTurnaround": "ĐÒN CHÍ MẠNG: Đột ngột ngắt kết nối hoàn toàn. Bạn lùi lại, tỏ ra tổn thương một cách hoàn hảo và im lặng tuyệt đối. Sự im lặng này tạo ra một áp lực vô hình khổng lồ, khiến đối phương từ chỗ đắc thắng chuyển sang tự hoảng loạn, cắn rứt và cuối cùng phải tự tìm đến bạn để cầu hoà.",
+      "theCost": "CÁI GIÁ PHẢI TRẢ: Quá quen với việc thao túng bằng sự im lặng, bạn dần đánh mất khả năng chia sẻ cảm xúc thật của mình với những người thực sự quan tâm đến bạn.",
+      "theCounter": "KHẮC TINH: Những kẻ 'mặt dày vô song' — những người cũng chẳng thèm quan tâm đến sự im lặng của bạn và sẵn sàng bỏ đi luôn.",
+      "comboCards": ["♥️ Át Cơ — Nước Mắt Cá Sấu", "♣️ Át Chuồn — Bậc Thầy Phông Bạt"],
+      "application": {
+        "career": "Trong đàm phán lương, bạn đưa ra một con số rồi im lặng nhìn thẳng vào mắt HR, ép họ phải phá vỡ sự im lặng bằng một deal hời hơn.",
+        "love": "Khi cãi nhau nảy lửa, bạn đột nhiên rơi một giọt nước mắt rồi quay lưng đi, khiến người yêu lập tức quên mất mình đang giận chuyện gì."
+      },
+      "roast": "Mưu mô cho lắm vào rồi đêm về overthink không ngủ được, sáng ra mắt thâm như gấu trúc thì có ích gì hả pháp sư?"
+    },
+    {
+      "title": "Kẻ Đánh Đổi Bằng Mọi Giá",
+      "cardName": "♦️ Át Rô — Đòn Bảy Phút Cuối",
+      "cardEmoji": "🧨",
+      "cardTagline": "Đã không có gì để mất thì tại sao phải sợ?",
+      "description": "Bạn mang trong mình dòng máu của những con bạc khát nước. Bạn không thích rủi ro, nhưng một khi đã bị dồn vào chân tường, sự liều lĩnh của bạn vượt qua sức tưởng tượng của tất cả mọi người.",
+      "stats": [
+        { "name": "IQ Cảm Xúc", "value": 65, "icon": "i-lucide-heart", "color": "pink" },
+        { "name": "Tầm Nhìn", "value": 80, "icon": "i-lucide-eye", "color": "blue" },
+        { "name": "Bản Lĩnh", "value": 98, "icon": "i-lucide-shield", "color": "orange" },
+        { "name": "Sáng Tạo", "value": 90, "icon": "i-lucide-lightbulb", "color": "yellow" },
+        { "name": "Ảnh Hưởng", "value": 70, "icon": "i-lucide-crown", "color": "purple" }
+      ],
+      "lethalityRate": 99,
+      "theCrisis": "Khi những cố gắng nỗ lực của bạn bị gạt phăng đi, hoặc khi bị dồn ép đến mức công việc/tài chính có nguy cơ sụp đổ hoàn toàn.",
+      "activationCondition": "Kích hoạt khi cơn giận dữ đã lên đến đỉnh điểm và bạn nhận ra 'sĩ diện' không mài ra ăn được.",
+      "theTurnaround": "ĐÒN CHÍ MẠNG: Bạn sẵn sàng lật bài ngửa, tung ra những bằng chứng phũ phàng hoặc đưa ra một quyết định tàn nhẫn không ai dám nghĩ tới (như nghỉ việc ngang, công khai bóc phốt). Đòn đánh thẳng mặt này khiến đối phương không kịp trở tay vì họ luôn nghĩ bạn hiền lành cam chịu.",
+      "theCost": "CÁI GIÁ PHẢI TRẢ: Đốt cháy hoàn toàn những cây cầu phía sau. Dù lật kèo thành công nhưng bạn sẽ mang tiếng là kẻ cực đoan và khó kiểm soát.",
+      "theCounter": "KHẮC TINH: Những kẻ có quyền lực tuyệt đối — những người đủ sức dập tắt sự phản kháng của bạn chỉ bằng một cú điện thoại.",
+      "comboCards": ["♠️ Át Bích — Sự Tĩnh Lặng Chết Người", "♥️ Át Cơ — Nụ Cười Sát Thủ"],
+      "application": {
+        "career": "Bị ép deadline vô lý, bạn forward thẳng email cho sếp tổng kèm toàn bộ bằng chứng chứng minh team khác đang đùn đẩy trách nhiệm.",
+        "love": "Phát hiện đối phương mập mờ, bạn không cãi nhau mà đóng gói toàn bộ đồ đạc của họ gửi ship hoả tốc sang tận công ty."
+      },
+      "roast": "Bình thường thì rén tới rén lui, lúc tức lên thì chơi ngu lấy tiếng. May mà nổ hũ chứ không thì nay ra đê mà ở."
+    }
+  ],
   "roast-my-face": [
     { 
       "title": "Tác phẩm trừu tượng của tạo hoá 😂", 
