@@ -108,8 +108,8 @@ export const miniApps: MiniApp[] = [
       { key: 'gender', label: 'Giới tính', type: 'select', options: genderOptions },
       { key: 'personality', label: 'Tính cách nổi bật nhất?', type: 'select', options: personalityTraitOptions, allowOther: true },
       { key: 'weakness', label: 'Điểm yếu lớn nhất?', type: 'select', options: badHabitOptions, allowOther: true },
-      { key: 'dangerReaction', label: 'Phản xạ khi gặp biến cố lớn?', type: 'select', options: dangerReactionOptions },
-      { key: 'conflictStyle', label: 'Khi cãi nhau, bạn thường?', type: 'select', options: conflictStyleOptions },
+      { key: 'dangerReaction', label: 'Phản xạ khi gặp biến cố lớn?', type: 'select', options: dangerReactionOptions, allowOther: true },
+      { key: 'conflictStyle', label: 'Khi cãi nhau, bạn thường?', type: 'select', options: conflictStyleOptions, allowOther: true },
       { key: 'motto', label: 'Khẩu hiệu sống của bạn?', type: 'select', options: lifeMottoOptions, allowOther: true }
     ],
     loadingTexts: [
