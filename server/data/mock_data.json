@@ -1,4 +1,58 @@
 {
+  "cham-anh-social": [
+    {
+      "title": "Bức Ảnh Triệu Like Nhưng Kém Sang",
+      "overallScore": 82,
+      "rank": "A",
+      "verdictEmoji": "🔥",
+      "platformVerdict": "Đăng lên Instagram đảm bảo bão like vì filter xịn và góc mặt đẹp, nhưng mang lên LinkedIn thì HR sẽ cho bạn vào blacklist vì trông hơi thiếu chuyên nghiệp.",
+      "criteria": [
+        { "name": "Vibe / Thần thái", "score": 90, "icon": "i-lucide-sparkles", "color": "pink", "comment": "Thần thái sang chảnh vuốt mặt không kịp, nhưng ánh mắt hơi đờ đẫn thiếu ngủ." },
+        { "name": "Bố cục", "score": 75, "icon": "i-lucide-layout-grid", "color": "blue", "comment": "Rule of Thirds xài tạm ổn, nhưng cái thùng rác lấp ló góc phải hơi huỷ diệt phần nhìn." },
+        { "name": "Ánh sáng", "score": 85, "icon": "i-lucide-sun", "color": "yellow", "comment": "Ánh sáng hắt từ cửa sổ khá nịnh da, không cần cà mặt vẫn láng o." },
+        { "name": "Biểu cảm / Chủ thể", "score": 88, "icon": "i-lucide-smile", "color": "orange", "comment": "Cười mỉm tự nhiên, không bị giả trân công nghiệp." },
+        { "name": "Background", "score": 60, "icon": "i-lucide-mountain", "color": "green", "comment": "Quán cafe đẹp nhưng bạn chọn góc chụp vướng dính nguyên anh bồi bàn đằng sau." },
+        { "name": "Outfit / Phong cách", "score": 95, "icon": "i-lucide-shirt", "color": "purple", "comment": "Lên đồ chặt chém, phối màu chuẩn tone, nhìn phát biết ngay rich kid giả cầy." }
+      ],
+      "strengths": ["Góc mặt ăn ảnh", "Filter nịnh da tone Hàn Quốc", "Outfit có sự đầu tư"],
+      "weaknesses": ["Background hơi lộn xộn", "Canh bố cục chưa khéo"],
+      "captionSuggestions": [
+        { "style": "🤣 Hài hước", "caption": "Xinh gái nhưng nghèo, ai nuôi hong?" },
+        { "style": "💭 Deep", "caption": "Thành phố này hoa lệ. Hoa cho người giàu và lệ cho người nghèo." },
+        { "style": "😏 Thả thính", "caption": "Cà phê đắng thì thêm đường. Còn em nhạt thì thêm gì cho vừa lòng anh?" }
+      ],
+      "bestTimeToPost": "Thứ Sáu, 20:00 - Lúc dân tình lên đồ đi chơi thì bạn lên ảnh.",
+      "hashtags": ["#CafeHanoi", "#OOTDVietnam", "#ThanhXuan", "#XinhGai", "#Caphay"],
+      "roast": "Cố tình tỏ ra hờ hững nhưng thực chất đã chụp 100 tấm và tốn 3 tiếng chỉnh app Xinh Tuổi mới dám up lên.",
+      "advice": "Lần sau nhớ dọn rác đằng sau hoặc dùng app AI xóa nền trước khi khoe nhé."
+    },
+    {
+      "title": "Mầm Non Tập Sống Ảo",
+      "overallScore": 55,
+      "rank": "C",
+      "verdictEmoji": "😬",
+      "platformVerdict": "Lên Facebook gia đình họ hàng sẽ khen 'cháu tôi lớn thế này rồi à', nhưng đăng TikTok thì chắc chắn flop dập mặt.",
+      "criteria": [
+        { "name": "Vibe / Thần thái", "score": 50, "icon": "i-lucide-sparkles", "color": "pink", "comment": "Thần thái hơi gượng, giống như đang bị ép chụp hình vậy." },
+        { "name": "Bố cục", "score": 40, "icon": "i-lucide-layout-grid", "color": "blue", "comment": "Góc chụp từ dưới lên làm nọng cằm trở thành điểm nhấn chính." },
+        { "name": "Ánh sáng", "score": 65, "icon": "i-lucide-sun", "color": "yellow", "comment": "Chụp ngược sáng nên mặt bạn tối đen như tiền đồ chị Dậu." },
+        { "name": "Biểu cảm / Chủ thể", "score": 60, "icon": "i-lucide-smile", "color": "orange", "comment": "Cười giơ tay chữ V (Peace) - style huyền thoại năm 2012." },
+        { "name": "Background", "score": 70, "icon": "i-lucide-mountain", "color": "green", "comment": "Biển xanh mây trắng nắng vàng, cảnh đẹp cứu vớt phần nào con người." },
+        { "name": "Outfit / Phong cách", "score": 50, "icon": "i-lucide-shirt", "color": "purple", "comment": "Áo thun quần cộc đi biển khá basic, an toàn đến mức nhàm chán." }
+      ],
+      "strengths": ["Cảnh đẹp", "Chất ảnh chân thực không lạm dụng filter"],
+      "weaknesses": ["Ngược sáng", "Pose dáng lỗi thời", "Góc chụp dìm hàng"],
+      "captionSuggestions": [
+        { "style": "🤣 Hài hước", "caption": "Đen thôi, đỏ vẫn thế. Đen đúa vì đi biển." },
+        { "style": "💭 Deep", "caption": "Biển rộng lớn mà sao lòng người vẫn chật chội." },
+        { "style": "😏 Thả thính", "caption": "Nước biển mặn, còn em thì ngọt ngào." }
+      ],
+      "bestTimeToPost": "Thứ Bảy, 09:00 sáng - Đăng sớm cho mọi người biết mình đi chơi.",
+      "hashtags": ["#VitaminSea", "#Dulich", "#ThuGian", "#BienXanh", "#ChuyenDiNhoDoi"],
+      "roast": "Một bức ảnh chứng minh không phải ai cũng hợp với nghiệp làm Influencer. Tốt nhất là giữ làm kỷ niệm thôi.",
+      "advice": "Xin hãy nhờ một người bạn có tâm chụp ảnh giùm, và đừng bao giờ chụp từ dưới lên nữa!"
+    }
+  ],
   "roast-my-face": [
     { 
       "title": "Tác phẩm trừu tượng của tạo hoá 😂", 

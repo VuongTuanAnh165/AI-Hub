@@ -14,6 +14,7 @@ import MultiverseResult from '~/components/results/MultiverseResult.vue'
 import MovieCharacterResult from '~/components/results/MovieCharacterResult.vue'
 import FutureLoverResult from '~/components/results/FutureLoverResult.vue'
 import RedFlagResult from '~/components/results/RedFlagResult.vue'
+import SocialScoreResult from '~/components/results/SocialScoreResult.vue'
 import ResultCardWrapper from '~/components/results/ResultCardWrapper.vue'
 
 const route = useRoute()
@@ -257,6 +258,7 @@ const shareUrl = computed(() => {
         <MovieCharacterResult v-else-if="slug === 'nhan-vat-phim'" :result="result" />
         <FutureLoverResult v-else-if="slug === 'nguoi-yeu-tuong-lai'" :result="result" />
         <RedFlagResult v-else-if="slug === 'red-flag-green-flag'" :result="result" />
+        <SocialScoreResult v-else-if="slug === 'cham-anh-social'" :result="result" />
       </ResultCardWrapper>
       <p class="text-dimmed text-xs mt-6 text-center">
         ⚠️ Kết quả chỉ mang tính chất giải trí. Không có giá trị khoa học.

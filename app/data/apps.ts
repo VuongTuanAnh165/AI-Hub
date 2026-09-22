@@ -69,7 +69,33 @@ const jealousyLevelOptions = ['Giấu trong lòng', 'Tra hỏi nhẹ nhàng', 'S
 const partnerFriendsOptions = ['Hoà đồng, ai cũng chơi', 'Ghen với bạn khác giới', 'Muốn người yêu chỉ có mình', 'Tôn trọng không gian riêng', 'Thích đi chơi chung nhóm', 'Không quan tâm lắm']
 const breakupStyleOptions = ['Nói chuyện văn minh', 'Ghost luôn', 'Khóc lóc van xin', 'Unfriend xong pretend stranger', 'Revenge era', 'Chia tay nhưng vẫn follow']
 
+const platformPostOptions = ['Instagram', 'TikTok', 'Facebook', 'Tinder', 'LinkedIn', 'Threads']
+const postPurposeOptions = ['Sống ảo flex', 'Thả thính', 'Kỷ niệm', 'Bán hàng', 'Xin việc', 'Troll bạn bè']
+const photoStyleOptions = ['Selfie', 'Ảnh chụp người khác', 'Phong cảnh', 'Đồ ăn', 'OOTD (Outfit)', 'Group photo', 'Meme/Troll']
+
 export const miniApps: MiniApp[] = [
+  {
+    slug: 'cham-anh-social',
+    title: '📸 AI Chấm Ảnh Social',
+    description: 'Upload ảnh, AI chấm vibe, bố cục, độ nổi bật và mức độ phù hợp để đăng MXH.',
+    icon: 'i-lucide-camera',
+    category: '🤳 Mạng xã hội & Viral',
+    badge: 'hot',
+    formFields: [
+      { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      { key: 'platform', label: 'Định đăng ảnh ở đâu?', type: 'select', options: platformPostOptions },
+      { key: 'purpose', label: 'Mục đích đăng ảnh?', type: 'select', options: postPurposeOptions, allowOther: true },
+      { key: 'style', label: 'Phong cách ảnh?', type: 'select', options: photoStyleOptions, allowOther: true },
+      { key: 'photo', label: 'Tải ảnh cần chấm lên', type: 'image' }
+    ],
+    loadingTexts: [
+      'Đang soi ánh sáng...', 
+      'Đang ngắm bố cục...', 
+      'Đang đếm like tương lai...', 
+      'Đang suy nghĩ caption...',
+      'Đang chuẩn bị lời phán xét...'
+    ]
+  },
   {
     slug: 'roast-my-face',
     title: 'AI Roast Khuôn Mặt',
