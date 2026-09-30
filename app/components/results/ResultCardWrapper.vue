@@ -79,7 +79,7 @@ function copyShareLink() {
 
         <div class="text-center space-y-6 relative z-10">
           <!-- Polaroid Image -->
-          <div v-if="slug !== 'crush-nghi-gi' && formData.photo" class="relative mx-auto w-32 h-36 p-2 bg-white rounded-lg shadow-xl -rotate-3 hover:rotate-0 transition-transform duration-300">
+          <div v-if="slug !== 'crush-nghi-gi' && slug !== 'do-hop-doi' && formData.photo" class="relative mx-auto w-32 h-36 p-2 bg-white rounded-lg shadow-xl -rotate-3 hover:rotate-0 transition-transform duration-300">
             <img :src="formData.photo" class="w-full h-24 object-cover rounded-sm mb-2" />
             <p class="text-black font-bold text-sm tracking-tight capitalize">{{ formData.name || 'Nạn nhân' }}</p>
             
@@ -103,6 +103,21 @@ function copyShareLink() {
             <div v-if="formData.crushPhoto" class="relative w-28 h-32 p-2 bg-white rounded-lg shadow-xl rotate-[6deg] z-10">
               <img :src="formData.crushPhoto" class="w-full h-20 object-cover rounded-sm mb-1" />
               <p class="text-black font-bold text-xs tracking-tight capitalize text-center truncate">{{ formData.crushName || 'Crush' }}</p>
+            </div>
+          </div>
+
+          <!-- Duo Match Polaroid (2 Photos) -->
+          <div v-if="slug === 'do-hop-doi' && (formData.photo1 || formData.photo2)" class="flex justify-center items-center gap-2 sm:gap-4 relative mx-auto my-4">
+            <div v-if="formData.photo1" class="relative w-28 h-32 p-2 bg-white rounded-lg shadow-xl rotate-[-6deg] z-10">
+              <img :src="formData.photo1" class="w-full h-20 object-cover rounded-sm mb-1" />
+              <p class="text-black font-bold text-xs tracking-tight capitalize text-center truncate">{{ formData.name1 || 'Người 1' }}</p>
+            </div>
+            
+            <UIcon name="i-lucide-git-merge" class="w-8 h-8 text-purple-500 animate-pulse z-20" />
+
+            <div v-if="formData.photo2" class="relative w-28 h-32 p-2 bg-white rounded-lg shadow-xl rotate-[6deg] z-10">
+              <img :src="formData.photo2" class="w-full h-20 object-cover rounded-sm mb-1" />
+              <p class="text-black font-bold text-xs tracking-tight capitalize text-center truncate">{{ formData.name2 || 'Người 2' }}</p>
             </div>
           </div>
 

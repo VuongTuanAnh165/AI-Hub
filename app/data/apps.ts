@@ -58,6 +58,12 @@ const hiddenDesireOptions = ['Được công nhận và ngưỡng mộ', 'Yên �
 const weekendOptions = ['Nằm nhà xem phim/đọc sách cả ngày', 'Đi chơi với nhóm bạn', 'Khám phá nơi mới một mình', 'Ngủ bù đến 3h chiều', 'Làm side project hoặc học kỹ năng mới']
 const bloodTypeOptions = ['A', 'B', 'AB', 'O', 'Không rõ']
 const contactTimeOptions = ['Mới lướt qua đời nhau', 'Dưới 3 tháng', '3 - 6 tháng', 'Hơn 1 năm', 'Thanh mai trúc mã']
+
+// Mới cho Duo Match
+const relationshipTypeOptions = ['Crush (đơn phương)', 'Đang tìm hiểu / Mập mờ', 'Đang hẹn hò', 'Yêu nhau chính thức', 'Vợ/Chồng', 'Bạn thân', 'Đồng nghiệp/Bạn học', 'Oan gia ngõ hẹp', 'Mới chia tay']
+const howMetOptions = ['Bạn bè giới thiệu', 'Cùng trường/công ty', 'App hẹn hò', 'MXH (Facebook, Insta...)', 'Tình cờ ngoài đời', 'Qua game online', 'Bạn từ nhỏ']
+const durationOptions = ['Chưa quen (mới biết mặt)', 'Dưới 1 tháng', '1-6 tháng', '6-12 tháng', '1-3 năm', 'Trên 3 năm', 'Thanh mai trúc mã']
+const conflictDuoOptions = ['Cãi nhau to rồi làm hoà', 'Cold war im lặng cả tuần', 'Một người nhường cho xong', 'Ngồi nói chuyện nghiêm túc', 'Gọi bạn bè vào phân xử']
 const personalityOptions = ['Hướng nội (I)', 'Hướng ngoại (E)', 'Lúc nội lúc ngoại', 'Bất ổn tuỳ mood']
 const hobbyOptions = ['Lướt TikTok', 'Ngủ nướng', 'Ăn vặt', 'Tập gym', 'Chơi game', 'Shopping', 'Đọc sách', 'Chill nhạc', 'Gossip']
 const sleepHabitOptions = ['Ngủ sớm dậy sớm', 'Cú đêm', 'Ngủ bất cứ lúc nào', 'Mất ngủ triền miên']
@@ -374,5 +380,32 @@ export const miniApps: MiniApp[] = [
       { key: 'weekendChoice', label: 'Một ngày cuối tuần lý tưởng?', type: 'select', options: weekendOptions, allowOther: true }
     ],
     loadingTexts: ['Đang giải mã gen...', 'Phân tích tần sóng não...', 'Đọc thấu tâm can...']
+  },
+  {
+    slug: 'do-hop-doi',
+    title: '💞 AI Độ Hợp Đôi',
+    description: 'Báo cáo tương thích toàn diện cho bất kỳ mối quan hệ nào: Tình yêu, tình bạn, hay oan gia ngõ hẹp.',
+    icon: 'i-lucide-git-merge',
+    category: '💘 Tình yêu & Mối quan hệ',
+    badge: 'hot',
+    formFields: [
+      { key: 'name1', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      { key: 'birthday1', label: 'Ngày sinh của bạn', type: 'date' },
+      { key: 'gender1', label: 'Giới tính của bạn', type: 'select', options: genderOptions },
+      { key: 'personality1', label: 'Tính cách nổi bật của bạn', type: 'select', options: personalityOptions, allowOther: true },
+      { key: 'photo1', label: 'Ảnh của bạn (Tuỳ chọn - để soi tướng phu thê)', type: 'image', optional: true },
+      { key: 'name2', label: 'Tên đối phương', placeholder: 'VD: Hoàng Nam', type: 'text' },
+      { key: 'birthday2', label: 'Ngày sinh đối phương', type: 'date' },
+      { key: 'gender2', label: 'Giới tính đối phương', type: 'select', options: genderOptions },
+      { key: 'personality2', label: 'Tính cách nổi bật của họ', type: 'select', options: personalityOptions, allowOther: true },
+      { key: 'photo2', label: 'Ảnh đối phương (Tuỳ chọn)', type: 'image', optional: true },
+      { key: 'relationshipType', label: 'Mối quan hệ hiện tại', type: 'select', options: relationshipTypeOptions, allowOther: true },
+      { key: 'howMet', label: 'Hai người quen nhau bằng cách nào?', type: 'select', options: howMetOptions, allowOther: true },
+      { key: 'duration', label: 'Đã quen nhau bao lâu?', type: 'select', options: durationOptions, allowOther: true },
+      { key: 'conflictStyle', label: 'Khi xảy ra bất đồng, cả hai thường...', type: 'select', options: conflictDuoOptions, allowOther: true },
+      { key: 'admire', label: 'Điều bạn thích / ngưỡng mộ nhất ở họ?', placeholder: 'VD: Cười duyên, sống có trách nhiệm...', type: 'text' },
+      { key: 'annoy', label: 'Điều khiến bạn khó chịu nhất ở họ?', placeholder: 'VD: Hay trễ hẹn, ít nói...', type: 'text' }
+    ],
+    loadingTexts: ['Đang tính toán thiên can địa chi...', 'Phân tích tần số năng lượng...', 'Đo lường độ chịu đựng...', 'Đang dự đoán tương lai...']
   }
 ]

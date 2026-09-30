@@ -519,5 +519,67 @@
       "adviceFromAI": "Hãy bớt lướt điện thoại trước khi ngủ và bắt đầu thực hiện ít nhất MỘT điều trong to-do list đi nào!",
       "hashtags": ["#PersonalityDNA", "#Overthinker", "#TrumTriHoan"]
     }
+  ],
+  "do-hop-doi": [
+    {
+      "title": "Bão Cấp 12 Gặp Núi Lửa Phun Trào",
+      "emoji": "🌋",
+      "overallScore": 85,
+      "verdict": "Oan gia ngõ hẹp nhưng không thể sống thiếu nhau",
+      "compatibilityBreakdown": [
+        { "name": "Tính cách", "score": 90, "icon": "i-lucide-brain", "color": "purple", "comment": "Hai thỏi nam châm trái dấu hút nhau cực mạnh." },
+        { "name": "Giao tiếp", "score": 60, "icon": "i-lucide-message-circle", "color": "blue", "comment": "Nói chuyện 3 câu là cãi nhau, nhưng vẫn thích nói." },
+        { "name": "Tình cảm & Lãng mạn", "score": 95, "icon": "i-lucide-heart", "color": "pink", "comment": "Khi đã ngọt ngào thì tiểu đường luôn." },
+        { "name": "Xử lý xung đột", "score": 40, "icon": "i-lucide-swords", "color": "red", "comment": "Cả hai đều cái tôi cao chót vót, không ai nhường ai." },
+        { "name": "Giá trị sống & Tương lai", "score": 80, "icon": "i-lucide-rocket", "color": "green", "comment": "Mục tiêu chung hướng thì đi rất nhanh." }
+      ],
+      "personAnalysis": {
+        "person1": {
+          "title": "Chiến Binh Cảm Xúc",
+          "emoji": "🎭",
+          "zodiacSign": "Thiên Yết",
+          "chineseZodiac": "Rồng Hoả 🐉🔥",
+          "lifePath": "Số 7 — Kẻ Tìm Kiếm Sự Thật",
+          "traits": ["Nhạy cảm", "Nhớ dai thù vặt", "Yêu hết mình"],
+          "loveLanguage": "Dành thời gian chất lượng",
+          "blindSpot": "Quá tin vào trực giác cá nhân mà bỏ qua logic thực tế."
+        },
+        "person2": {
+          "title": "Tảng Băng Trôi Khó Hiểu",
+          "emoji": "🧊",
+          "zodiacSign": "Kim Ngưu",
+          "chineseZodiac": "Trâu Đất 🐃🌍",
+          "lifePath": "Số 4 — Kẻ Kiến Tạo Sự Ổn Định",
+          "traits": ["Cứng đầu", "Thực tế", "Thích ăn ngon"],
+          "loveLanguage": "Hành động chăm sóc (Nấu ăn, mua đồ)",
+          "blindSpot": "Tưởng mình im lặng là bao dung, thực ra đối phương phát điên vì sự vô tâm đó."
+        }
+      },
+      "dynamicAnalysis": "Một người lúc nào cũng rực lửa và đòi hỏi sự kết nối sâu sắc, một người lại lỳ lợm, thực tế và ít bộc lộ. Cán cân quyền lực liên tục đảo chiều vì cả hai đều bướng. Người 1 ngưỡng mộ sự ổn định của Người 2, nhưng lại phát điên vì sự cứng nhắc đó.",
+      "cosmicAnalysis": {
+        "zodiacMatch": "Nước (Bọ Cạp) tưới Đất (Kim Ngưu) — Rất hợp để trồng trọt, nhưng đôi khi thành bùn lầy.",
+        "zodiacElement": "💧 × 🌍 = Bùn Lầy Nhão Nhoẹt (Nhưng màu mỡ)",
+        "chineseZodiacMatch": "Rồng gặp Trâu: Cả hai đều có sừng và thích húc nhau.",
+        "numerologyInsight": "Số 7 tâm linh bay bổng gặp Số 4 thực tế đo đất. Khác biệt nhưng bù trừ hoàn hảo.",
+        "ageGapVerdict": "Cách nhau 2 tuổi: Vừa đủ để làm nũng, vừa đủ để làm bạn."
+      },
+      "timeline": {
+        "past": "Bắt đầu bằng sự tò mò về sự khác biệt của đối phương.",
+        "present": "Đang trong giai đoạn thử thách cái tôi của nhau.",
+        "future": "Vượt qua được rào cản cái tôi thì cưới, không thì thành vết thương lòng khó phai."
+      },
+      "bestScenario": "Cùng nhau xây dựng một gia đình vững chãi, nơi Đất làm nền móng và Nước tưới mát tâm hồn.",
+      "worstScenario": "Cãi nhau to, không ai xin lỗi trước, chiến tranh lạnh đến lúc người kia có người mới.",
+      "greenFlags": ["Cực kỳ trung thành với nhau", "Biết chăm sóc đối phương bằng hành động", "Luôn bảo vệ nhau trước người ngoài"],
+      "redFlags": ["Cái tôi quá cao", "Hay chiến tranh lạnh thay vì giải quyết", "Thích móc mỉa lỗi lầm trong quá khứ"],
+      "productLabel": "⚠️ SẢN PHẨM DỄ CHÁY NỔ. Yêu cầu bảo quản nơi thoáng mát, tránh xa cãi vã. Hạn sử dụng: Tuỳ thuộc vào việc ai chịu xuống nước trước.",
+      "songRecommendation": {
+        "name": "Love The Way You Lie",
+        "artist": "Eminem ft. Rihanna",
+        "reason": "Vừa yêu vừa hận, cãi nhau tung nóc nhưng không bỏ được."
+      },
+      "survivalGuide": "Khi cãi nhau, một người phải học cách ngậm miệng lại và ôm người kia. Không có đúng sai, chỉ có hạnh phúc hoặc mất nhau.",
+      "finalRoast": "Hai bạn đúng là trời sinh một cặp... để đày đọa nhau cho thiên hạ đỡ khổ."
+    }
   ]
 }

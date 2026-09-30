@@ -15,7 +15,6 @@
 |      **14** | 🎭 **AI Đạo Diễn Cuộc Đời**                  | Người chơi chọn các quyết định trong một câu chuyện và AI tạo những diễn biến, kết cục khác nhau.            | 🎮 Game & Thử thách       |   🔥🔥🔥   |
 |      **15** | 🧠 **AI Đấu Trí Logic**                      | AI đưa câu đố logic tăng dần độ khó và ghi lại thành tích của người chơi.                                    | 📚 Học tập & Trí tuệ      |   🔥🔥🔥   |
 |      **16** | 🤖 **AI Đoán Ý Bạn**                         | AI đưa tình huống và cố đoán lựa chọn của bạn trước khi bạn trả lời.                                         | 🤖 AI & Công nghệ         |   🔥🔥🔥   |
-|      **17** | 🧬 **Personality DNA**                       | Trả lời câu hỏi và nhận một bản đồ trực quan về các đặc điểm tính cách nổi bật.                              | 🎭 Tính cách & Tâm lý     |    🔥🔥    |
 |      **18** | 🔒 **AI Lock-In Challenge**                  | Chọn mục tiêu, AI tạo thử thách 7 ngày và cho người dùng theo dõi chuỗi hoàn thành.                          | 🏃 Sức khoẻ & Lối sống    |    🔥🔥    |
 |      **19** | 🔮 **Nếu Bạn Sống Ở Một Timeline Khác**      | Chọn một quyết định giả định, AI xây dựng phiên bản cuộc đời khác của bạn.                                   | 🚀 Tương lai & Vận mệnh   |    🔥🔥    |
 |      **20** | 🎥 **AI Biến Đoạn Chat Thành Kịch Bản Phim** | Dán đoạn chat, AI biến cuộc trò chuyện thành một cảnh phim với nhân vật, thoại và diễn biến.                 | 🎨 Sáng tạo & Nghệ thuật  |  🔥🔥🔥🔥  |
