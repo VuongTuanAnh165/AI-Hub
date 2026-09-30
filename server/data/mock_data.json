@@ -477,5 +477,47 @@
       "loveScore": 75,
       "finalAdvice": "Hãy bớt lười nhắn tin lại một chút, người yêu bạn không phải là tổng đài tự động đâu!"
     }
+  ],
+  "personality-dna": [
+    {
+      "title": "Nhà Khai Phá Bí Ẩn Nhưng Lười Biếng",
+      "dnaCode": "EXTR-A42-L89",
+      "emoji": "🛋️",
+      "coreTraits": [
+        { "name": "Hướng ngoại", "value": 75, "icon": "i-lucide-megaphone", "color": "orange", "description": "Lúc vui thì nổ banh xác, lúc buồn thì sủi lặn không sủi tăm." },
+        { "name": "Nhạy cảm", "value": 80, "icon": "i-lucide-heart", "color": "pink", "description": "Dễ xúc động với chó mèo nhưng lạnh lùng với loài người." },
+        { "name": "Kỷ luật", "value": 20, "icon": "i-lucide-target", "color": "blue", "description": "Kế hoạch lập ra chỉ để cho có, ngày mai tính tiếp." },
+        { "name": "Sáng tạo", "value": 90, "icon": "i-lucide-lightbulb", "color": "yellow", "description": "Nảy ra ý tưởng tỷ đô lúc 3h sáng rồi ngủ quên mất." },
+        { "name": "Đồng cảm", "value": 65, "icon": "i-lucide-hand-helping", "color": "green", "description": "Có thể nghe bạn thân than vãn 2 tiếng đồng hồ nhưng không quên vừa nghe vừa lướt TikTok." },
+        { "name": "Lý trí", "value": 45, "icon": "i-lucide-brain", "color": "purple", "description": "Đầu thì bảo không mua nhưng tay đã bấm thanh toán Shopee." }
+      ],
+      "personalityType": {
+        "name": "Chiến Thần Overthink Bán Thời Gian",
+        "emoji": "🌪️",
+        "summary": "Một linh hồn tự do bị giam cầm trong thân xác hay thèm trà sữa. Rất thích phân tích sự việc nhưng cuối cùng lại chọn theo cảm tính.",
+        "strengths": ["Khả năng thích nghi cực cao", "Vựa muối của nhóm", "Sáng tạo trong việc viện cớ"],
+        "weaknesses": ["Trì hoãn chuyên nghiệp", "Hứa lèo", "Tiêu tiền không kiểm soát"]
+      },
+      "shadowSelf": {
+        "title": "Kẻ Phán Xét Thầm Lặng",
+        "emoji": "🧛",
+        "description": "Bên ngoài tỏ ra bao dung 'sao cũng được', nhưng bên trong bạn đã thầm trừ điểm thanh lịch của đối phương từ lâu."
+      },
+      "emotionalDNA": {
+        "dominantEmotion": "Chênh vênh mạn tính",
+        "emotionalAge": "12 tuổi — Thỉnh thoảng vẫn chỉ muốn nằm ườn ăn vạ",
+        "healingStyle": "Chi tiêu vô độ để lấp đầy khoảng trống tâm hồn"
+      },
+      "compatibilityMap": {
+        "bestMatch": "Nhà Tổ Chức (để họ dọn dẹp đống lộn xộn của bạn)",
+        "bestMatchEmoji": "📋",
+        "worstMatch": "Kẻ Kiểm Soát (sẽ khiến bạn muốn bỏ trốn)",
+        "worstMatchEmoji": "⛓️"
+      },
+      "blindSpot": "Bạn nghĩ mình có thể làm mọi thứ vào 'ngày mai', nhưng sự thật là 'ngày mai' của bạn chưa bao giờ tới.",
+      "lifeMotto": "Mọi chuyện rồi sẽ ổn, nếu không ổn thì đi ngủ.",
+      "adviceFromAI": "Hãy bớt lướt điện thoại trước khi ngủ và bắt đầu thực hiện ít nhất MỘT điều trong to-do list đi nào!",
+      "hashtags": ["#PersonalityDNA", "#Overthinker", "#TrumTriHoan"]
+    }
   ]
 }

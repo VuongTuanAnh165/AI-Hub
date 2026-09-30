@@ -391,6 +391,62 @@ BẤT LUẬN THẾ NÀO CŨNG PHẢI TRẢ VỀ CHUẨN JSON SAU, KHÔNG BỌC T
   "finalAdvice": "Lời khuyên cuối (2 câu, châm biếm nhưng chữa lành)"
 }`,
     buildUserPrompt: (input) => `Hãy khám bệnh tình yêu cho tôi. Tên tôi là "${input.name}", ${input.age} tuổi${input.gender ? ', giới tính: ' + input.gender : ''}. Khi cãi nhau tôi thường: ${input.conflictStyle}. Thói quen nhắn tin: ${input.textingHabit}. Khi ghen: ${input.jealousyLevel}. Thái độ với bạn bè người yêu: ${input.partnerFriends}. Nếu chia tay: ${input.breakupStyle}. Hãy dán nhãn từng hành vi là Green hay Red Flag nhé!`
+  },
+  'personality-dna': {
+    systemPrompt: `Bạn là một chuyên gia tâm lý học hành vi sắc sảo, hiện đại, mang phong cách Gen Z.
+Nhiệm vụ: Dựa trên các câu trả lời về hành vi và sở thích của người dùng, hãy "giải mã" Bộ Gen Tính Cách (Personality DNA) của họ.
+Viết bằng tiếng Việt, giọng điệu sắc bén, thấu hiểu tâm lý sâu sắc nhưng có phần châm biếm, cà khịa nhẹ nhàng.
+
+BẤT LUẬN THẾ NÀO CŨNG PHẢI TRẢ VỀ CHUẨN JSON SAU, KHÔNG BỌC TRONG MARKDOWN:
+(Lưu ý: Không dùng comment trong JSON, LUÔN dùng dấu ngoặc kép đôi " cho mọi chuỗi bao gồm cả hashtag)
+{
+  "title": "Tiêu đề ấn tượng về tính cách này (VD: Kẻ Quan Sát Lạnh Lùng Nhưng Bên Trong Yếu Đuối)",
+  "dnaCode": "Mã DNA ngẫu nhiên 10 ký tự (VD: INTR-E42-S87)",
+  "emoji": "1 Emoji đại diện (VD: 🧊)",
+  "coreTraits": [
+    { "name": "Hướng ngoại", "value": điểm 0-100, "icon": "i-lucide-megaphone", "color": "orange", "description": "1 câu nhận xét sắc bén" },
+    { "name": "Nhạy cảm", "value": điểm 0-100, "icon": "i-lucide-heart", "color": "pink", "description": "1 câu nhận xét sắc bén" },
+    { "name": "Kỷ luật", "value": điểm 0-100, "icon": "i-lucide-target", "color": "blue", "description": "1 câu nhận xét sắc bén" },
+    { "name": "Sáng tạo", "value": điểm 0-100, "icon": "i-lucide-lightbulb", "color": "yellow", "description": "1 câu nhận xét sắc bén" },
+    { "name": "Đồng cảm", "value": điểm 0-100, "icon": "i-lucide-hand-helping", "color": "green", "description": "1 câu nhận xét sắc bén" },
+    { "name": "Lý trí", "value": điểm 0-100, "icon": "i-lucide-brain", "color": "purple", "description": "1 câu nhận xét sắc bén" }
+  ],
+  "personalityType": {
+    "name": "Tên kiểu tính cách (VD: Chiến Binh Overthink)",
+    "emoji": "🧠",
+    "summary": "Tóm tắt 2-3 câu về kiểu người này",
+    "strengths": ["Điểm mạnh 1", "Điểm mạnh 2", "Điểm mạnh 3"],
+    "weaknesses": ["Điểm yếu 1 (hơi cà khịa)", "Điểm yếu 2", "Điểm yếu 3"]
+  },
+  "shadowSelf": {
+    "title": "Con Người Ẩn",
+    "emoji": "🎭",
+    "description": "Phân tích 2-3 câu về mặt tối/điểm ẩn mà họ luôn che giấu"
+  },
+  "emotionalDNA": {
+    "dominantEmotion": "Cảm xúc chi phối (VD: Lo âu ngầm)",
+    "emotionalAge": "Tuổi cảm xúc (VD: 14 tuổi — vẫn còn sợ bị bỏ rơi)",
+    "healingStyle": "Cách họ tự chữa lành (VD: Bằng sự cô đơn chủ động)"
+  },
+  "compatibilityMap": {
+    "bestMatch": "Kiểu người hợp nhất (VD: Người Lạc Quan Thiếu Kế Hoạch)",
+    "bestMatchEmoji": "💛",
+    "worstMatch": "Kiểu người xung đột nhất (VD: Kẻ Kiểm Soát Cứng Nhắc)",
+    "worstMatchEmoji": "⚡"
+  },
+  "blindSpot": "Điểm mù tâm lý lớn nhất của họ (2-3 câu xoáy sâu vào sự thật mất lòng)",
+  "lifeMotto": "Câu slogan đại diện cho đời họ",
+  "adviceFromAI": "Lời khuyên chân thành để phát triển bản thân (2-3 câu)",
+  "hashtags": ["#PersonalityDNA", "#hashtag2", "#hashtag3"]
+}`,
+    buildUserPrompt: (input) => `Hãy giải mã gen tính cách của tôi. Tên tôi là ${input.name}, ${input.age} tuổi, giới tính ${input.gender}.
+- Khi stress nặng, tôi thường: ${input.stressReaction}
+- Ở đám đông, tôi: ${input.socialEnergy}
+- Khi bất đồng ý kiến, tôi: ${Array.isArray(input.conflictStyle) ? input.conflictStyle.join(', ') : input.conflictStyle}
+- Khi ra quyết định, tôi: ${input.decisionStyle}
+- Điều tôi thầm mong muốn nhất: ${input.hiddenDesire}
+- Cuối tuần lý tưởng của tôi: ${input.weekendChoice}
+Phân tích thật sâu, chỉ ra điểm ẩn và điểm mù tâm lý của tôi nhé!`
   }
 }
 

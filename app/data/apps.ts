@@ -48,6 +48,14 @@ const moodOptions = ['Tự tin rạng ngời', 'Suy vl', 'Cố tỏ ra ngầu', 
 const focusOptions = ['Tình duyên lận đận', 'Sự nghiệp & Tiền tài', 'Nghiệp chướng & Thị phi']
 const struggleOptions = ['Đang nợ nần', 'Đang thất nghiệp', 'Lụy tình', 'Overthink mỗi đêm', 'Mất phương hướng', 'Áp lực đồng trang lứa (Peer pressure)']
 const initiateOptions = ['Tôi chủ động', 'Crush chủ động', 'Cả hai', 'Chờ sung rụng']
+
+// Mới cho Personality DNA
+const stressOptions = ['Khóc lóc rồi ngủ', 'Ăn hết tủ lạnh', 'Lên MXH xả', 'Thu mình lại như rùa', 'Tìm ai đó nói chuyện', 'Làm việc gấp đôi để quên']
+const socialEnergyOptions = ['Là tâm điểm, nói không ngừng', 'Quan sát lặng lẽ rồi comment sắc bén', 'Tìm góc yên tĩnh ngồi lướt điện thoại', 'Chỉ nói khi có người hỏi', 'Tuỳ tâm trạng — lúc tràn năng lượng lúc muốn biến mất']
+const conflictOptions = ['Cãi tới cùng cho ra lẽ', 'Im lặng rồi cold war', 'Nhường cho xong chuyện', 'Phân tích logic đúng sai', 'Lảng tránh vì ghét drama']
+const decisionOptions = ['Theo bản năng/cảm xúc', 'Lập bảng so sánh Excel', 'Hỏi ý kiến 10 người rồi vẫn phân vân', 'Bốc đại, sai thì sửa sau', 'Trì hoãn đến phút cuối']
+const hiddenDesireOptions = ['Được công nhận và ngưỡng mộ', 'Yên ổn — không drama, không áp lực', 'Tự do tuyệt đối, không ai kiểm soát', 'Được yêu thương vô điều kiện', 'Quyền lực và ảnh hưởng', 'Hiểu rõ bản thân mình thực sự là ai']
+const weekendOptions = ['Nằm nhà xem phim/đọc sách cả ngày', 'Đi chơi với nhóm bạn', 'Khám phá nơi mới một mình', 'Ngủ bù đến 3h chiều', 'Làm side project hoặc học kỹ năng mới']
 const bloodTypeOptions = ['A', 'B', 'AB', 'O', 'Không rõ']
 const contactTimeOptions = ['Mới lướt qua đời nhau', 'Dưới 3 tháng', '3 - 6 tháng', 'Hơn 1 năm', 'Thanh mai trúc mã']
 const personalityOptions = ['Hướng nội (I)', 'Hướng ngoại (E)', 'Lúc nội lúc ngoại', 'Bất ổn tuỳ mood']
@@ -346,5 +354,25 @@ export const miniApps: MiniApp[] = [
       'Đang viết phiếu kiểm định...',
       'Kết quả sắp ra rồi...'
     ]
+  },
+  {
+    slug: 'personality-dna',
+    title: '🧬 Personality DNA',
+    description: 'Trả lời câu hỏi và nhận một bản đồ trực quan về các đặc điểm tính cách nổi bật, điểm mù và gen ẩn.',
+    icon: 'i-lucide-dna',
+    category: '🎭 Tính cách & Tâm lý',
+    badge: 'hot',
+    formFields: [
+      { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      { key: 'age', label: 'Tuổi', placeholder: 'VD: 25', type: 'text' },
+      { key: 'gender', label: 'Giới tính', type: 'select', options: genderOptions },
+      { key: 'stressReaction', label: 'Khi bạn stress nặng, bạn thường...', type: 'select', options: stressOptions, allowOther: true },
+      { key: 'socialEnergy', label: 'Ở giữa đám đông, bạn thường...', type: 'select', options: socialEnergyOptions, allowOther: true },
+      { key: 'conflictStyle', label: 'Khi bất đồng ý kiến, bạn...', type: 'select', options: conflictOptions, allowOther: true, multiple: true },
+      { key: 'decisionStyle', label: 'Khi phải chọn quyết định lớn, bạn...', type: 'select', options: decisionOptions, allowOther: true },
+      { key: 'hiddenDesire', label: 'Điều bạn thầm mong muốn nhất?', type: 'select', options: hiddenDesireOptions, allowOther: true },
+      { key: 'weekendChoice', label: 'Một ngày cuối tuần lý tưởng?', type: 'select', options: weekendOptions, allowOther: true }
+    ],
+    loadingTexts: ['Đang giải mã gen...', 'Phân tích tần sóng não...', 'Đọc thấu tâm can...']
   }
 ]

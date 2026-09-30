@@ -16,6 +16,7 @@ import FutureLoverResult from '~/components/results/FutureLoverResult.vue'
 import RedFlagResult from '~/components/results/RedFlagResult.vue'
 import SocialScoreResult from '~/components/results/SocialScoreResult.vue'
 import AceCardResult from '~/components/results/AceCardResult.vue'
+import PersonalityDNAResult from '~/components/results/PersonalityDNAResult.vue'
 import ResultCardWrapper from '~/components/results/ResultCardWrapper.vue'
 
 const route = useRoute()
@@ -261,6 +262,7 @@ const shareUrl = computed(() => {
         <RedFlagResult v-else-if="slug === 'red-flag-green-flag'" :result="result" />
         <SocialScoreResult v-else-if="slug === 'cham-anh-social'" :result="result" />
         <AceCardResult v-else-if="slug === 'at-chu-bai'" :result="result" />
+        <PersonalityDNAResult v-else-if="slug === 'personality-dna'" :result="result" />
       </ResultCardWrapper>
       <p class="text-dimmed text-xs mt-6 text-center">
         ⚠️ Kết quả chỉ mang tính chất giải trí. Không có giá trị khoa học.
