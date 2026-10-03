@@ -61,7 +61,13 @@ const formData = reactive<Record<string, any>>({
   relationship: '', userPhoto: '', crushPhoto: '', photo: '', gender: '',
   birthTime: '', financeStatus: '', loveStatus: '', socialPlatform: '',
   platformPurpose: '', badHabit: [], mood: '', focus: '', struggle: [],
-  currentAsset: '', whoInitiates: '', bloodType: '', contactTime: ''
+  currentAsset: '', whoInitiates: '', bloodType: '', contactTime: '',
+  // Duo Match expanded fields
+  personalityDetail1: '', personalityDetail2: '',
+  loveLanguage1: '', loveLanguage2: '',
+  stressReaction1: '', stressReaction2: '',
+  financePerspective: '', familyImportance: '', futureVision: '',
+  intimacyStyle: '', childrenView: ''
 })
 
 function getFieldOptions(field: any) {

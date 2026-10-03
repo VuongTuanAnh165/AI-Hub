@@ -65,6 +65,12 @@ const howMetOptions = ['Bạn bè giới thiệu', 'Cùng trường/công ty', '
 const durationOptions = ['Chưa quen (mới biết mặt)', 'Dưới 1 tháng', '1-6 tháng', '6-12 tháng', '1-3 năm', 'Trên 3 năm', 'Thanh mai trúc mã']
 const conflictDuoOptions = ['Cãi nhau to rồi làm hoà', 'Cold war im lặng cả tuần', 'Một người nhường cho xong', 'Ngồi nói chuyện nghiêm túc', 'Gọi bạn bè vào phân xử']
 const personalityOptions = ['Hướng nội (I)', 'Hướng ngoại (E)', 'Lúc nội lúc ngoại', 'Bất ổn tuỳ mood']
+const personalityDetailOptions = ['Nhạy cảm, dễ xúc động', 'Lý trí, logic là trên hết', 'Quyết đoán, thích dẫn đầu', 'Hiền lành, hay nhường nhịn', 'Nóng tính nhưng mau hết giận', 'Lạnh lùng nhưng tình cảm bên trong', 'Hài hước, vô tư lạc quan', 'Cầu toàn, hay lo xa']
+const financePerspectiveOptions = ['Cùng tiết kiệm, cùng đầu tư', 'Ai xài tiền nấy, không can thiệp', 'Một người kiếm, một người quản', 'Cả hai đều xài không nghĩ', 'Hay mâu thuẫn về tiền bạc', 'Chưa bao giờ bàn về tiền']
+const familyImportanceOptions = ['Gia đình là số 1, ý kiến bố mẹ rất quan trọng', 'Coi trọng nhưng vẫn tự quyết', 'Độc lập hoàn toàn, ít phụ thuộc gia đình', 'Hai bên gia đình có nhiều khác biệt', 'Chưa ra mắt / chưa tiếp xúc gia đình']
+const futureVisionOptions = ['Cùng lên kế hoạch rõ ràng', 'Sống cho hiện tại, tương lai tính sau', 'Mỗi người mỗi hướng nhưng vẫn cố', 'Chưa bao giờ bàn về tương lai', 'Một người muốn ổn định, người kia thích tự do']
+const intimacyStyleOptions = ['Dính nhau 24/7, rất gần gũi', 'Cần không gian riêng nhưng vẫn thân mật', 'Ít thể hiện tình cảm bên ngoài', 'Một người cần nhiều hơn người kia', 'Chưa tới giai đoạn đó']
+const childrenViewOptions = ['Cả hai đều muốn có con', 'Cả hai đều không muốn', 'Chưa bàn tới', 'Một người muốn, một người chưa chắc', 'Đã có con chung/riêng']
 const hobbyOptions = ['Lướt TikTok', 'Ngủ nướng', 'Ăn vặt', 'Tập gym', 'Chơi game', 'Shopping', 'Đọc sách', 'Chill nhạc', 'Gossip']
 const sleepHabitOptions = ['Ngủ sớm dậy sớm', 'Cú đêm', 'Ngủ bất cứ lúc nào', 'Mất ngủ triền miên']
 const socialStyleOptions = ['Nói nhiều hơn nghĩ', 'Nghĩ nhiều hơn nói', 'Im lặng là vàng', 'Drama Queen']
@@ -384,28 +390,44 @@ export const miniApps: MiniApp[] = [
   {
     slug: 'do-hop-doi',
     title: '💞 AI Độ Hợp Đôi',
-    description: 'Báo cáo tương thích toàn diện cho bất kỳ mối quan hệ nào: Tình yêu, tình bạn, hay oan gia ngõ hẹp.',
+    description: 'Báo cáo tương thích toàn diện 15 phương diện cho bất kỳ mối quan hệ nào: Tình yêu, tình bạn, hay oan gia ngõ hẹp.',
     icon: 'i-lucide-git-merge',
     category: '💘 Tình yêu & Mối quan hệ',
     badge: 'hot',
     formFields: [
-      { key: 'name1', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      // ═══ NHÓM 1: THÔNG TIN NGƯỜI 1 ═══
+      { key: 'name1', label: '👤 Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
       { key: 'birthday1', label: 'Ngày sinh của bạn', type: 'date' },
       { key: 'gender1', label: 'Giới tính của bạn', type: 'select', options: genderOptions },
-      { key: 'personality1', label: 'Tính cách nổi bật của bạn', type: 'select', options: personalityOptions, allowOther: true },
-      { key: 'photo1', label: 'Ảnh của bạn (Tuỳ chọn - để soi tướng phu thê)', type: 'image', optional: true },
-      { key: 'name2', label: 'Tên đối phương', placeholder: 'VD: Hoàng Nam', type: 'text' },
+      { key: 'personality1', label: 'Xu hướng tính cách của bạn', type: 'select', options: personalityOptions, allowOther: true },
+      { key: 'personalityDetail1', label: 'Mô tả chi tiết hơn tính cách bạn', type: 'select', options: personalityDetailOptions, allowOther: true },
+      { key: 'loveLanguage1', label: 'Ngôn ngữ tình yêu của bạn', type: 'select', options: loveLanguageOptions, allowOther: true },
+      { key: 'stressReaction1', label: 'Khi stress nặng, bạn thường...', type: 'select', options: stressOptions, allowOther: true },
+      { key: 'photo1', label: 'Ảnh của bạn (Tuỳ chọn — để soi tướng phu thê)', type: 'image', optional: true },
+
+      // ═══ NHÓM 2: THÔNG TIN NGƯỜI 2 ═══
+      { key: 'name2', label: '👥 Tên đối phương', placeholder: 'VD: Hoàng Nam', type: 'text' },
       { key: 'birthday2', label: 'Ngày sinh đối phương', type: 'date' },
       { key: 'gender2', label: 'Giới tính đối phương', type: 'select', options: genderOptions },
-      { key: 'personality2', label: 'Tính cách nổi bật của họ', type: 'select', options: personalityOptions, allowOther: true },
+      { key: 'personality2', label: 'Xu hướng tính cách của họ', type: 'select', options: personalityOptions, allowOther: true },
+      { key: 'personalityDetail2', label: 'Mô tả chi tiết hơn tính cách họ', type: 'select', options: personalityDetailOptions, allowOther: true, optional: true },
+      { key: 'loveLanguage2', label: 'Ngôn ngữ tình yêu của họ (nếu biết)', type: 'select', options: loveLanguageOptions, allowOther: true, optional: true },
+      { key: 'stressReaction2', label: 'Khi họ stress, họ thường... (nếu biết)', type: 'select', options: stressOptions, allowOther: true, optional: true },
       { key: 'photo2', label: 'Ảnh đối phương (Tuỳ chọn)', type: 'image', optional: true },
-      { key: 'relationshipType', label: 'Mối quan hệ hiện tại', type: 'select', options: relationshipTypeOptions, allowOther: true },
+
+      // ═══ NHÓM 3: MỐI QUAN HỆ ═══
+      { key: 'relationshipType', label: '🔗 Mối quan hệ hiện tại', type: 'select', options: relationshipTypeOptions, allowOther: true },
       { key: 'howMet', label: 'Hai người quen nhau bằng cách nào?', type: 'select', options: howMetOptions, allowOther: true },
       { key: 'duration', label: 'Đã quen nhau bao lâu?', type: 'select', options: durationOptions, allowOther: true },
       { key: 'conflictStyle', label: 'Khi xảy ra bất đồng, cả hai thường...', type: 'select', options: conflictDuoOptions, allowOther: true },
+      { key: 'financePerspective', label: 'Quan điểm tài chính của cả hai', type: 'select', options: financePerspectiveOptions, allowOther: true, optional: true },
+      { key: 'familyImportance', label: 'Mức độ coi trọng gia đình', type: 'select', options: familyImportanceOptions, allowOther: true, optional: true },
+      { key: 'futureVision', label: 'Tầm nhìn tương lai chung', type: 'select', options: futureVisionOptions, allowOther: true, optional: true },
+      { key: 'intimacyStyle', label: 'Mức độ gần gũi / thân mật', type: 'select', options: intimacyStyleOptions, allowOther: true, optional: true },
+      { key: 'childrenView', label: 'Quan điểm về con cái', type: 'select', options: childrenViewOptions, allowOther: true, optional: true },
       { key: 'admire', label: 'Điều bạn thích / ngưỡng mộ nhất ở họ?', placeholder: 'VD: Cười duyên, sống có trách nhiệm...', type: 'text' },
       { key: 'annoy', label: 'Điều khiến bạn khó chịu nhất ở họ?', placeholder: 'VD: Hay trễ hẹn, ít nói...', type: 'text' }
     ],
-    loadingTexts: ['Đang tính toán thiên can địa chi...', 'Phân tích tần số năng lượng...', 'Đo lường độ chịu đựng...', 'Đang dự đoán tương lai...']
+    loadingTexts: ['Đang tính toán thiên can địa chi...', 'Đang soi ngũ hành sinh khắc...', 'Phân tích 15 phương diện tương thích...', 'Đang đo lường độ chịu đựng lẫn nhau...', 'Đang giải mã cung Phu Thê...', 'Đang dự đoán tương lai mối quan hệ...']
   }
 ]

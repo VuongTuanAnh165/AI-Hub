@@ -527,59 +527,100 @@
       "overallScore": 85,
       "verdict": "Oan gia ngõ hẹp nhưng không thể sống thiếu nhau",
       "compatibilityBreakdown": [
-        { "name": "Tính cách", "score": 90, "icon": "i-lucide-brain", "color": "purple", "comment": "Hai thỏi nam châm trái dấu hút nhau cực mạnh." },
-        { "name": "Giao tiếp", "score": 60, "icon": "i-lucide-message-circle", "color": "blue", "comment": "Nói chuyện 3 câu là cãi nhau, nhưng vẫn thích nói." },
-        { "name": "Tình cảm & Lãng mạn", "score": 95, "icon": "i-lucide-heart", "color": "pink", "comment": "Khi đã ngọt ngào thì tiểu đường luôn." },
-        { "name": "Xử lý xung đột", "score": 40, "icon": "i-lucide-swords", "color": "red", "comment": "Cả hai đều cái tôi cao chót vót, không ai nhường ai." },
-        { "name": "Giá trị sống & Tương lai", "score": 80, "icon": "i-lucide-rocket", "color": "green", "comment": "Mục tiêu chung hướng thì đi rất nhanh." }
+        { "name": "Tính cách & Bản chất", "score": 90, "icon": "i-lucide-brain", "color": "purple", "comment": "Hai thỏi nam châm trái dấu hút nhau cực mạnh. Một người sống theo trực giác và cảm xúc, người kia lại dựa vào logic và thực tế. Sự khác biệt này tạo ra sức hấp dẫn ban đầu rất lớn, nhưng về lâu dài sẽ cần cả hai học cách tôn trọng góc nhìn của đối phương." },
+        { "name": "Cảm xúc & Nhu cầu tình cảm", "score": 88, "icon": "i-lucide-heart", "color": "pink", "comment": "Cả hai đều rất tình cảm theo cách riêng. Người 1 thích được lắng nghe và chia sẻ cảm xúc sâu sắc, Người 2 lại thể hiện tình yêu qua hành động cụ thể như nấu ăn, mua quà. Nếu cả hai hiểu được ngôn ngữ tình yêu của nhau thì sẽ cực kỳ ngọt ngào." },
+        { "name": "Giao tiếp", "score": 60, "icon": "i-lucide-message-circle", "color": "blue", "comment": "Nói chuyện 3 câu là cãi nhau, nhưng vẫn thích nói. Người 1 muốn bàn sâu vấn đề nhưng Người 2 thường chốt nhanh rồi đi làm việc khác. Sự chênh lệch tốc độ xử lý cảm xúc qua lời nói dễ dẫn tới hiểu lầm." },
+        { "name": "Sức hút & Chemistry", "score": 95, "icon": "i-lucide-flame", "color": "orange", "comment": "Chemistry giữa hai người cực kỳ mãnh liệt. Sự bí ẩn của cung Bọ Cạp kết hợp với sự vững chãi quyến rũ của Kim Ngưu tạo nên một lực hút khó cưỡng. Khi ở cạnh nhau, không khí luôn có một thứ điện trường vô hình." },
+        { "name": "Nhu cầu trong tình yêu", "score": 72, "icon": "i-lucide-heart-handshake", "color": "rose", "comment": "Người 1 cần sự chú ý và thời gian chất lượng nhiều hơn Người 2 có thể cung cấp. Người 2 lại cần không gian cá nhân để nạp năng lượng. Sự chênh lệch này dễ gây cảm giác 'yêu không đủ' cho Người 1 và 'nghẹt thở' cho Người 2." },
+        { "name": "Xung đột & Cách giải quyết", "score": 40, "icon": "i-lucide-swords", "color": "red", "comment": "Đây là điểm yếu lớn nhất. Cả hai đều cái tôi cao chót vót và không ai chịu nhường ai. Người 1 muốn nói cho ra lẽ, Người 2 lại chọn im lặng — sự im lặng đó khiến Người 1 càng phát điên hơn. Vòng lặp cãi nhau → cold war → làm hòa → cãi nhau có thể lặp lại mãi nếu không học cách xử lý." },
+        { "name": "Giá trị sống & Quan điểm", "score": 80, "icon": "i-lucide-compass", "color": "teal", "comment": "Cả hai đều coi trọng sự trung thành và cam kết trong mối quan hệ. Tuy nhiên, định nghĩa về 'tự do' và 'trách nhiệm' có thể khác nhau. Người 1 nghiêng về tự do cảm xúc, Người 2 nghiêng về ổn định tài chính." },
+        { "name": "Tiền bạc & Tài chính", "score": 70, "icon": "i-lucide-coins", "color": "yellow", "comment": "Người 2 thực tế trong quản lý tài chính, trong khi Người 1 thiên về chi tiêu theo cảm xúc. Nếu Người 2 quản lý tài chính chung thì sẽ ổn, nhưng Người 1 có thể cảm thấy bị kiểm soát. Cần thỏa thuận rõ ràng về 'quỹ cá nhân' cho mỗi người." },
+        { "name": "Sự nghiệp & Tương lai", "score": 82, "icon": "i-lucide-briefcase", "color": "indigo", "comment": "Cả hai đều có tham vọng riêng và có khả năng hỗ trợ nhau trong sự nghiệp. Người 2 mang đến sự ổn định và tính thực tế, Người 1 mang đến tầm nhìn và cảm hứng sáng tạo. Mục tiêu chung hướng thì đi rất nhanh." },
+        { "name": "Gia đình & Nội ngoại", "score": 65, "icon": "i-lucide-home", "color": "amber", "comment": "Hai bên gia đình có thể có nhiều khác biệt về quan điểm và lối sống. Người 2 có xu hướng coi trọng ý kiến gia đình hơn, trong khi Người 1 muốn tự quyết. Cần nhiều thời gian để hai bên gia đình hòa hợp." },
+        { "name": "Con cái & Nuôi dạy", "score": 78, "icon": "i-lucide-baby", "color": "sky", "comment": "Cả hai đều đồng ý về việc muốn có con, nhưng quan điểm giáo dục có thể khác nhau. Người 1 thiên về nuôi dạy tự do, Người 2 thích kỷ luật và quy tắc. Sự kết hợp này có thể tốt nếu biết cân bằng." },
+        { "name": "Đời sống thân mật", "score": 92, "icon": "i-lucide-moon", "color": "violet", "comment": "Đây là điểm mạnh nổi bật. Chemistry mãnh liệt giữa Bọ Cạp và Kim Ngưu tạo nên sự hòa hợp đặc biệt. Cả hai đều coi trọng sự gần gũi thể chất như một cách thể hiện tình yêu. Khi đã ngọt ngào thì tiểu đường luôn." },
+        { "name": "Khả năng cùng phát triển", "score": 85, "icon": "i-lucide-sprout", "color": "emerald", "comment": "Người 2 giúp Người 1 thực tế hơn và biết cách đặt chân trên mặt đất. Ngược lại, Người 1 giúp Người 2 mở rộng tầm nhìn và dám mơ lớn hơn. Nếu cả hai sẵn sàng học hỏi từ nhau, đây sẽ là mối quan hệ giúp cả hai trưởng thành vượt bậc." },
+        { "name": "Độ bền lâu dài", "score": 72, "icon": "i-lucide-hourglass", "color": "slate", "comment": "Hợp khi yêu nhưng sống chung sẽ có nhiều thử thách. Sự khác biệt trong cách xử lý xung đột là rào cản lớn nhất. Nếu vượt qua được 2-3 năm đầu, mối quan hệ sẽ rất bền vì cả hai đã học cách chịu đựng và thấu hiểu nhau." },
+        { "name": "Bổ trợ & Điểm va chạm", "score": 75, "icon": "i-lucide-puzzle", "color": "cyan", "comment": "Bù trừ tuyệt vời ở nhiều mặt: cảm xúc bù lý trí, mơ mộng bù thực tế, linh hoạt bù kiên định. Nhưng chính sự khác biệt đó cũng là nguồn gốc va chạm. Điểm va chạm lớn nhất: tốc độ xử lý cảm xúc và nhu cầu giao tiếp khác nhau." }
       ],
       "personAnalysis": {
         "person1": {
           "title": "Chiến Binh Cảm Xúc",
           "emoji": "🎭",
-          "zodiacSign": "Thiên Yết",
+          "zodiacSign": "Thiên Yết ♏",
           "chineseZodiac": "Rồng Hoả 🐉🔥",
           "lifePath": "Số 7 — Kẻ Tìm Kiếm Sự Thật",
-          "traits": ["Nhạy cảm", "Nhớ dai thù vặt", "Yêu hết mình"],
-          "loveLanguage": "Dành thời gian chất lượng",
-          "blindSpot": "Quá tin vào trực giác cá nhân mà bỏ qua logic thực tế."
+          "yinYang": "Âm — Năng lượng hướng nội, trầm lắng nhưng mãnh liệt bên trong",
+          "element": "Thuỷ 💧 — Sâu sắc, linh hoạt, dễ thích nghi nhưng cũng dễ cuốn trôi mọi thứ",
+          "traits": ["Nhạy cảm", "Nhớ dai thù vặt", "Yêu hết mình", "Trực giác mạnh", "Hay overthink"],
+          "loveLanguage": "Dành thời gian chất lượng — Cần được đối phương hiện diện cả thể chất lẫn tinh thần, không phải ngồi cạnh mà lướt điện thoại",
+          "attachmentStyle": "Anxious (Lo lắng) — Có xu hướng cần sự xác nhận liên tục từ đối phương, dễ overthink khi không nhận được phản hồi",
+          "lovePattern": "Yêu rất mãnh liệt và toàn tâm toàn ý. Khi đã yêu thì sẵn sàng hy sinh mọi thứ nhưng cũng đòi hỏi sự đáp lại tương xứng. Có xu hướng kiểm soát mối quan hệ thông qua cảm xúc và dễ bị tổn thương khi cảm thấy không được coi trọng.",
+          "blindSpot": "Quá tin vào trực giác cá nhân mà bỏ qua logic thực tế. Có xu hướng đọc quá nhiều ý nghĩa vào những hành động nhỏ của đối phương, biến chuyện không có gì thành drama. Đôi khi sự nhạy cảm quá mức lại khiến người bên cạnh mệt mỏi vì phải đi nhón chân."
         },
         "person2": {
           "title": "Tảng Băng Trôi Khó Hiểu",
           "emoji": "🧊",
-          "zodiacSign": "Kim Ngưu",
+          "zodiacSign": "Kim Ngưu ♉",
           "chineseZodiac": "Trâu Đất 🐃🌍",
           "lifePath": "Số 4 — Kẻ Kiến Tạo Sự Ổn Định",
-          "traits": ["Cứng đầu", "Thực tế", "Thích ăn ngon"],
-          "loveLanguage": "Hành động chăm sóc (Nấu ăn, mua đồ)",
-          "blindSpot": "Tưởng mình im lặng là bao dung, thực ra đối phương phát điên vì sự vô tâm đó."
+          "yinYang": "Âm — Ổn định, kiên nhẫn, chậm rãi nhưng vững chãi",
+          "element": "Thổ 🌍 — Đáng tin cậy, bền bỉ, nhưng đôi khi cứng nhắc và khó thay đổi",
+          "traits": ["Cứng đầu", "Thực tế", "Thích ăn ngon", "Trung thành tuyệt đối", "Ít nói nhưng làm nhiều"],
+          "loveLanguage": "Hành động chăm sóc — Thay vì nói 'anh yêu em' thì sẽ nấu cho bạn bát phở nóng lúc 2h sáng, hoặc lặng lẽ sửa cái vòi nước bị hỏng",
+          "attachmentStyle": "Avoidant (Né tránh) — Có xu hướng rút lui khi cảm thấy áp lực cảm xúc, cần thời gian và không gian riêng để xử lý",
+          "lovePattern": "Yêu chậm nhưng yêu bền. Không phải kiểu tỏ tình lãng mạn hoa mỹ nhưng sẽ luôn ở đó khi bạn cần. Thể hiện tình yêu qua sự chăm sóc thực tế hơn là lời nói, và có xu hướng coi mối quan hệ là một dự án dài hạn cần được đầu tư nghiêm túc.",
+          "blindSpot": "Tưởng mình im lặng là bao dung, thực ra đối phương phát điên vì sự vô tâm đó. Hay nghĩ rằng 'không nói gì = không có vấn đề gì', trong khi sự im lặng đang tích tụ bực tức cho cả hai. Cần học cách mở lời trước thay vì đợi mọi thứ tự giải quyết."
         }
       },
-      "dynamicAnalysis": "Một người lúc nào cũng rực lửa và đòi hỏi sự kết nối sâu sắc, một người lại lỳ lợm, thực tế và ít bộc lộ. Cán cân quyền lực liên tục đảo chiều vì cả hai đều bướng. Người 1 ngưỡng mộ sự ổn định của Người 2, nhưng lại phát điên vì sự cứng nhắc đó.",
+      "dynamicAnalysis": "Một người lúc nào cũng rực lửa và đòi hỏi sự kết nối sâu sắc, một người lại lỳ lợm, thực tế và ít bộc lộ. Cán cân quyền lực liên tục đảo chiều vì cả hai đều bướng: Người 1 dẫn dắt bằng cảm xúc, Người 2 dẫn dắt bằng sự im lặng chiến lược. Điều Người 1 ngưỡng mộ — sự ổn định của Người 2 — chính là thứ họ thiếu. Và điều họ khó chịu — sự cứng nhắc — lại là biểu hiện của cùng một đặc tính đó. Kiểu gắn bó Anxious (Người 1) gặp Avoidant (Người 2) tạo ra vòng lặp đuổi-trốn kinh điển: càng đuổi càng trốn, càng trốn càng đuổi.",
+      "sixBigQuestions": {
+        "attraction": "Sức hút giữa hai người là rất lớn. Bọ Cạp và Kim Ngưu đối cung nhau trên vòng hoàng đạo — đây là kiểu hút nhau cực mạnh như hai cực nam châm. Thuỷ (Bọ Cạp) gặp Thổ (Kim Ngưu) tạo nên sự kết hợp màu mỡ. Năng lượng bí ẩn, sâu thẳm của Bọ Cạp rất thu hút Kim Ngưu vốn thích những gì bền vững và có chiều sâu.",
+        "understanding": "Về mặt cảm xúc, hai người có thể hiểu nhau ở mức trung bình. Người 1 rất cần được lắng nghe và đồng cảm, trong khi Người 2 lại thiên về giải quyết vấn đề hơn là chia sẻ cảm xúc. Ngôn ngữ tình yêu khác nhau (thời gian vs hành động) khiến đôi khi cả hai cảm thấy yêu thương mình bỏ ra không được đón nhận. Tuy nhiên, nếu học được cách 'dịch' ngôn ngữ tình yêu của nhau, mức độ thấu hiểu sẽ tăng đáng kể.",
+        "cohabitation": "Sống chung được, nhưng cần thời gian thích nghi. Người 2 thích ngăn nắp, có lịch trình rõ ràng, trong khi Người 1 sống theo cảm hứng hơn. Quan điểm tài chính có thể là nguồn gốc bất đồng nếu không thỏa thuận rõ ràng từ đầu. Điểm cộng là cả hai đều coi trọng không gian riêng tư của gia đình.",
+        "sharedFuture": "Về dài hạn, cả hai có chung tham vọng xây dựng cuộc sống ổn định. Tuy nhiên, 'ổn định' trong mắt mỗi người có thể khác nhau: Người 1 cần ổn định cảm xúc, Người 2 cần ổn định tài chính. Nếu cả hai ngồi lại và vẽ ra bức tranh tương lai chung cụ thể, họ sẽ thấy mình cùng hướng hơn mình nghĩ.",
+        "resilience": "Đây là điểm cần cải thiện nhất. Kiểu xử lý xung đột 'một người cãi, một người im' sẽ không bền vững. Tuy nhiên, sự trung thành sâu sắc của cả hai (Bọ Cạp và Kim Ngưu đều nổi tiếng trung thành) là nền tảng vững chắc để vượt qua khó khăn. Nếu học được cách 'cãi nhau lành mạnh', cặp đôi này có thể vượt qua mọi bão giông.",
+        "longevity": "Tiềm năng bền lâu rất cao nếu vượt qua được 2-3 năm đầu. Bọ Cạp-Kim Ngưu là một trong những cặp đối cung có khả năng đi đường dài nhất trong chiêm tinh học, vì cả hai đều coi trọng sự cam kết. Thử thách lớn nhất là giai đoạn quyền lực — khi cả hai đều muốn kiểm soát mối quan hệ theo cách riêng. Vượt qua giai đoạn đó, mối quan hệ sẽ ngày càng sâu sắc và bền vững."
+      },
       "cosmicAnalysis": {
-        "zodiacMatch": "Nước (Bọ Cạp) tưới Đất (Kim Ngưu) — Rất hợp để trồng trọt, nhưng đôi khi thành bùn lầy.",
-        "zodiacElement": "💧 × 🌍 = Bùn Lầy Nhão Nhoẹt (Nhưng màu mỡ)",
-        "chineseZodiacMatch": "Rồng gặp Trâu: Cả hai đều có sừng và thích húc nhau.",
-        "numerologyInsight": "Số 7 tâm linh bay bổng gặp Số 4 thực tế đo đất. Khác biệt nhưng bù trừ hoàn hảo.",
-        "ageGapVerdict": "Cách nhau 2 tuổi: Vừa đủ để làm nũng, vừa đủ để làm bạn."
+        "zodiacMatch": "Bọ Cạp và Kim Ngưu là cặp ĐỐI CUNG trên vòng hoàng đạo — đây là kiểu hợp mạnh nhất nhưng cũng thử thách nhất. Như hai mặt của một đồng xu, họ phản chiếu những gì đối phương thiếu. Nước (Bọ Cạp) tưới Đất (Kim Ngưu) tạo nên mảnh đất màu mỡ — rất hợp để 'trồng trọt' một mối quan hệ bền vững.",
+        "zodiacElement": "💧 Thuỷ × 🌍 Thổ = Bùn Lầy Nhão Nhoẹt (Nhưng Màu Mỡ). Thuỷ nuôi dưỡng Thổ nhưng quá nhiều nước sẽ biến đất thành bùn.",
+        "chineseZodiacMatch": "Rồng (Thìn) gặp Trâu (Sửu): Theo Lục Xung thì Thìn-Sửu không xung trực tiếp, nhưng trong Tam Hợp Thổ, Sửu thuộc bộ Tỵ-Dậu-Sửu, còn Thìn thuộc bộ Thân-Tý-Thìn. Hai bộ khác nhau nên không có lực hợp mạnh tự nhiên. Cả hai đều có sừng và thích 'húc' nhau — cần ai đó chịu nhường trước.",
+        "wuxingAnalysis": "Người 1 mệnh Thuỷ, Người 2 mệnh Thổ. Theo ngũ hành, Thổ KHẮC Thuỷ (đất đắp đê chặn nước). Điều này nghĩa là Người 2 có xu hướng 'kiểm soát' hoặc 'kìm hãm' Người 1 một cách tự nhiên. Tuy nhiên, nếu Thuỷ đủ mạnh thì có thể xói mòn Thổ — tức Người 1 có khả năng thay đổi Người 2 qua thời gian bằng sự kiên trì.",
+        "yinYangBalance": "Cả hai đều mang năng lượng Âm — tức là cặp đôi Âm-Âm. Ưu điểm: Cả hai đều biết lắng nghe, không quá ồn ào. Nhược điểm: Thiếu năng lượng Dương dẫn dắt có thể khiến mối quan hệ trì trệ, thiếu quyết đoán khi cần ra quyết định lớn.",
+        "numerologyInsight": "Số 7 (Người 1) — Kẻ tìm kiếm sự thật, trực giác mạnh, thiên về tâm linh. Số 4 (Người 2) — Kẻ xây dựng, thực tế, kỷ luật. Số 7 và Số 4 cộng lại = 11, một Master Number trong thần số học, tượng trưng cho sự giác ngộ và trực giác cao. Khi hai người kết hợp, họ có tiềm năng tạo ra điều phi thường nếu vượt qua được sự khác biệt bề mặt.",
+        "ageGapVerdict": "Cách nhau 2 tuổi: Khoảng cách lý tưởng. Vừa đủ để tạo chút chênh lệch trải nghiệm sống, vừa đủ gần để cùng thế hệ và hiểu nhau. Không có rào cản tuổi tác đáng kể.",
+        "marriagePalace": "Dựa trên phân tích cung Phu Thê, Người 1 (Bọ Cạp/Rồng Hoả) có xu hướng hôn nhân muộn — cần tìm đúng người mới chịu cam kết. Người 2 (Kim Ngưu/Trâu Đất) lại nghiêng về ổn định sớm. Nếu cả hai gặp nhau đúng thời điểm, hôn nhân có nền tảng vững chắc nhưng sẽ trải qua ít nhất 1-2 biến cố lớn trước khi thực sự ổn định.",
+        "financialHarmony": "Khi kết đôi, tài lộc khá thuận lợi. Người 2 (Thổ) tạo nền tảng tài chính vững, Người 1 (Thuỷ) mang đến sự linh hoạt trong đầu tư. Tuy nhiên cần cẩn thận với xung đột Thổ-Thuỷ trong quản lý chi tiêu hàng ngày.",
+        "destinyPhases": "Giai đoạn thuận lợi nhất: Năm Tý, năm Thân (Thuỷ-Kim tương sinh hỗ trợ cả hai). Giai đoạn cần cẩn thận: Năm Mùi, năm Tuất (Thổ vượng khắc Thuỷ, Người 1 dễ gặp áp lực). Cứ khoảng 3-4 năm sẽ có một chu kỳ thử thách, nhưng sau mỗi lần vượt qua, mối quan hệ lại mạnh mẽ hơn."
       },
       "timeline": {
-        "past": "Bắt đầu bằng sự tò mò về sự khác biệt của đối phương.",
-        "present": "Đang trong giai đoạn thử thách cái tôi của nhau.",
-        "future": "Vượt qua được rào cản cái tôi thì cưới, không thì thành vết thương lòng khó phai."
+        "honeymoon": "Giai đoạn đầu đầy mê đắm và khám phá. Sức hút đối cung Bọ Cạp-Kim Ngưu tạo cảm giác 'tìm được nửa kia đời mình'. Cả hai sẽ dành hàng giờ nói chuyện, khám phá thế giới nội tâm của nhau.",
+        "powerStruggle": "Sau 6-12 tháng, khi bức màn lãng mạn vén lên, cuộc chiến quyền lực bắt đầu. Người 1 muốn kiểm soát bằng cảm xúc, Người 2 kiểm soát bằng sự im lặng. Đây là giai đoạn quyết định sống còn.",
+        "stability": "Nếu vượt qua giai đoạn thử thách, mối quan hệ bước vào pha ổn định vững chãi. Cả hai đã hiểu ranh giới của nhau và biết cách 'cãi nhau đúng cách'. Đây là lúc mối quan hệ thực sự bắt đầu.",
+        "deepening": "Giai đoạn này có thể đi theo 2 hướng: thăng hoa khi cả hai cùng trưởng thành và mở lòng hơn, hoặc suy thoái khi sự nhàm chán và lối mòn xuất hiện. Bước ngoặt phụ thuộc vào việc cả hai có tiếp tục đầu tư vào mối quan hệ không.",
+        "longTerm": "Về dài hạn 5-10 năm, nếu cả hai đã vượt qua các thử thách, đây sẽ là một mối quan hệ cực kỳ bền vững. Kim Ngưu và Bọ Cạp đều là cung cố định — khi đã cam kết thì hiếm khi bỏ cuộc. Mối quan hệ sẽ ngày càng sâu sắc, ít drama hơn và nhiều thấu hiểu hơn."
       },
-      "bestScenario": "Cùng nhau xây dựng một gia đình vững chãi, nơi Đất làm nền móng và Nước tưới mát tâm hồn.",
-      "worstScenario": "Cãi nhau to, không ai xin lỗi trước, chiến tranh lạnh đến lúc người kia có người mới.",
-      "greenFlags": ["Cực kỳ trung thành với nhau", "Biết chăm sóc đối phương bằng hành động", "Luôn bảo vệ nhau trước người ngoài"],
-      "redFlags": ["Cái tôi quá cao", "Hay chiến tranh lạnh thay vì giải quyết", "Thích móc mỉa lỗi lầm trong quá khứ"],
-      "productLabel": "⚠️ SẢN PHẨM DỄ CHÁY NỔ. Yêu cầu bảo quản nơi thoáng mát, tránh xa cãi vã. Hạn sử dụng: Tuỳ thuộc vào việc ai chịu xuống nước trước.",
+      "scenarios": {
+        "best": "Cùng nhau xây dựng một gia đình vững chãi, nơi Đất làm nền móng và Nước tưới mát tâm hồn. Người 1 học được sự kiên nhẫn từ Người 2, Người 2 học được cách mở lòng từ Người 1. Đôi khi vẫn cãi nhau nhưng biết cách làm hòa trong cùng ngày.",
+        "worst": "Cãi nhau to, không ai xin lỗi trước, chiến tranh lạnh kéo dài đến mức một trong hai tìm sự an ủi ở người khác. Sự trung thành — vốn là điểm mạnh nhất — bị phá vỡ và trở thành vết thương không thể hàn gắn.",
+        "mostLikely": "Cả hai sẽ trải qua nhiều sóng gió trong 2-3 năm đầu, thậm chí có lúc tưởng như chia tay. Nhưng sức hút quá mạnh sẽ kéo họ lại với nhau. Dần dần, cả hai học được cách chịu đựng nhau và xây dựng một mối quan hệ 'không hoàn hảo nhưng rất thật'."
+      },
+      "greenFlags": ["Cực kỳ trung thành và cam kết khi đã yêu", "Biết chăm sóc đối phương bằng hành động cụ thể", "Luôn bảo vệ nhau trước người ngoài", "Chemistry và sức hút rất mãnh liệt", "Bổ trợ nhau ở nhiều mặt: cảm xúc bù lý trí"],
+      "redFlags": ["Cái tôi cả hai đều quá cao, không ai chịu nhường", "Hay chiến tranh lạnh thay vì giải quyết trực tiếp", "Thích móc mỉa lỗi lầm trong quá khứ khi cãi nhau", "Vòng lặp Anxious-Avoidant dễ tạo drama không hồi kết", "Chênh lệch nhu cầu giao tiếp cảm xúc"],
+      "adviceCards": [
+        { "for": "person1", "icon": "i-lucide-lightbulb", "title": "Lời khuyên cho Người 1", "advice": "Hãy học cách cho đối phương không gian khi họ cần. Im lặng của họ không phải là không yêu bạn, mà là cách họ xử lý cảm xúc. Thay vì đuổi theo đòi câu trả lời ngay lập tức, hãy thử viết ra cảm xúc của mình và chia sẻ khi cả hai đã bình tĩnh." },
+        { "for": "person2", "icon": "i-lucide-lightbulb", "title": "Lời khuyên cho Người 2", "advice": "Đừng nghĩ rằng im lặng sẽ giải quyết mọi chuyện. Đối phương cần nghe bạn nói — dù chỉ là 'Anh/em cần thời gian suy nghĩ'. Một câu nói nhỏ đó có thể ngăn chặn được cả một cuộc chiến tranh lạnh kéo dài. Hãy tập thể hiện tình cảm bằng lời nói nhiều hơn." },
+        { "for": "both", "icon": "i-lucide-heart-handshake", "title": "Lời khuyên cho cả hai", "advice": "Đặt ra quy tắc 'không cold war quá 24 giờ'. Khi cãi nhau, ai cũng được quyền xin thời gian nguội nhưng tối đa chỉ 1 ngày, sau đó phải ngồi lại nói chuyện. Hãy nhớ: trong mối quan hệ này, không có đúng sai — chỉ có hạnh phúc hoặc mất nhau." }
+      ],
+      "productLabel": "⚠️ SẢN PHẨM DỄ CHÁY NỔ. Yêu cầu bảo quản nơi thoáng mát, tránh xa cãi vã và chiến tranh lạnh. Hạn sử dụng: Tuỳ thuộc vào việc ai chịu xuống nước trước. Thành phần: 50% đam mê, 30% bướng bỉnh, 20% nước mắt.",
       "songRecommendation": {
         "name": "Love The Way You Lie",
         "artist": "Eminem ft. Rihanna",
-        "reason": "Vừa yêu vừa hận, cãi nhau tung nóc nhưng không bỏ được."
+        "reason": "Vừa yêu vừa hận, cãi nhau tung nóc nhưng không bỏ được. Bài hát này là bản tuyên ngôn cho mối quan hệ đầy mâu thuẫn nhưng cũng đầy đam mê của hai bạn."
       },
-      "survivalGuide": "Khi cãi nhau, một người phải học cách ngậm miệng lại và ôm người kia. Không có đúng sai, chỉ có hạnh phúc hoặc mất nhau.",
-      "finalRoast": "Hai bạn đúng là trời sinh một cặp... để đày đọa nhau cho thiên hạ đỡ khổ."
+      "survivalGuide": "Khi cãi nhau, một người phải học cách ngậm miệng lại và ôm người kia — đúng nghĩa đen. Áp dụng quy tắc '24 giờ': không được cold war quá 1 ngày. Mỗi tuần dành ít nhất 1 buổi tối không điện thoại, chỉ có hai người. Và quan trọng nhất: đừng bao giờ đem chuyện cũ ra mài trong cuộc cãi mới.",
+      "finalRoast": "Hai bạn đúng là trời sinh một cặp... để đày đọa nhau cho thiên hạ đỡ khổ. Nhưng nói thật, nếu không có nhau, cả hai chắc chán đời đến mức phải đi nuôi mèo để có cái gì đó để cãi nhau."
     }
   ]
 }
