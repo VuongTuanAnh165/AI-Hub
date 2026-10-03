@@ -95,26 +95,47 @@ const photoStyleOptions = ['Selfie', 'Ảnh chụp người khác', 'Phong cản
 
 export const miniApps: MiniApp[] = [
   {
-    slug: 'cham-anh-social',
-    title: '📸 AI Chấm Ảnh Social',
-    description: 'Upload ảnh, AI chấm vibe, bố cục, độ nổi bật và mức độ phù hợp để đăng MXH.',
-    icon: 'i-lucide-camera',
-    category: '🤳 Mạng xã hội & Viral',
+    slug: 'do-hop-doi',
+    title: '💞 AI Độ Hợp Đôi',
+    description: 'Báo cáo tương thích toàn diện 15 phương diện cho bất kỳ mối quan hệ nào: Tình yêu, tình bạn, hay oan gia ngõ hẹp.',
+    icon: 'i-lucide-git-merge',
+    category: '💘 Tình yêu & Mối quan hệ',
     badge: 'hot',
     formFields: [
-      { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
-      { key: 'platform', label: 'Định đăng ảnh ở đâu?', type: 'select', options: platformPostOptions },
-      { key: 'purpose', label: 'Mục đích đăng ảnh?', type: 'select', options: postPurposeOptions, allowOther: true },
-      { key: 'style', label: 'Phong cách ảnh?', type: 'select', options: photoStyleOptions, allowOther: true },
-      { key: 'photo', label: 'Tải ảnh cần chấm lên', type: 'image' }
+      // ═══ NHÓM 1: THÔNG TIN NGƯỜI 1 ═══
+      { key: 'name1', label: '👤 Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      { key: 'birthday1', label: 'Ngày sinh của bạn', type: 'date' },
+      { key: 'gender1', label: 'Giới tính của bạn', type: 'select', options: genderOptions },
+      { key: 'personality1', label: 'Xu hướng tính cách của bạn', type: 'select', options: personalityOptions, allowOther: true },
+      { key: 'personalityDetail1', label: 'Mô tả chi tiết hơn tính cách bạn', type: 'select', options: personalityDetailOptions, allowOther: true },
+      { key: 'loveLanguage1', label: 'Ngôn ngữ tình yêu của bạn', type: 'select', options: loveLanguageOptions, allowOther: true },
+      { key: 'stressReaction1', label: 'Khi stress nặng, bạn thường...', type: 'select', options: stressOptions, allowOther: true },
+      { key: 'photo1', label: 'Ảnh của bạn (Tuỳ chọn — để soi tướng phu thê)', type: 'image', optional: true },
+
+      // ═══ NHÓM 2: THÔNG TIN NGƯỜI 2 ═══
+      { key: 'name2', label: '👥 Tên đối phương', placeholder: 'VD: Hoàng Nam', type: 'text' },
+      { key: 'birthday2', label: 'Ngày sinh đối phương', type: 'date' },
+      { key: 'gender2', label: 'Giới tính đối phương', type: 'select', options: genderOptions },
+      { key: 'personality2', label: 'Xu hướng tính cách của họ', type: 'select', options: personalityOptions, allowOther: true },
+      { key: 'personalityDetail2', label: 'Mô tả chi tiết hơn tính cách họ', type: 'select', options: personalityDetailOptions, allowOther: true, optional: true },
+      { key: 'loveLanguage2', label: 'Ngôn ngữ tình yêu của họ (nếu biết)', type: 'select', options: loveLanguageOptions, allowOther: true, optional: true },
+      { key: 'stressReaction2', label: 'Khi họ stress, họ thường... (nếu biết)', type: 'select', options: stressOptions, allowOther: true, optional: true },
+      { key: 'photo2', label: 'Ảnh đối phương (Tuỳ chọn)', type: 'image', optional: true },
+
+      // ═══ NHÓM 3: MỐI QUAN HỆ ═══
+      { key: 'relationshipType', label: '🔗 Mối quan hệ hiện tại', type: 'select', options: relationshipTypeOptions, allowOther: true },
+      { key: 'howMet', label: 'Hai người quen nhau bằng cách nào?', type: 'select', options: howMetOptions, allowOther: true },
+      { key: 'duration', label: 'Đã quen nhau bao lâu?', type: 'select', options: durationOptions, allowOther: true },
+      { key: 'conflictStyle', label: 'Khi xảy ra bất đồng, cả hai thường...', type: 'select', options: conflictDuoOptions, allowOther: true },
+      { key: 'financePerspective', label: 'Quan điểm tài chính của cả hai', type: 'select', options: financePerspectiveOptions, allowOther: true, optional: true },
+      { key: 'familyImportance', label: 'Mức độ coi trọng gia đình', type: 'select', options: familyImportanceOptions, allowOther: true, optional: true },
+      { key: 'futureVision', label: 'Tầm nhìn tương lai chung', type: 'select', options: futureVisionOptions, allowOther: true, optional: true },
+      { key: 'intimacyStyle', label: 'Mức độ gần gũi / thân mật', type: 'select', options: intimacyStyleOptions, allowOther: true, optional: true },
+      { key: 'childrenView', label: 'Quan điểm về con cái', type: 'select', options: childrenViewOptions, allowOther: true, optional: true },
+      { key: 'admire', label: 'Điều bạn thích / ngưỡng mộ nhất ở họ?', placeholder: 'VD: Cười duyên, sống có trách nhiệm...', type: 'text' },
+      { key: 'annoy', label: 'Điều khiến bạn khó chịu nhất ở họ?', placeholder: 'VD: Hay trễ hẹn, ít nói...', type: 'text' }
     ],
-    loadingTexts: [
-      'Đang soi ánh sáng...', 
-      'Đang ngắm bố cục...', 
-      'Đang đếm like tương lai...', 
-      'Đang suy nghĩ caption...',
-      'Đang chuẩn bị lời phán xét...'
-    ]
+    loadingTexts: ['Đang tính toán thiên can địa chi...', 'Đang soi ngũ hành sinh khắc...', 'Phân tích 15 phương diện tương thích...', 'Đang đo lường độ chịu đựng lẫn nhau...', 'Đang giải mã cung Phu Thê...', 'Đang dự đoán tương lai mối quan hệ...']
   },
   {
     slug: 'at-chu-bai',
@@ -138,6 +159,52 @@ export const miniApps: MiniApp[] = [
       'Đang mô phỏng tình huống sinh tử...', 
       'Đang tính toán độ sát thương...',
       'Đang rút lá bài lật ngược thế cờ...'
+    ]
+  },
+  {
+    slug: 'nguoi-yeu-tuong-lai',
+    title: '💘 AI Người Yêu Tương Lai',
+    description: 'AI sẽ gán ghép cho bạn một hồ sơ người yêu hoàn hảo (hoặc dở khóc dở cười) với điểm tương hợp và dự đoán tình yêu!',
+    icon: 'i-lucide-heart-handshake',
+    category: '💘 Tình yêu & Mối quan hệ',
+    badge: 'hot',
+    formFields: [
+      { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      { key: 'age', label: 'Tuổi', placeholder: 'VD: 22', type: 'text' },
+      { key: 'gender', label: 'Giới tính', type: 'select', options: ['Nam', 'Nữ', 'Bí ẩn'] },
+      { key: 'loveLanguage', label: 'Ngôn ngữ tình yêu của bạn', type: 'select', options: loveLanguageOptions, allowOther: true },
+      { key: 'idealDate', label: 'Buổi hẹn lý tưởng', type: 'select', options: idealDateOptions, allowOther: true },
+      { key: 'dealBreaker', label: 'Điều KHÔNG thể chấp nhận', type: 'select', options: dealBreakerOptions, multiple: true, allowOther: true },
+      { key: 'loveHistory', label: 'Tình trạng tình yêu', type: 'select', options: loveHistoryOptions, allowOther: true }
+    ],
+    loadingTexts: [
+      'Đang quét radar tình yêu...',
+      'Đang tìm kiếm nửa kia của bạn...',
+      'Đang phân tích độ tương hợp...',
+      'Đang viết kịch bản meet-cute...',
+      'Sắp tìm thấy rồi...'
+    ]
+  },
+  {
+    slug: 'cham-anh-social',
+    title: '📸 AI Chấm Ảnh Social',
+    description: 'Upload ảnh, AI chấm vibe, bố cục, độ nổi bật và mức độ phù hợp để đăng MXH.',
+    icon: 'i-lucide-camera',
+    category: '🤳 Mạng xã hội & Viral',
+    badge: 'hot',
+    formFields: [
+      { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
+      { key: 'platform', label: 'Định đăng ảnh ở đâu?', type: 'select', options: platformPostOptions },
+      { key: 'purpose', label: 'Mục đích đăng ảnh?', type: 'select', options: postPurposeOptions, allowOther: true },
+      { key: 'style', label: 'Phong cách ảnh?', type: 'select', options: photoStyleOptions, allowOther: true },
+      { key: 'photo', label: 'Tải ảnh cần chấm lên', type: 'image' }
+    ],
+    loadingTexts: [
+      'Đang soi ánh sáng...', 
+      'Đang ngắm bố cục...', 
+      'Đang đếm like tương lai...', 
+      'Đang suy nghĩ caption...',
+      'Đang chuẩn bị lời phán xét...'
     ]
   },
   {
@@ -319,30 +386,6 @@ export const miniApps: MiniApp[] = [
     ]
   },
   {
-    slug: 'nguoi-yeu-tuong-lai',
-    title: '💘 AI Người Yêu Tương Lai',
-    description: 'AI sẽ gán ghép cho bạn một hồ sơ người yêu hoàn hảo (hoặc dở khóc dở cười) với điểm tương hợp và dự đoán tình yêu!',
-    icon: 'i-lucide-heart-handshake',
-    category: '💘 Tình yêu & Mối quan hệ',
-    badge: 'hot',
-    formFields: [
-      { key: 'name', label: 'Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
-      { key: 'age', label: 'Tuổi', placeholder: 'VD: 22', type: 'text' },
-      { key: 'gender', label: 'Giới tính', type: 'select', options: ['Nam', 'Nữ', 'Bí ẩn'] },
-      { key: 'loveLanguage', label: 'Ngôn ngữ tình yêu của bạn', type: 'select', options: loveLanguageOptions, allowOther: true },
-      { key: 'idealDate', label: 'Buổi hẹn lý tưởng', type: 'select', options: idealDateOptions, allowOther: true },
-      { key: 'dealBreaker', label: 'Điều KHÔNG thể chấp nhận', type: 'select', options: dealBreakerOptions, multiple: true, allowOther: true },
-      { key: 'loveHistory', label: 'Tình trạng tình yêu', type: 'select', options: loveHistoryOptions, allowOther: true }
-    ],
-    loadingTexts: [
-      'Đang quét radar tình yêu...',
-      'Đang tìm kiếm nửa kia của bạn...',
-      'Đang phân tích độ tương hợp...',
-      'Đang viết kịch bản meet-cute...',
-      'Sắp tìm thấy rồi...'
-    ]
-  },
-  {
     slug: 'red-flag-green-flag',
     title: '🚩 Phiếu Kiểm Định Tình Yêu',
     description: 'AI sẽ khám bệnh tình yêu và dán nhãn Green Flag hay Red Flag cho từng hành vi của bạn!',
@@ -387,47 +430,4 @@ export const miniApps: MiniApp[] = [
     ],
     loadingTexts: ['Đang giải mã gen...', 'Phân tích tần sóng não...', 'Đọc thấu tâm can...']
   },
-  {
-    slug: 'do-hop-doi',
-    title: '💞 AI Độ Hợp Đôi',
-    description: 'Báo cáo tương thích toàn diện 15 phương diện cho bất kỳ mối quan hệ nào: Tình yêu, tình bạn, hay oan gia ngõ hẹp.',
-    icon: 'i-lucide-git-merge',
-    category: '💘 Tình yêu & Mối quan hệ',
-    badge: 'hot',
-    formFields: [
-      // ═══ NHÓM 1: THÔNG TIN NGƯỜI 1 ═══
-      { key: 'name1', label: '👤 Tên của bạn', placeholder: 'VD: Minh Anh', type: 'text' },
-      { key: 'birthday1', label: 'Ngày sinh của bạn', type: 'date' },
-      { key: 'gender1', label: 'Giới tính của bạn', type: 'select', options: genderOptions },
-      { key: 'personality1', label: 'Xu hướng tính cách của bạn', type: 'select', options: personalityOptions, allowOther: true },
-      { key: 'personalityDetail1', label: 'Mô tả chi tiết hơn tính cách bạn', type: 'select', options: personalityDetailOptions, allowOther: true },
-      { key: 'loveLanguage1', label: 'Ngôn ngữ tình yêu của bạn', type: 'select', options: loveLanguageOptions, allowOther: true },
-      { key: 'stressReaction1', label: 'Khi stress nặng, bạn thường...', type: 'select', options: stressOptions, allowOther: true },
-      { key: 'photo1', label: 'Ảnh của bạn (Tuỳ chọn — để soi tướng phu thê)', type: 'image', optional: true },
-
-      // ═══ NHÓM 2: THÔNG TIN NGƯỜI 2 ═══
-      { key: 'name2', label: '👥 Tên đối phương', placeholder: 'VD: Hoàng Nam', type: 'text' },
-      { key: 'birthday2', label: 'Ngày sinh đối phương', type: 'date' },
-      { key: 'gender2', label: 'Giới tính đối phương', type: 'select', options: genderOptions },
-      { key: 'personality2', label: 'Xu hướng tính cách của họ', type: 'select', options: personalityOptions, allowOther: true },
-      { key: 'personalityDetail2', label: 'Mô tả chi tiết hơn tính cách họ', type: 'select', options: personalityDetailOptions, allowOther: true, optional: true },
-      { key: 'loveLanguage2', label: 'Ngôn ngữ tình yêu của họ (nếu biết)', type: 'select', options: loveLanguageOptions, allowOther: true, optional: true },
-      { key: 'stressReaction2', label: 'Khi họ stress, họ thường... (nếu biết)', type: 'select', options: stressOptions, allowOther: true, optional: true },
-      { key: 'photo2', label: 'Ảnh đối phương (Tuỳ chọn)', type: 'image', optional: true },
-
-      // ═══ NHÓM 3: MỐI QUAN HỆ ═══
-      { key: 'relationshipType', label: '🔗 Mối quan hệ hiện tại', type: 'select', options: relationshipTypeOptions, allowOther: true },
-      { key: 'howMet', label: 'Hai người quen nhau bằng cách nào?', type: 'select', options: howMetOptions, allowOther: true },
-      { key: 'duration', label: 'Đã quen nhau bao lâu?', type: 'select', options: durationOptions, allowOther: true },
-      { key: 'conflictStyle', label: 'Khi xảy ra bất đồng, cả hai thường...', type: 'select', options: conflictDuoOptions, allowOther: true },
-      { key: 'financePerspective', label: 'Quan điểm tài chính của cả hai', type: 'select', options: financePerspectiveOptions, allowOther: true, optional: true },
-      { key: 'familyImportance', label: 'Mức độ coi trọng gia đình', type: 'select', options: familyImportanceOptions, allowOther: true, optional: true },
-      { key: 'futureVision', label: 'Tầm nhìn tương lai chung', type: 'select', options: futureVisionOptions, allowOther: true, optional: true },
-      { key: 'intimacyStyle', label: 'Mức độ gần gũi / thân mật', type: 'select', options: intimacyStyleOptions, allowOther: true, optional: true },
-      { key: 'childrenView', label: 'Quan điểm về con cái', type: 'select', options: childrenViewOptions, allowOther: true, optional: true },
-      { key: 'admire', label: 'Điều bạn thích / ngưỡng mộ nhất ở họ?', placeholder: 'VD: Cười duyên, sống có trách nhiệm...', type: 'text' },
-      { key: 'annoy', label: 'Điều khiến bạn khó chịu nhất ở họ?', placeholder: 'VD: Hay trễ hẹn, ít nói...', type: 'text' }
-    ],
-    loadingTexts: ['Đang tính toán thiên can địa chi...', 'Đang soi ngũ hành sinh khắc...', 'Phân tích 15 phương diện tương thích...', 'Đang đo lường độ chịu đựng lẫn nhau...', 'Đang giải mã cung Phu Thê...', 'Đang dự đoán tương lai mối quan hệ...']
-  }
 ]
